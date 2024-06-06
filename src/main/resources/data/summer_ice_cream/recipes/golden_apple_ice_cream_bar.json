@@ -1,0 +1,8 @@
+{
+    "type": "summer_ice_cream:ice_cream_bar_mold_recipes",
+    "inputs":  [
+        "summer_ice_cream:bar",
+        "summer_ice_cream:golden_apple_cream_liquid_bucket"
+    ],
+    "result": "summer_ice_cream:golden_apple_ice_cream_bar_not_thaw"
+}

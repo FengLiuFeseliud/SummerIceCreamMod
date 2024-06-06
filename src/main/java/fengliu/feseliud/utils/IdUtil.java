@@ -9,6 +9,14 @@ public class IdUtil {
         return new Identifier(SummerIceCream.MOD_ID, name);
     }
 
+    public static Identifier getFluidStill(String name){
+        return new Identifier(SummerIceCream.MOD_ID, name + "_still");
+    }
+
+    public static Identifier getFluidFlowing(String name){
+        return new Identifier(SummerIceCream.MOD_ID, name +  "_flowing");
+    }
+
     public static String getItemGroupName(String name){
         return "item.group." + SummerIceCream.MOD_ID + "." + name;
     }

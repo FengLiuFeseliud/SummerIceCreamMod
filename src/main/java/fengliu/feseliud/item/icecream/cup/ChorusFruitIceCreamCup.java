@@ -24,7 +24,7 @@ public class ChorusFruitIceCreamCup extends IceCreamCup{
 
     @Override
     public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
-        ChorusFruitIceCreamBar.useChorusFruit(world, user, this.getIceCreams());
+        ChorusFruitIceCreamBar.useChorusFruit(world, user);
         return super.finishUsing(stack, world, user);
     }
 

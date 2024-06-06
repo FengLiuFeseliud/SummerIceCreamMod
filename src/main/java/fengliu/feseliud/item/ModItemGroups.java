@@ -24,4 +24,12 @@ public class ModItemGroups {
                     .displayName(Text.translatable(IdUtil.getItemGroupName("food_group")))
                     .build()
     );
+
+    public static final RegistryKey<ItemGroup> MATERIALS_GROUP = RegisterUtil.registerItemGroup(
+            "materials_group",
+            FabricItemGroup.builder()
+                    .icon(() -> new ItemStack(ModItems.MILK_ICE_CREAM_LIQUID_BUCKET))
+                    .displayName(Text.translatable(IdUtil.getItemGroupName("materials_group")))
+                    .build()
+    );
 }

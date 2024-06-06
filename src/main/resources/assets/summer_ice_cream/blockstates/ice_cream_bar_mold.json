@@ -1,0 +1,39 @@
+{
+    "multipart": [
+        {
+            "when": {
+                "facing": "north"
+            },
+            "apply": {
+                "model": "summer_ice_cream:block/ice_cream_bar_mold"
+            }
+        },
+        {
+            "when": {
+                "facing": "east"
+            },
+            "apply": {
+                "model": "summer_ice_cream:block/ice_cream_bar_mold",
+                "y": 90
+            }
+        },
+        {
+            "when": {
+                "facing": "south"
+            },
+            "apply": {
+                "model": "summer_ice_cream:block/ice_cream_bar_mold",
+                "y": 180
+            }
+        },
+        {
+            "when": {
+                "facing": "west"
+            },
+            "apply": {
+                "model": "summer_ice_cream:block/ice_cream_bar_mold",
+                "y": 270
+            }
+        }
+    ]
+}

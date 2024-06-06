@@ -1,0 +1,21 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "  S",
+        " S ",
+        "P  "
+    ],
+    "key": {
+        "S": {
+            "item": "minecraft:stick"
+        },
+
+        "P": {
+            "tag": "minecraft:planks"
+        }
+    },
+    "result": {
+        "item": "summer_ice_cream:spoon",
+        "count": 1
+    }
+}

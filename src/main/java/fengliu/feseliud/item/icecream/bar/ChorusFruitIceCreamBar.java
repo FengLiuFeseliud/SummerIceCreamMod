@@ -21,18 +21,32 @@ public class ChorusFruitIceCreamBar extends IceCreamBar {
         super(settings, name);
     }
 
-    public static void useChorusFruit(World world, LivingEntity user,  Map<IceCreamBar, IIceCreamLevel> creamLevels){
+    public static void useChorusFruit(World world, LivingEntity user){
         Items.CHORUS_FRUIT.finishUsing(Items.CHORUS_FRUIT.getDefaultStack(), world, user);
         if (user instanceof PlayerEntity player) {
-            creamLevels.forEach(((item, iLevelItem) -> {
+            ModItems.CHORUS_FRUIT_ICE_CREAM_BARS.forEach(((item, iLevelItem) -> {
                 player.getItemCooldownManager().set(item, 20);
             }));
+
+            ModItems.CHORUS_FRUIT_ICE_CREAM_CPUS.forEach(((item, iLevelItem) -> {
+                player.getItemCooldownManager().set(item, 20);
+            }));
+
+            ModItems.CHOCOLATE_CRUST_CHORUS_FRUIT_ICE_CREAM_BARS.forEach(((item, iLevelItem) -> {
+                player.getItemCooldownManager().set(item, 20);
+            }));
+
+            ModItems.CHOCOLATE_CHORUS_FRUIT_ICE_CREAM_CPUS.forEach(((item, iLevelItem) -> {
+                player.getItemCooldownManager().set(item, 20);
+            }));
+
+            player.getItemCooldownManager().set(ModItems.CHORUS_FRUIT_ICE_CREAM_LIQUID_BUCKET, 20);
         }
     }
 
     @Override
     public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
-        ChorusFruitIceCreamBar.useChorusFruit(world, user, this.getIceCreams());
+        ChorusFruitIceCreamBar.useChorusFruit(world, user);
         return super.finishUsing(stack, world, user);
     }
 

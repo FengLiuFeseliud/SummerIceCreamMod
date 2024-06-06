@@ -1,6 +1,11 @@
 package fengliu.feseliud;
 
+import fengliu.feseliud.block.ModBlocks;
+import fengliu.feseliud.block.entity.ModBlockEntitys;
+import fengliu.feseliud.fluid.ModFluids;
 import fengliu.feseliud.item.ModItems;
+import fengliu.feseliud.item.block.ModBlockItems;
+import fengliu.feseliud.recipes.ModRecipes;
 import net.fabricmc.api.ModInitializer;
 
 import org.slf4j.Logger;
@@ -13,5 +18,10 @@ public class SummerIceCream implements ModInitializer {
 	@Override
 	public void onInitialize() {
 		ModItems.registerAllItems();
+		ModBlockItems.registerAllBlockItems();
+		ModBlocks.registerAllBlock();
+		ModFluids.registerAllFluids();
+		ModBlockEntitys.registerAllBlockEntity();
+		ModRecipes.registerAllRecipes();
 	}
 }

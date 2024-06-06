@@ -1,0 +1,9 @@
+{
+    "sources": [
+        {
+            "type": "directory",
+            "source": "summer_ice_cream:block",
+            "prefix": "summer_ice_cream:block/"
+        }
+    ]
+}

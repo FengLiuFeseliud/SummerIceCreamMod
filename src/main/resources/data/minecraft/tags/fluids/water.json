@@ -1,0 +1,17 @@
+{
+    "replace": false,
+    "values": [
+        "summer_ice_cream:milk_ice_cream_liquid_fluid",
+        "summer_ice_cream:milk_ice_cream_liquid_fluid_flowing",
+        "summer_ice_cream:chorus_fruit_ice_cream_liquid_fluid",
+        "summer_ice_cream:chorus_fruit_ice_cream_liquid_fluid_flowing",
+        "summer_ice_cream:cookie_ice_cream_liquid_fluid",
+        "summer_ice_cream:cookie_ice_cream_liquid_fluid_flowing",
+        "summer_ice_cream:glow_berries_ice_cream_liquid_fluid",
+        "summer_ice_cream:glow_berries_ice_cream_liquid_fluid_flowing",
+        "summer_ice_cream:golden_apple_cream_liquid_fluid",
+        "summer_ice_cream:golden_apple_cream_liquid_fluid_flowing",
+        "summer_ice_cream:salt_water_fluid",
+        "summer_ice_cream:salt_water_fluid_flowing"
+    ]
+}
