@@ -5,6 +5,7 @@ import fengliu.feseliud.fluid.BaseFluid;
 import fengliu.feseliud.fluid.ModFluids;
 import fengliu.feseliud.item.ModItems;
 import fengliu.feseliud.utils.RegisterUtil;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.fluid.FlowableFluid;
 import net.minecraft.fluid.Fluid;
@@ -18,6 +19,11 @@ import net.minecraft.world.WorldView;
 
 public class MilkFluid extends BaseFluid {
     public static final String name = "milk_fluid";
+
+    @Override
+    public Block getIceBlock() {
+        return null;
+    }
 
     @Override
     protected int getFlowSpeed(WorldView world) {

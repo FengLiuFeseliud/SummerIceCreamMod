@@ -77,13 +77,13 @@ public class CookieIceCreamCup extends IceCreamCup{
         }
 
         @Override
-        public String getIdName() {
+        public String getName() {
             return "cookie_ice_cream_cup";
         }
 
         @Override
         public BaseItem getItem() {
-            return new CookieIceCreamCup(new FabricItemSettings().maxCount(1).maxDamage(this.getMaxLevel()).food(this.getFoodComponent()), this.getIdName(), false);
+            return new CookieIceCreamCup(new FabricItemSettings().maxCount(1).maxDamage(this.getMaxLevel()).food(this.getFoodComponent()), this.getName(), false);
         }
 
         @Override
@@ -145,13 +145,13 @@ public class CookieIceCreamCup extends IceCreamCup{
         }
 
         @Override
-        public String getIdName() {
+        public String getName() {
             return "cookie_ice_cream_cup";
         }
 
         @Override
         public BaseItem getItem() {
-            return new CookieIceCreamCup(new FabricItemSettings().maxCount(1).maxDamage(this.getMaxLevel()).food(this.getFoodComponent()), this.getIdName(), true);
+            return new CookieIceCreamCup(new FabricItemSettings().maxCount(1).maxDamage(this.getMaxLevel()).food(this.getFoodComponent()), this.getName(), true);
         }
 
         @Override

@@ -73,13 +73,13 @@ public class ChocolateCrustChorusFruitIceCreamBar extends ChorusFruitIceCreamBar
         }
 
         @Override
-        public String getIdName() {
+        public String getName() {
             return "chocolate_crust_chorus_fruit_ice_cream_bar";
         }
 
         @Override
         public BaseItem getItem() {
-            return new ChocolateCrustChorusFruitIceCreamBar(new FabricItemSettings().maxCount(1).maxDamage(this.getMaxLevel()).food(this.getFoodComponent()), this.getIdName());
+            return new ChocolateCrustChorusFruitIceCreamBar(new FabricItemSettings().maxCount(1).maxDamage(this.getMaxLevel()).food(this.getFoodComponent()), this.getName());
         }
     }
 }

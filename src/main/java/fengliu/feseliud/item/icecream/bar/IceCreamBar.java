@@ -1,11 +1,9 @@
 package fengliu.feseliud.item.icecream.bar;
 
-import fengliu.feseliud.SummerIceCream;
 import fengliu.feseliud.item.BaseItem;
 import fengliu.feseliud.item.ModItems;
 import fengliu.feseliud.item.icecream.IIceCream;
 import fengliu.feseliud.item.icecream.IIceCreamLevel;
-import fengliu.feseliud.utils.IdUtil;
 import net.fabricmc.fabric.api.item.v1.FabricItem;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.client.item.TooltipContext;
@@ -13,13 +11,9 @@ import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.FoodComponent;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
-import net.minecraft.nbt.NbtElement;
 import net.minecraft.text.Text;
-import net.minecraft.util.Hand;
 import net.minecraft.util.UseAction;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
@@ -29,6 +23,7 @@ import java.util.Map;
 
 
 public class IceCreamBar extends BaseItem implements IIceCream, FabricItem {
+    public static final String PREFIXED_PATH = IIceCream.PREFIXED_PATH + "bar" + "/";
 
     public IceCreamBar(Settings settings, String name) {
         super(settings, name);
@@ -72,12 +67,12 @@ public class IceCreamBar extends BaseItem implements IIceCream, FabricItem {
 
     @Override
     public String getTextureName() {
-        return this.getIceCreams().get(this).getThawName();
+        return this.getIceCreamLevel().getThawName();
     }
 
     @Override
     public String getPrefixedPath() {
-        return super.getPrefixedPath() + this.getIceCreams().get(this).getIdName() + "/";
+        return PREFIXED_PATH + this.getIceCreamLevel().getName() + "/";
     }
 
     @Override
@@ -111,7 +106,7 @@ public class IceCreamBar extends BaseItem implements IIceCream, FabricItem {
         @Override
         public FoodComponent getFoodComponent() {
             return new FoodComponent.Builder()
-                    .hunger(2 * this.gain).saturationModifier((float) (this.gain))
+                    .hunger((int) (1.5f * this.gain)).saturationModifier((float) (this.gain))
                     .statusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 100 * this.gain), 1.0f)
                     .alwaysEdible().build();
         }
@@ -142,13 +137,13 @@ public class IceCreamBar extends BaseItem implements IIceCream, FabricItem {
         }
 
         @Override
-        public String getIdName() {
+        public String getName() {
             return "ice_cream_bar";
         }
 
         @Override
         public BaseItem getItem() {
-            return new IceCreamBar(new FabricItemSettings().maxCount(1).maxDamage(this.getMaxLevel()).food(this.getFoodComponent()), this.getIdName());
+            return new IceCreamBar(new FabricItemSettings().maxCount(1).maxDamage(this.getMaxLevel()).food(this.getFoodComponent()), this.getName());
         }
     }
 }

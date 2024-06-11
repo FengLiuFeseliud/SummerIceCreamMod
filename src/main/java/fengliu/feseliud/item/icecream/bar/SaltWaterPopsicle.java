@@ -18,7 +18,7 @@ public class SaltWaterPopsicle extends IceCreamBar {
 
     @Override
     public Map<IceCreamBar, IIceCreamLevel> getIceCreams() {
-        return ModItems.SALT_WATER_POPSICLE;
+        return ModItems.SALT_WATER_POPSICLES;
     }
 
     public enum IceCreamLevels implements IIceCreamLevel {
@@ -78,13 +78,13 @@ public class SaltWaterPopsicle extends IceCreamBar {
         }
 
         @Override
-        public String getIdName() {
+        public String getName() {
             return "salt_water_popsicle";
         }
 
         @Override
         public BaseItem getItem() {
-            return new SaltWaterPopsicle(new FabricItemSettings().maxCount(1).maxDamage(this.getMaxLevel()).food(this.getFoodComponent()), this.getIdName());
+            return new SaltWaterPopsicle(new FabricItemSettings().maxCount(1).maxDamage(this.getMaxLevel()).food(this.getFoodComponent()), this.getName());
         }
     }
 }

@@ -29,14 +29,14 @@ public interface ILevel {
      * 获取等级物品名字 (物品 Id 冒号后面)
      * @return 等级物品名字
      */
-    String getIdName();
+    String getName();
 
     /**
-     * 获取等级物品完整路径 (加上等级)
+     * 获取等级物品完整名字 (加上等级)
      * @return 等级物品路径
      */
-    default String getPath(){
-        return this.getIdName() + "_lv_" + this.getLevel();
+    default String getIdName(){
+        return this.getName() + "_lv_" + this.getLevel();
     }
 
     /**
@@ -44,6 +44,6 @@ public interface ILevel {
      * @return 等级物品 Id
      */
     default Identifier getId(){
-        return IdUtil.get(this.getPath());
+        return IdUtil.get(this.getIdName());
     };
 }

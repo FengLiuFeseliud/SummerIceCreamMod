@@ -8,6 +8,7 @@ import net.fabricmc.fabric.api.item.v1.FabricItem;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
@@ -20,9 +21,11 @@ import java.util.List;
 import java.util.Map;
 
 public interface IIceCream extends FabricItem {
+    String PREFIXED_PATH = "item/icecream/";
     String THAW_TIME_KEY = SummerIceCream.MOD_ID + ".thawTime";
+
     boolean inSpoon();
-    <I extends IIceCream> Map<I, IIceCreamLevel> getIceCreams();
+    <I extends IIceCream, IL extends IIceCreamLevel> Map<I, IL> getIceCreams();
 
     default IIceCreamLevel getIceCreamLevel(){
         return this.getIceCreams().get(this);
@@ -46,12 +49,12 @@ public interface IIceCream extends FabricItem {
 
         for (Map.Entry<IIceCream, IIceCreamLevel> iceCream: this.getIceCreams().entrySet()){
             if (nextIn){
-                ItemStack iceCreamStack = ((BaseItem) iceCream.getKey()).getDefaultStack();
+                ItemStack iceCreamStack = ((Item) iceCream.getKey()).getDefaultStack();
                 iceCreamStack.setDamage(iceCream.getValue().getLevel() - 1);
                 return iceCreamStack;
             }
 
-            if (stack.isOf((BaseItem) iceCream.getKey())){
+            if (stack.isOf((Item) iceCream.getKey())){
                 nextIn = true;
             }
 

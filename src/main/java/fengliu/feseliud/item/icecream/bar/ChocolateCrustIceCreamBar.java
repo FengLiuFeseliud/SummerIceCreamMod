@@ -42,7 +42,7 @@ public class ChocolateCrustIceCreamBar extends IceCreamBar {
         @Override
         public FoodComponent getFoodComponent() {
             return new FoodComponent.Builder()
-                    .hunger((int) (1.5 * this.gain)).saturationModifier((float) (this.gain))
+                    .hunger(2 * this.gain).saturationModifier((float) (this.gain))
                     .statusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 80 * this.gain), 1.0f)
                     .statusEffect(new StatusEffectInstance(StatusEffects.SATURATION, 5 * this.gain), 0.25f)
                     .alwaysEdible().build();
@@ -74,13 +74,13 @@ public class ChocolateCrustIceCreamBar extends IceCreamBar {
         }
 
         @Override
-        public String getIdName() {
+        public String getName() {
             return "chocolate_crust_ice_cream_bar";
         }
 
         @Override
         public BaseItem getItem() {
-            return new ChocolateCrustIceCreamBar(new FabricItemSettings().maxCount(1).maxDamage(this.getMaxLevel()).food(this.getFoodComponent()), this.getIdName());
+            return new ChocolateCrustIceCreamBar(new FabricItemSettings().maxCount(1).maxDamage(this.getMaxLevel()).food(this.getFoodComponent()), this.getName());
         }
     }
 }

@@ -3,7 +3,6 @@ package fengliu.feseliud.item.icecream.cup;
 import fengliu.feseliud.item.BaseItem;
 import fengliu.feseliud.item.ModItems;
 import fengliu.feseliud.item.icecream.IIceCreamLevel;
-import fengliu.feseliud.item.icecream.bar.GlowBerriesIceCreamBar;
 import fengliu.feseliud.item.icecream.bar.IceCreamBar;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -77,13 +76,13 @@ public class GlowBerriesIceCreamCup extends IceCreamCup{
         }
 
         @Override
-        public String getIdName() {
+        public String getName() {
             return "glow_berries_ice_cream_cup";
         }
 
         @Override
         public BaseItem getItem() {
-            return new GlowBerriesIceCreamCup(new FabricItemSettings().maxCount(1).maxDamage(this.getMaxLevel()).food(this.getFoodComponent()), this.getIdName(), false);
+            return new GlowBerriesIceCreamCup(new FabricItemSettings().maxCount(1).maxDamage(this.getMaxLevel()).food(this.getFoodComponent()), this.getName(), false);
         }
 
         @Override
@@ -145,13 +144,13 @@ public class GlowBerriesIceCreamCup extends IceCreamCup{
         }
 
         @Override
-        public String getIdName() {
+        public String getName() {
             return "glow_berries_ice_cream_cup";
         }
 
         @Override
         public BaseItem getItem() {
-            return new GlowBerriesIceCreamCup(new FabricItemSettings().maxCount(1).maxDamage(this.getMaxLevel()).food(this.getFoodComponent()), this.getIdName(), true);
+            return new GlowBerriesIceCreamCup(new FabricItemSettings().maxCount(1).maxDamage(this.getMaxLevel()).food(this.getFoodComponent()), this.getName(), true);
         }
 
         @Override

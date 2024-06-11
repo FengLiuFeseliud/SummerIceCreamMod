@@ -77,13 +77,13 @@ public class ChocolateCookieIceCreamCup extends IceCreamCup{
         }
 
         @Override
-        public String getIdName() {
+        public String getName() {
             return "chocolate_cookie_ice_cream_cup";
         }
 
         @Override
         public BaseItem getItem() {
-            return new ChocolateCookieIceCreamCup(new FabricItemSettings().maxCount(1).maxDamage(this.getMaxLevel()).food(this.getFoodComponent()), this.getIdName(), false);
+            return new ChocolateCookieIceCreamCup(new FabricItemSettings().maxCount(1).maxDamage(this.getMaxLevel()).food(this.getFoodComponent()), this.getName(), false);
         }
 
         @Override
@@ -147,13 +147,13 @@ public class ChocolateCookieIceCreamCup extends IceCreamCup{
         }
 
         @Override
-        public String getIdName() {
+        public String getName() {
             return "chocolate_cookie_ice_cream_cup";
         }
 
         @Override
         public BaseItem getItem() {
-            return new ChocolateCookieIceCreamCup(new FabricItemSettings().maxCount(1).maxDamage(this.getMaxLevel()).food(this.getFoodComponent()), this.getIdName(), true);
+            return new ChocolateCookieIceCreamCup(new FabricItemSettings().maxCount(1).maxDamage(this.getMaxLevel()).food(this.getFoodComponent()), this.getName(), true);
         }
 
         @Override

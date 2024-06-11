@@ -2,6 +2,7 @@ package fengliu.feseliud.item.icecream.bar;
 
 import fengliu.feseliud.item.BaseItem;
 import fengliu.feseliud.item.ModItems;
+import fengliu.feseliud.item.block.ModBlockItems;
 import fengliu.feseliud.item.icecream.IIceCreamLevel;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.entity.LivingEntity;
@@ -23,25 +24,17 @@ public class ChorusFruitIceCreamBar extends IceCreamBar {
 
     public static void useChorusFruit(World world, LivingEntity user){
         Items.CHORUS_FRUIT.finishUsing(Items.CHORUS_FRUIT.getDefaultStack(), world, user);
-        if (user instanceof PlayerEntity player) {
-            ModItems.CHORUS_FRUIT_ICE_CREAM_BARS.forEach(((item, iLevelItem) -> {
-                player.getItemCooldownManager().set(item, 20);
-            }));
-
-            ModItems.CHORUS_FRUIT_ICE_CREAM_CPUS.forEach(((item, iLevelItem) -> {
-                player.getItemCooldownManager().set(item, 20);
-            }));
-
-            ModItems.CHOCOLATE_CRUST_CHORUS_FRUIT_ICE_CREAM_BARS.forEach(((item, iLevelItem) -> {
-                player.getItemCooldownManager().set(item, 20);
-            }));
-
-            ModItems.CHOCOLATE_CHORUS_FRUIT_ICE_CREAM_CPUS.forEach(((item, iLevelItem) -> {
-                player.getItemCooldownManager().set(item, 20);
-            }));
-
-            player.getItemCooldownManager().set(ModItems.CHORUS_FRUIT_ICE_CREAM_LIQUID_BUCKET, 20);
+        if (!(user instanceof PlayerEntity player)) {
+            return;
         }
+
+        ModItems.CHORUS_FRUIT_ICE_CREAM_BARS.forEach(((item, iLevelItem) -> player.getItemCooldownManager().set(item, 20)));
+        ModItems.CHORUS_FRUIT_ICE_CREAM_CPUS.forEach(((item, iLevelItem) -> player.getItemCooldownManager().set(item, 20)));
+        ModItems.CHOCOLATE_CRUST_CHORUS_FRUIT_ICE_CREAM_BARS.forEach(((item, iLevelItem) -> player.getItemCooldownManager().set(item, 20)));
+        ModItems.CHOCOLATE_CHORUS_FRUIT_ICE_CREAM_CPUS.forEach(((item, iLevelItem) -> player.getItemCooldownManager().set(item, 20)));
+        ModItems.CHORUS_FRUIT_ICE_CREAM_BRICKS.forEach(((item, iLevelItem) -> player.getItemCooldownManager().set(item, 20)));
+        ModBlockItems.CHORUS_FRUIT_ICE_CREAMS.forEach(((item, iLevelItem) -> player.getItemCooldownManager().set(item, 20)));
+        player.getItemCooldownManager().set(ModItems.CHORUS_FRUIT_ICE_CREAM_LIQUID_BUCKET, 20);
     }
 
     @Override
@@ -106,13 +99,13 @@ public class ChorusFruitIceCreamBar extends IceCreamBar {
         }
 
         @Override
-        public String getIdName() {
+        public String getName() {
             return "chorus_fruit_ice_cream_bar";
         }
 
         @Override
         public BaseItem getItem() {
-            return new ChorusFruitIceCreamBar(new FabricItemSettings().maxCount(1).maxDamage(this.getMaxLevel()).food(this.getFoodComponent()), this.getIdName());
+            return new ChorusFruitIceCreamBar(new FabricItemSettings().maxCount(1).maxDamage(this.getMaxLevel()).food(this.getFoodComponent()), this.getName());
         }
     }
 }

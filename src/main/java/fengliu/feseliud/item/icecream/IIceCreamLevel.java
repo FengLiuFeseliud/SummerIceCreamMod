@@ -37,8 +37,8 @@ public interface IIceCreamLevel extends ILevelItem {
     String getThawName();
 
     @Override
-    default String getPath() {
-        return this.getIdName() + "_" + this.getThawName();
+    default String getIdName() {
+        return this.getName() + "_" + this.getThawName();
     }
 
     @Override

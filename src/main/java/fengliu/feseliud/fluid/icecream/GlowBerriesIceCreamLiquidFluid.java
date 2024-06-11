@@ -3,7 +3,9 @@ package fengliu.feseliud.fluid.icecream;
 import fengliu.feseliud.block.ModBlocks;
 import fengliu.feseliud.fluid.ModFluids;
 import fengliu.feseliud.item.ModItems;
+import fengliu.feseliud.item.block.icecream.GlowBerriesIceCream;
 import fengliu.feseliud.utils.RegisterUtil;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.fluid.FlowableFluid;
 import net.minecraft.fluid.Fluid;
@@ -28,6 +30,11 @@ public class GlowBerriesIceCreamLiquidFluid extends MilkIceCreamLiquidFluid{
     @Override
     public Item getBucketItem() {
         return ModItems.GLOW_BERRIES_ICE_CREAM_LIQUID_BUCKET;
+    }
+
+    @Override
+    public Block getIceBlock() {
+        return ModBlocks.GLOW_BERRIES_ICE_CREAM_BLOCKS.get(GlowBerriesIceCream.IceCreamLevels.NOT_THAW);
     }
 
     @Override

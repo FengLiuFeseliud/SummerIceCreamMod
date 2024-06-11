@@ -3,18 +3,17 @@ package fengliu.feseliud.data.generator;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import fengliu.feseliud.SummerIceCream;
+import fengliu.feseliud.SummerIceCreamDataGenerator;
 import fengliu.feseliud.item.BaseColorItem;
-import fengliu.feseliud.item.BaseItem;
 import fengliu.feseliud.item.ModItems;
-import fengliu.feseliud.item.icecream.bar.IceCreamBar;
-import fengliu.feseliud.utils.color.IColor;
+import fengliu.feseliud.item.block.ModBlockItems;
 import fengliu.feseliud.utils.level.ILevelItem;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
+import net.minecraft.item.Item;
 
 import java.io.IOException;
 import java.io.Reader;
-import java.lang.reflect.Field;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.HashMap;
@@ -50,6 +49,29 @@ public class LangGeneration extends FabricLanguageProvider {
         this.colorTranslations.put("black", "黑色");
     }
 
+    private void generateLevelItemTranslations(String type, JsonObject translations, TranslationBuilder translationBuilder, Object objMaps){
+        if (!(objMaps instanceof Map<?,?> maps)){
+            return;
+        }
+
+        maps.forEach((objItem, levelItem) -> {
+            if(!(objItem instanceof Item item) || !(levelItem instanceof ILevelItem iLevelItem)){
+                return;
+            }
+
+            String translationKey = type + "." + SummerIceCream.MOD_ID + "." + iLevelItem.getName();
+            try {
+                String langData =  iLevelItem.getTranslations(translationKey, translations);
+                if (langData == null){
+                    return;
+                }
+                translationBuilder.add(item, langData);
+            } catch (Exception e) {
+                throw new RuntimeException("未添加键 "+ translationKey + " ?", e);
+            }
+        });
+    }
+
     @Override
     public void generateTranslations(TranslationBuilder translationBuilder) {
         JsonObject translations;
@@ -64,14 +86,7 @@ public class LangGeneration extends FabricLanguageProvider {
             throw new RuntimeException("Failed to add existing language file!", e);
         }
 
-        for (Field field : ModItems.class.getDeclaredFields()) {
-            Object obj;
-            try {
-                obj = field.get(null);
-            } catch (IllegalAccessException e) {
-                throw new RuntimeException(e);
-            }
-
+        SummerIceCreamDataGenerator.forFields(ModItems.class.getDeclaredFields(), obj -> {
             if (obj instanceof List<?> items){
                 items.forEach(item -> {
                     if (!(item instanceof BaseColorItem colorItem)){
@@ -87,20 +102,9 @@ public class LangGeneration extends FabricLanguageProvider {
                 });
             }
 
-            if (obj instanceof Map<?,?> maps){
-                maps.forEach((item, levelItem) -> {
-                    if(!(item instanceof BaseItem baseItem) || !(levelItem instanceof ILevelItem iLevelItem)){
-                        return;
-                    }
+            this.generateLevelItemTranslations("item", translations, translationBuilder, obj);
+        });
 
-                    String translationKey = "item." + SummerIceCream.MOD_ID + "." + baseItem.name;
-                    try {
-                        translationBuilder.add(baseItem, iLevelItem.getTranslations(translationKey, translations));
-                    } catch (Exception e) {
-                        throw new RuntimeException("未添加键 "+ translationKey + " ?", e);
-                    }
-                });
-            }
-        }
+        SummerIceCreamDataGenerator.forFields(ModBlockItems.class.getDeclaredFields(), obj -> this.generateLevelItemTranslations("block", translations, translationBuilder, obj));
     }
 }

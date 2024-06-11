@@ -4,6 +4,7 @@ import fengliu.feseliud.block.ModBlocks;
 import fengliu.feseliud.fluid.ModFluids;
 import fengliu.feseliud.item.ModItems;
 import fengliu.feseliud.utils.RegisterUtil;
+import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
 import net.minecraft.fluid.FlowableFluid;
 import net.minecraft.fluid.Fluid;
@@ -39,6 +40,11 @@ public class SaltWaterFluid extends MilkIceCreamLiquidFluid{
     @Override
     public Item getBucketItem() {
         return ModItems.SALT_WATER_BUCKET;
+    }
+
+    @Override
+    public Block getIceBlock() {
+        return null;
     }
 
     @Override

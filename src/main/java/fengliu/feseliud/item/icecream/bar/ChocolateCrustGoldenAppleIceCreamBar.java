@@ -76,13 +76,13 @@ public class ChocolateCrustGoldenAppleIceCreamBar extends IceCreamBar {
         }
 
         @Override
-        public String getIdName() {
+        public String getName() {
             return "chocolate_crust_golden_apple_ice_cream_bar";
         }
 
         @Override
         public BaseItem getItem() {
-            return new ChocolateCrustGoldenAppleIceCreamBar(new FabricItemSettings().maxCount(1).maxDamage(this.getMaxLevel()).food(this.getFoodComponent()), this.getIdName());
+            return new ChocolateCrustGoldenAppleIceCreamBar(new FabricItemSettings().maxCount(1).maxDamage(this.getMaxLevel()).food(this.getFoodComponent()), this.getName());
         }
     }
 }

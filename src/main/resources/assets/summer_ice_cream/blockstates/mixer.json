@@ -1,0 +1,39 @@
+{
+    "multipart": [
+        {
+            "when": {
+                "facing": "north"
+            },
+            "apply": {
+                "model": "summer_ice_cream:block/mixer/stop"
+            }
+        },
+        {
+            "when": {
+                "facing": "east"
+            },
+            "apply": {
+                "model": "summer_ice_cream:block/mixer/stop",
+                "y": 90
+            }
+        },
+        {
+            "when": {
+                "facing": "south"
+            },
+            "apply": {
+                "model": "summer_ice_cream:block/mixer/stop",
+                "y": 180
+            }
+        },
+        {
+            "when": {
+                "facing": "west"
+            },
+            "apply": {
+                "model": "summer_ice_cream:block/mixer/stop",
+                "y": 270
+            }
+        }
+    ]
+}

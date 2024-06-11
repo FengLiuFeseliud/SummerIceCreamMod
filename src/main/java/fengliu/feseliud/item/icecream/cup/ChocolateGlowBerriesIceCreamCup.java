@@ -77,13 +77,13 @@ public class ChocolateGlowBerriesIceCreamCup extends IceCreamCup{
         }
 
         @Override
-        public String getIdName() {
+        public String getName() {
             return "chocolate_glow_berries_ice_cream_cup";
         }
 
         @Override
         public BaseItem getItem() {
-            return new ChocolateGlowBerriesIceCreamCup(new FabricItemSettings().maxCount(1).maxDamage(this.getMaxLevel()).food(this.getFoodComponent()), this.getIdName(), false);
+            return new ChocolateGlowBerriesIceCreamCup(new FabricItemSettings().maxCount(1).maxDamage(this.getMaxLevel()).food(this.getFoodComponent()), this.getName(), false);
         }
 
         @Override
@@ -114,7 +114,7 @@ public class ChocolateGlowBerriesIceCreamCup extends IceCreamCup{
         @Override
         public FoodComponent getFoodComponent() {
             return new FoodComponent.Builder()
-                    .hunger((int) (2.5f * this.gain)).saturationModifier((float) (this.gain))
+                    .hunger(2 * this.gain).saturationModifier((float) (this.gain))
                     .statusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 100 * this.gain), 1.0f)
                     .statusEffect(new StatusEffectInstance(StatusEffects.GLOWING, 100 * this.gain), 1.0f)
                     .alwaysEdible().build();
@@ -146,13 +146,13 @@ public class ChocolateGlowBerriesIceCreamCup extends IceCreamCup{
         }
 
         @Override
-        public String getIdName() {
+        public String getName() {
             return "chocolate_glow_berries_ice_cream_cup";
         }
 
         @Override
         public BaseItem getItem() {
-            return new ChocolateGlowBerriesIceCreamCup(new FabricItemSettings().maxCount(1).maxDamage(this.getMaxLevel()).food(this.getFoodComponent()), this.getIdName(), true);
+            return new ChocolateGlowBerriesIceCreamCup(new FabricItemSettings().maxCount(1).maxDamage(this.getMaxLevel()).food(this.getFoodComponent()), this.getName(), true);
         }
 
         @Override

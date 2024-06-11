@@ -17,6 +17,8 @@ import net.minecraft.world.WorldView;
 public abstract class BaseFluid extends FlowableFluid  {
     String PREFIXED_PATH = "fluid/";
 
+    public abstract Block getIceBlock();
+
     @Override
     public boolean matchesType(Fluid fluid) {
         return fluid == getStill() || fluid == getFlowing();

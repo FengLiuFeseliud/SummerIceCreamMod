@@ -3,7 +3,6 @@ package fengliu.feseliud.item.icecream.bar;
 import fengliu.feseliud.item.BaseItem;
 import fengliu.feseliud.item.ModItems;
 import fengliu.feseliud.item.icecream.IIceCreamLevel;
-import fengliu.feseliud.item.icecream.cup.GoldenAppleIceCreamCup;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
@@ -75,13 +74,13 @@ public class GoldenAppleIceCreamBar extends IceCreamBar {
         }
 
         @Override
-        public String getIdName() {
+        public String getName() {
             return "golden_apple_ice_cream_bar";
         }
 
         @Override
         public BaseItem getItem() {
-            return new GoldenAppleIceCreamBar(new FabricItemSettings().maxCount(1).maxDamage(this.getMaxLevel()).food(this.getFoodComponent()), this.getIdName());
+            return new GoldenAppleIceCreamBar(new FabricItemSettings().maxCount(1).maxDamage(this.getMaxLevel()).food(this.getFoodComponent()), this.getName());
         }
     }
 }

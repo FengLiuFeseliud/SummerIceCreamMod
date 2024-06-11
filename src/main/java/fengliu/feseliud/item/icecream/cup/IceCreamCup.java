@@ -2,6 +2,7 @@ package fengliu.feseliud.item.icecream.cup;
 
 import fengliu.feseliud.item.BaseItem;
 import fengliu.feseliud.item.ModItems;
+import fengliu.feseliud.item.icecream.IIceCream;
 import fengliu.feseliud.item.icecream.IIceCreamLevel;
 import fengliu.feseliud.item.icecream.bar.IceCreamBar;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
@@ -17,6 +18,8 @@ import net.minecraft.world.World;
 import java.util.Map;
 
 public class IceCreamCup extends IceCreamBar {
+    public static final String PREFIXED_PATH = IIceCream.PREFIXED_PATH + "cup" + "/";
+
     private final boolean spoon;
 
     public IceCreamCup(Settings settings, String name, boolean spoon) {
@@ -66,12 +69,17 @@ public class IceCreamCup extends IceCreamBar {
 
     @Override
     public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
-        IIceCreamLevel iceCreamLevel = this.getIceCreams().get(this);
+        IIceCreamLevel iceCreamLevel = this.getIceCreamLevel();
         if (iceCreamLevel.getLevel() == iceCreamLevel.getMaxLevel()){
             return;
         }
 
         super.inventoryTick(stack, world, entity, slot, selected);
+    }
+
+    @Override
+    public String getPrefixedPath() {
+        return PREFIXED_PATH + this.getIceCreamLevel().getName() + "/";
     }
 
     public enum IceCreamLevels implements IIceCreamLevel {
@@ -123,13 +131,13 @@ public class IceCreamCup extends IceCreamBar {
         }
 
         @Override
-        public String getIdName() {
+        public String getName() {
             return "ice_cream_cup";
         }
 
         @Override
         public BaseItem getItem() {
-            return new IceCreamCup(new FabricItemSettings().maxCount(1).maxDamage(this.getMaxLevel()).food(this.getFoodComponent()), this.getIdName(), false);
+            return new IceCreamCup(new FabricItemSettings().maxCount(1).maxDamage(this.getMaxLevel()).food(this.getFoodComponent()), this.getName(), false);
         }
 
         @Override
@@ -159,7 +167,7 @@ public class IceCreamCup extends IceCreamBar {
         @Override
         public FoodComponent getFoodComponent() {
             return new FoodComponent.Builder()
-                    .hunger(2 * this.gain).saturationModifier((float) (this.gain))
+                    .hunger((int) (1.5f * this.gain)).saturationModifier((float) (this.gain))
                     .statusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 100 * this.gain), 1.0f)
                     .alwaysEdible().build();
         }
@@ -190,13 +198,13 @@ public class IceCreamCup extends IceCreamBar {
         }
 
         @Override
-        public String getIdName() {
+        public String getName() {
             return "ice_cream_cup";
         }
 
         @Override
         public BaseItem getItem() {
-            return new IceCreamCup(new FabricItemSettings().maxCount(1).maxDamage(this.getMaxLevel()).food(this.getFoodComponent()), this.getIdName(), true);
+            return new IceCreamCup(new FabricItemSettings().maxCount(1).maxDamage(this.getMaxLevel()).food(this.getFoodComponent()), this.getName(), true);
         }
 
         @Override

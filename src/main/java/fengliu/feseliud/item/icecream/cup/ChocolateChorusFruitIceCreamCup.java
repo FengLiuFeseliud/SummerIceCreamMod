@@ -78,13 +78,13 @@ public class ChocolateChorusFruitIceCreamCup extends ChorusFruitIceCreamCup{
         }
 
         @Override
-        public String getIdName() {
+        public String getName() {
             return "chocolate_chorus_fruit_ice_cream_cup";
         }
 
         @Override
         public BaseItem getItem() {
-            return new ChocolateChorusFruitIceCreamCup(new FabricItemSettings().maxCount(1).maxDamage(this.getMaxLevel()).food(this.getFoodComponent()), this.getIdName(), false);
+            return new ChocolateChorusFruitIceCreamCup(new FabricItemSettings().maxCount(1).maxDamage(this.getMaxLevel()).food(this.getFoodComponent()), this.getName(), false);
         }
 
         @Override
@@ -115,7 +115,7 @@ public class ChocolateChorusFruitIceCreamCup extends ChorusFruitIceCreamCup{
         @Override
         public FoodComponent getFoodComponent() {
             return new FoodComponent.Builder()
-                    .hunger((int) (2.5f * this.gain)).saturationModifier((float) (this.gain))
+                    .hunger(2 * this.gain).saturationModifier((float) (this.gain))
                     .statusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 100 * this.gain), 1.0f)
                     .alwaysEdible().build();
         }
@@ -146,13 +146,13 @@ public class ChocolateChorusFruitIceCreamCup extends ChorusFruitIceCreamCup{
         }
 
         @Override
-        public String getIdName() {
+        public String getName() {
             return "chocolate_chorus_fruit_ice_cream_cup";
         }
 
         @Override
         public BaseItem getItem() {
-            return new ChocolateChorusFruitIceCreamCup(new FabricItemSettings().maxCount(1).maxDamage(this.getMaxLevel()).food(this.getFoodComponent()), this.getIdName(), true);
+            return new ChocolateChorusFruitIceCreamCup(new FabricItemSettings().maxCount(1).maxDamage(this.getMaxLevel()).food(this.getFoodComponent()), this.getName(), true);
         }
 
         @Override

@@ -1,5 +1,6 @@
 package fengliu.feseliud.item;
 
+import fengliu.feseliud.data.generator.IGeneratorModel;
 import fengliu.feseliud.utils.IdUtil;
 import net.minecraft.data.client.ItemModelGenerator;
 import net.minecraft.data.client.ModelIds;
@@ -11,21 +12,12 @@ import java.util.function.Consumer;
 
 import static net.minecraft.data.client.Models.GENERATED;
 
-public interface IModItem {
+public interface IModItem extends IGeneratorModel {
     String PREFIXED_PATH = "item/";
 
     String getItemName();
 
-    /**
-     * 获取纹理名 (用于生成)
-     * @return 纹理名
-     */
-    String getTextureName();
-
-    /**
-     * 获取纹理路径 (用于生成模型)
-     * @return 纹理路径
-     */
+    @Override
     default String getPrefixedPath(){
         return PREFIXED_PATH;
     }

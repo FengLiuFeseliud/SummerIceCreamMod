@@ -1,5 +1,7 @@
 package fengliu.feseliud;
 
+import fengliu.feseliud.block.ITranslucent;
+import fengliu.feseliud.block.ModBlocks;
 import fengliu.feseliud.block.entity.renderer.ModBlockEntityRenderers;
 import fengliu.feseliud.fluid.BaseFluid;
 import fengliu.feseliud.fluid.ModFluids;
@@ -14,6 +16,7 @@ import net.fabricmc.fabric.api.client.event.lifecycle.v1.ClientTickEvents;
 import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry;
 import net.fabricmc.fabric.api.client.render.fluid.v1.SimpleFluidRenderHandler;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
+import net.minecraft.block.Block;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
@@ -51,6 +54,25 @@ public class SummerIceCreamClient implements ClientModInitializer {
 				));
 			}
 			BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(), fluid1, fluid2);
+		}
+
+		for (Field field: ModBlocks.class.getDeclaredFields()) {
+			Object block;
+			try {
+				block = field.get(null);
+			} catch (IllegalAccessException e) {
+				throw new RuntimeException(e);
+			}
+
+			if (block instanceof ITranslucent){
+				BlockRenderLayerMap.INSTANCE.putBlock((Block) block, RenderLayer.getTranslucent());
+			}
+			if (block instanceof Map<?,?> map){
+				map.forEach((level, mblock) -> {
+					BlockRenderLayerMap.INSTANCE.putBlock((Block) mblock, RenderLayer.getTranslucent());
+				});
+			}
+
 		}
 
 		ModBlockEntityRenderers.registerBlockEntityRenderers();

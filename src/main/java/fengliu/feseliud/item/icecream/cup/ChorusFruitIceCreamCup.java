@@ -9,10 +9,8 @@ import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
-import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.FoodComponent;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.world.World;
 
 import java.util.Map;
@@ -87,13 +85,13 @@ public class ChorusFruitIceCreamCup extends IceCreamCup{
         }
 
         @Override
-        public String getIdName() {
+        public String getName() {
             return "chorus_fruit_ice_cream_cup";
         }
 
         @Override
         public BaseItem getItem() {
-            return new ChorusFruitIceCreamCup(new FabricItemSettings().maxCount(1).maxDamage(this.getMaxLevel()).food(this.getFoodComponent()), this.getIdName(), false);
+            return new ChorusFruitIceCreamCup(new FabricItemSettings().maxCount(1).maxDamage(this.getMaxLevel()).food(this.getFoodComponent()), this.getName(), false);
         }
 
         @Override
@@ -154,13 +152,13 @@ public class ChorusFruitIceCreamCup extends IceCreamCup{
         }
 
         @Override
-        public String getIdName() {
+        public String getName() {
             return "chorus_fruit_ice_cream_cup";
         }
 
         @Override
         public BaseItem getItem() {
-            return new ChorusFruitIceCreamCup(new FabricItemSettings().maxCount(1).maxDamage(this.getMaxLevel()).food(this.getFoodComponent()), this.getIdName(), true);
+            return new ChorusFruitIceCreamCup(new FabricItemSettings().maxCount(1).maxDamage(this.getMaxLevel()).food(this.getFoodComponent()), this.getName(), true);
         }
 
         @Override

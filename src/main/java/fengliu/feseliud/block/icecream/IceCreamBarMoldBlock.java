@@ -2,8 +2,11 @@ package fengliu.feseliud.block.icecream;
 
 import fengliu.feseliud.SummerIceCream;
 import fengliu.feseliud.block.FacingEntityBlock;
+import fengliu.feseliud.block.FacingBlock;
 import fengliu.feseliud.block.entity.IceCreamBarMoldBlockEntity;
 import fengliu.feseliud.block.entity.ModBlockEntitys;
+import fengliu.feseliud.data.generator.LootTablesGeneration;
+import fengliu.feseliud.item.block.ModBlockItems;
 import fengliu.feseliud.utils.IHitSlot;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
@@ -56,12 +59,12 @@ public class IceCreamBarMoldBlock extends FacingEntityBlock {
 
     @Override
     public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return FacingEntityBlock.getFacingShape(state, NORTH_SHAPE, SOUTH_SHAPE, WEST_SHAPE, EAST_SHAPE);
+        return FacingBlock.getFacingShape(state, NORTH_SHAPE, SOUTH_SHAPE, WEST_SHAPE, EAST_SHAPE);
     }
 
     @Override
     public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
-        return FacingEntityBlock.getFacingShape(state, NORTH_SHAPE, SOUTH_SHAPE, WEST_SHAPE, EAST_SHAPE);
+        return FacingBlock.getFacingShape(state, NORTH_SHAPE, SOUTH_SHAPE, WEST_SHAPE, EAST_SHAPE);
     }
 
     @Override
@@ -71,12 +74,10 @@ public class IceCreamBarMoldBlock extends FacingEntityBlock {
 
     @Override
     public void generateBlockModel(BlockStateModelGenerator blockStateModelGenerator) {
-        return;
     }
 
     @Override
     public void generateBlockStateModel(BlockStateModelGenerator blockStateModelGenerator) {
-        return;
     }
 
     public enum HitSlots implements IHitSlot {

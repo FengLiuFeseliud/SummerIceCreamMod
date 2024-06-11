@@ -67,7 +67,7 @@ public interface IIceCreamPack extends FabricItem {
             }
 
             ItemStack PackIceCreamItemStack = ((BaseItem) iceCream.getKey()).getDefaultStack();
-            PackIceCreamItemStack.setDamage(iceCream.getValue().getLevel());
+            PackIceCreamItemStack.setDamage(iceCream.getValue().getLevel() - 1);
             PackIceCreamItemStack.getOrCreateNbt().putInt(iceCreamItem.THAW_TIME_KEY, allThawTime - iceCreamPackTime);
             return PackIceCreamItemStack;
         }
@@ -104,8 +104,10 @@ public interface IIceCreamPack extends FabricItem {
 
     default void appendPackTimeTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context){
         NbtCompound nbt = stack.getOrCreateNbt();
-        if (nbt.contains(ICE_CREAM_PACK_TIME_KEY, NbtElement.INT_TYPE)){
-            tooltip.add(Text.translatable(IdUtil.getItemInfo("pack_ice_cream", 1), nbt.getInt(ICE_CREAM_PACK_TIME_KEY) / 20));
+        if (nbt.contains(ICE_CREAM_PACK_TIME_KEY, NbtElement.INT_TYPE) && nbt.contains(PACK_ICE_CREAM_KEY, NbtElement.COMPOUND_TYPE)){
+            tooltip.add(Text.translatable(IdUtil.getItemInfo("pack_ice_cream_time", 1),
+                    Text.translatable(IdUtil.getItemInfo("pack_ice_cream", 1), ItemStack.fromNbt(nbt.getCompound(PACK_ICE_CREAM_KEY)).getName()),
+                            nbt.getInt(ICE_CREAM_PACK_TIME_KEY) / 20));
         }
     }
 }

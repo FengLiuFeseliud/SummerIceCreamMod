@@ -4,7 +4,8 @@
   "item.group.summer_ice_cream.materials_group": "夏日冰淇淋 - 原料",
 
   "summer_ice_cream.item.ice_cream.info.1": "将在 %s 秒后融化",
-  "summer_ice_cream.item.pack_ice_cream.info.1": "已经取出 %s 秒",
+  "summer_ice_cream.item.pack_ice_cream_time.info.1": "%s 已经取出 %s 秒",
+  "summer_ice_cream.item.pack_ice_cream.info.1": "内容物 [ %s ]",
 
   "block.summer_ice_cream.ice_cream_bar_mold": "雪糕模型",
   "item.summer_ice_cream.ice_cream_bar_mold.tooltip": "好像可以用这个在寒冷的地方冷冻出雪糕?",
@@ -22,7 +23,7 @@
   "item.summer_ice_cream.ice_cream_cup_pack.tooltip": "用来装冰淇淋",
 
   "item.summer_ice_cream.pack_ice_cream": "%s包装雪糕",
-  "item.summer_ice_cream.pack_ice_cream.tooltip": "包装雪糕, 化了也可以冻一冻",
+  "item.summer_ice_cream.pack_ice_cream.tooltip": "带包装的雪糕, 化了也可以冻一冻, 在包装中的雪糕好像融化的更慢了?",
 
   "thaw.summer_ice_cream.not_thaw": "%s",
   "thaw.summer_ice_cream.thaw_half": "融化一半的%s",
@@ -35,6 +36,21 @@
   "thaw.summer_ice_cream.spoon_thaw_most": "带勺子的融化大部分的%s",
   "thaw.summer_ice_cream.spoon_thaw_almost_all": "带勺子的几乎全部融化的%s",
   "thaw.summer_ice_cream.spoon_thaw_all": "带勺子的完全融化的%s",
+
+  "item.summer_ice_cream.crushed_ice": "碎冰",
+  "item.summer_ice_cream.crushed_ice.tooltip": "冰块被粗暴的砸碎了...",
+
+  "item.summer_ice_cream.ice_cube": "冰块",
+  "item.summer_ice_cream.ice_cube.tooltip": "一块块小冰块, 十分清凉",
+
+  "item.summer_ice_cream.serrated_knife": "锯齿刀",
+  "item.summer_ice_cream.serrated_knife.tooltip": "刀上的锯齿可以帮助切割出完美的冰块",
+
+  "block.summer_ice_cream.incomplete_ice_stairs": "楼梯形冰",
+  "item.summer_ice_cream.incomplete_ice_stairs.tooltip": "被切割的冰...",
+
+  "block.summer_ice_cream.incomplete_ice_slab": "半砖形冰",
+  "item.summer_ice_cream.incomplete_ice_slab.tooltip": "再次被切割的冰...",
 
   "item.summer_ice_cream.milk_ice_cream_liquid_bucket": "奶油冰淇淋液",
   "item.summer_ice_cream.milk_ice_cream_liquid_bucket.tooltip": "从牛奶搅打而来!有股浓浓的奶油味~",
@@ -51,6 +67,12 @@
   "item.summer_ice_cream.chocolate_ice_cream_cup": "巧克力牛奶冰淇淋",
   "item.summer_ice_cream.chocolate_ice_cream_cup.tooltip": "淋上了一层巧克力, 容易获取到大量热量",
 
+  "item.summer_ice_cream.ice_cream_brick": "牛奶冰砖",
+  "item.summer_ice_cream.ice_cream_brick.tooltip": "从牛奶冰淇淋块拆解而来, 可以一次带好多!有股浓浓的奶油味~",
+
+  "block.summer_ice_cream.ice_cream_block": "牛奶冰淇淋块",
+  "item.summer_ice_cream.ice_cream_block.tooltip": "牛奶冰淇淋液直接在寒冷的地方冻洁了... 有股浓浓的奶油味~",
+
   "item.summer_ice_cream.cookie_ice_cream_liquid_bucket": "奶油曲奇冰淇淋液",
   "item.summer_ice_cream.cookie_ice_cream_liquid_bucket.tooltip": "从牛奶与曲奇搅打混合而来!有股浓浓的奶油跟曲奇碎味~",
 
@@ -66,6 +88,12 @@
   "item.summer_ice_cream.chocolate_cookie_ice_cream_cup": "巧克力牛奶曲奇碎冰淇淋",
   "item.summer_ice_cream.chocolate_cookie_ice_cream_cup.tooltip": "淋上了一层巧克力并添加了曲奇碎, 容易获取到大量热量与体力",
 
+  "item.summer_ice_cream.cookie_ice_cream_brick": "牛奶曲奇碎冰砖",
+  "item.summer_ice_cream.cookie_ice_cream_brick.tooltip": "从牛奶曲奇碎冰淇淋块拆解而来, 可以一次带好多!容易获取到大量热量与体力",
+
+  "block.summer_ice_cream.cookie_ice_cream": "牛奶曲奇碎冰淇淋块",
+  "item.summer_ice_cream.cookie_ice_cream.tooltip": "奶油曲奇冰淇淋液直接在寒冷的地方冻洁了... 容易获取到大量热量与体力",
+
   "item.summer_ice_cream.salt": "盐",
   "item.summer_ice_cream.salt.tooltip": "从海水提取而来, 有点咸咸的...",
 
@@ -75,6 +103,9 @@
   "item.summer_ice_cream.salt_water_popsicle": "盐水棒冰",
   "item.summer_ice_cream.salt_water_popsicle.tooltip": "在严热的天气中补充点盐份?",
 
+  "item.summer_ice_cream.milk_popsicle": "牛奶棒冰",
+  "item.summer_ice_cream.milk_popsicle.tooltip": "直接从牛奶冰冻而来导致有了牛奶的效果?",
+
   "item.summer_ice_cream.golden_apple_cream_liquid_bucket": "奶油金苹果冰淇淋液",
   "item.summer_ice_cream.golden_apple_cream_liquid_bucket.tooltip": "从牛奶与金苹果搅打混合而来!有股浓浓的奶油跟苹果味~",
 
@@ -83,6 +114,12 @@
 
   "item.summer_ice_cream.golden_apple_ice_cream_cup": "牛奶金苹果冰淇淋",
   "item.summer_ice_cream.golden_apple_ice_cream_cup.tooltip": "添加了金苹果, 有金苹果的功效!",
+
+  "item.summer_ice_cream.golden_apple_ice_cream_brick": "牛奶金苹果冰砖",
+  "item.summer_ice_cream.golden_apple_ice_cream_brick.tooltip": "从牛奶金苹果冰淇淋块拆解而来, 可以一次带好多!有股浓浓的奶油味~",
+
+  "block.summer_ice_cream.golden_apple_ice_cream": "牛奶金苹果冰淇淋块",
+  "item.summer_ice_cream.golden_apple_ice_cream.tooltip": "奶油金苹果冰淇淋液直接在寒冷的地方冻洁了... 添加了金苹果, 有金苹果的功效!",
 
   "item.summer_ice_cream.chocolate_crust_golden_apple_ice_cream_bar": "巧克力脆皮牛奶金苹果雪糕",
   "item.summer_ice_cream.chocolate_crust_golden_apple_ice_cream_bar.tooltip": "添加了巧克力脆皮与金苹果, 容易获取到大量热量, 还有金苹果的功效",
@@ -105,6 +142,12 @@
   "item.summer_ice_cream.chocolate_chorus_fruit_ice_cream_cup": "巧克力牛奶紫颂果冰淇淋",
   "item.summer_ice_cream.chocolate_chorus_fruit_ice_cream_cup.tooltip": "淋上了一层巧克力并添加了紫颂果, 容易获取到大量热量, 而且吃了会随机瞬移",
 
+  "item.summer_ice_cream.chorus_fruit_ice_cream_brick": "牛奶紫颂果冰砖",
+  "item.summer_ice_cream.chorus_fruit_ice_cream_brick.tooltip": "从牛奶紫颂果冰淇淋块拆解而来, 可以一次带好多!吃了会随机瞬移!",
+
+  "block.summer_ice_cream.chorus_fruit_ice_cream": "牛奶紫颂果冰淇淋块",
+  "item.summer_ice_cream.chorus_fruit_ice_cream.tooltip": "奶油紫颂果冰淇淋液直接在寒冷的地方冻洁了... 吃了会随机瞬移!",
+
   "item.summer_ice_cream.glow_berries_ice_cream_liquid_bucket": "奶油发光浆果冰淇淋液",
   "item.summer_ice_cream.glow_berries_cream_liquid_bucket.tooltip": "从牛奶与发光浆果搅打混合而来!有股浓浓的奶油跟浆果味~",
 
@@ -118,5 +161,11 @@
   "item.summer_ice_cream.chocolate_crust_glow_berries_ice_cream_bar.tooltip": "添加了巧克力脆皮与发光浆果, 容易获取到大量热量, 而且吃了会成为光",
 
   "item.summer_ice_cream.chocolate_glow_berries_ice_cream_cup": "巧克力牛奶发光浆果冰淇淋",
-  "item.summer_ice_cream.chocolate_glow_berries_ice_cream_cup.tooltip": "淋上了一层巧克力并添加了发光浆果, 容易获取到大量热量, 而且吃了会成为光"
+  "item.summer_ice_cream.chocolate_glow_berries_ice_cream_cup.tooltip": "淋上了一层巧克力并添加了发光浆果, 容易获取到大量热量, 而且吃了会成为光",
+
+  "item.summer_ice_cream.glow_berries_ice_cream_brick": "牛奶紫颂果冰砖",
+  "item.summer_ice_cream.glow_berries_ice_cream_brick.tooltip": "从牛奶发光浆果冰淇淋块拆解而来, 可以一次带好多!吃了会成为光!",
+
+  "block.summer_ice_cream.glow_berries_ice_cream": "牛奶发光浆果冰淇淋块",
+  "item.summer_ice_cream.glow_berries_ice_cream.tooltip": "奶油紫颂果冰淇淋液直接在寒冷的地方冻洁了... 吃了会成为光!"
 }

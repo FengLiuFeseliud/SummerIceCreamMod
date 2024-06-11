@@ -1,8 +1,9 @@
 package fengliu.feseliud;
 
-import fengliu.feseliud.data.generator.ItemDataGeneration;
+import fengliu.feseliud.data.generator.ModelDataGeneration;
 import fengliu.feseliud.data.generator.LangGeneration;
-import fengliu.feseliud.item.ModItems;
+import fengliu.feseliud.data.generator.LootTablesGeneration;
+import fengliu.feseliud.data.generator.RecipeGenerator;
 import net.fabricmc.fabric.api.datagen.v1.DataGeneratorEntrypoint;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataGenerator;
 
@@ -23,7 +24,9 @@ public class SummerIceCreamDataGenerator implements DataGeneratorEntrypoint {
 	@Override
 	public void onInitializeDataGenerator(FabricDataGenerator fabricDataGenerator) {
 		FabricDataGenerator.Pack pack = fabricDataGenerator.createPack();
-		pack.addProvider(ItemDataGeneration::new);
+		pack.addProvider(ModelDataGeneration::new);
 		pack.addProvider(LangGeneration::new);
+		pack.addProvider(LootTablesGeneration::new);
+		pack.addProvider(RecipeGenerator::new);
 	}
 }

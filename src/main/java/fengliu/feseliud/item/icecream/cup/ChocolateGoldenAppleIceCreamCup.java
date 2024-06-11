@@ -77,13 +77,13 @@ public class ChocolateGoldenAppleIceCreamCup extends IceCreamCup{
         }
 
         @Override
-        public String getIdName() {
+        public String getName() {
             return "chocolate_golden_apple_ice_cream_cup";
         }
 
         @Override
         public BaseItem getItem() {
-            return new ChocolateGoldenAppleIceCreamCup(new FabricItemSettings().maxCount(1).maxDamage(this.getMaxLevel()).food(this.getFoodComponent()), this.getIdName(), false);
+            return new ChocolateGoldenAppleIceCreamCup(new FabricItemSettings().maxCount(1).maxDamage(this.getMaxLevel()).food(this.getFoodComponent()), this.getName(), false);
         }
 
         @Override
@@ -114,7 +114,7 @@ public class ChocolateGoldenAppleIceCreamCup extends IceCreamCup{
         @Override
         public FoodComponent getFoodComponent() {
             return new FoodComponent.Builder()
-                    .hunger((int) (2.5f * this.gain)).saturationModifier((float) (this.gain))
+                    .hunger(2 * this.gain).saturationModifier((float) (this.gain))
                     .statusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 100 * this.gain), 1.0f)
                     .statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 100, 1), 1.0f)
                     .statusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 2400), 1.0f)
@@ -147,13 +147,13 @@ public class ChocolateGoldenAppleIceCreamCup extends IceCreamCup{
         }
 
         @Override
-        public String getIdName() {
+        public String getName() {
             return "chocolate_golden_apple_ice_cream_cup";
         }
 
         @Override
         public BaseItem getItem() {
-            return new ChocolateGoldenAppleIceCreamCup(new FabricItemSettings().maxCount(1).maxDamage(this.getMaxLevel()).food(this.getFoodComponent()), this.getIdName(), true);
+            return new ChocolateGoldenAppleIceCreamCup(new FabricItemSettings().maxCount(1).maxDamage(this.getMaxLevel()).food(this.getFoodComponent()), this.getName(), true);
         }
 
         @Override

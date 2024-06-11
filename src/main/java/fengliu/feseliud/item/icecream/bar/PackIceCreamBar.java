@@ -33,6 +33,9 @@ public class PackIceCreamBar extends BaseColorItem implements IIceCreamPack, Fab
 
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
+        if (world.isClient()){
+            return super.use(world, user, hand);
+        }
         user.setStackInHand(hand, this.getIceCreamItemStack(user.getStackInHand(hand)));
         return super.use(world, user, hand);
     }
@@ -44,8 +47,8 @@ public class PackIceCreamBar extends BaseColorItem implements IIceCreamPack, Fab
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        this.appendPackTimeTooltip(stack, world, tooltip, context);
         super.appendTooltip(stack, world, tooltip, context);
+        this.appendPackTimeTooltip(stack, world, tooltip, context);
     }
 
     @Override

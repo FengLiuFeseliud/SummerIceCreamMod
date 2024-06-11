@@ -1,11 +1,11 @@
 package fengliu.feseliud.utils;
 
 import fengliu.feseliud.block.IModBlock;
+import fengliu.feseliud.block.icecream.IceCreamBlock;
 import fengliu.feseliud.fluid.BaseFluid;
 import fengliu.feseliud.item.BaseColorItem;
-import fengliu.feseliud.item.BaseItem;
 import fengliu.feseliud.item.IModItem;
-import fengliu.feseliud.item.block.BaseBlockItem;
+import fengliu.feseliud.item.block.icecream.IIceCreamBlockLevel;
 import fengliu.feseliud.utils.level.ILevelItem;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
@@ -21,10 +21,8 @@ import net.minecraft.registry.RegistryKeys;
 import net.minecraft.util.DyeColor;
 import net.minecraft.util.Identifier;
 
-import java.util.ArrayList;
-import java.util.LinkedHashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.function.Function;
 
 public class RegisterUtil {
     public static final List<BaseColorItem> baseColorItems = new ArrayList<>();
@@ -36,15 +34,6 @@ public class RegisterUtil {
 
     public static <I extends IModItem> I registerItem(I item, RegistryKey<ItemGroup> group){
         return RegisterUtil.registerItem(IdUtil.get(item.getItemName()), item, group);
-    }
-
-    public static <I extends BaseBlockItem> I registerItem(Identifier id, I item, RegistryKey<ItemGroup> group){
-        ItemGroupEvents.modifyEntriesEvent(group).register(content -> content.add(item.getDefaultStack()));
-        return Registry.register(Registries.ITEM, id, item);
-    }
-
-    public static <I extends BaseBlockItem> I registerItem(I item, RegistryKey<ItemGroup> group){
-        return RegisterUtil.registerItem(IdUtil.get(item.name), item, group);
     }
 
     public interface colorItem{
@@ -74,11 +63,9 @@ public class RegisterUtil {
      * @return 等级物品列表
      */
     @SuppressWarnings("unchecked")
-    public static <I extends ILevelItem, ITEM extends BaseItem> Map<ITEM, I> registerItems(I[] levels, RegistryKey<ItemGroup> group){
-        LinkedHashMap<ITEM, I> items = new LinkedHashMap<>();
-        for(I item: levels){
-            items.put((ITEM) RegisterUtil.registerItem(IdUtil.get(item.getPath()), item.getItem(), group), item);
-        }
+    public static <IL extends ILevelItem, I extends IModItem> Map<I, IL> registerItems(IL[] levels, RegistryKey<ItemGroup> group){
+        LinkedHashMap<I, IL> items = new LinkedHashMap<>();
+        Arrays.stream(levels).forEach(level -> items.put((I) RegisterUtil.registerItem(IdUtil.get(level.getIdName()), level.getItem(), group), level));
         return items;
     }
 
@@ -99,8 +86,20 @@ public class RegisterUtil {
         return Registry.register(Registries.BLOCK, block.getId(), (B) block);
     }
 
+    public static <B extends IceCreamBlock, IL extends IIceCreamBlockLevel> Map<IL, B> registerIceCreamBlock(IL[] iceCreamBlockLevels, Function<IL, B> getBlock){
+        Map<IL, B> map = new HashMap<>();
+        Arrays.stream(iceCreamBlockLevels).forEach(iceCreamBlockLevel -> map.put(iceCreamBlockLevel, registerBlock(getBlock.apply(iceCreamBlockLevel))));
+        return map;
+    }
+
     @SuppressWarnings("unchecked")
     public static <BE extends BlockEntity> BlockEntityType<BE> registerBlockEntity(IModBlock block, FabricBlockEntityTypeBuilder.Factory<? extends BE> be){
         return (BlockEntityType<BE>) Registry.register(Registries.BLOCK_ENTITY_TYPE, block.getId(), FabricBlockEntityTypeBuilder.create(be, (Block) block).build(null));
+    }
+
+    public static <BE extends BlockEntity> Map<IIceCreamBlockLevel, BlockEntityType<BE>> registerIceCreamBlockEntity(Map<IIceCreamBlockLevel, ? extends IceCreamBlock> blocks, FabricBlockEntityTypeBuilder.Factory<? extends BE> be) {
+        Map<IIceCreamBlockLevel, BlockEntityType<BE>> map = new HashMap<>();
+        blocks.forEach((iIceCreamBlockLevel, iceCreamBlock) -> map.put(iIceCreamBlockLevel, registerBlockEntity(iceCreamBlock, be)));
+        return map;
     }
 }

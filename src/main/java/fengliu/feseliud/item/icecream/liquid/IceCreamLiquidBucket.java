@@ -1,7 +1,9 @@
 package fengliu.feseliud.item.icecream.liquid;
 
+import fengliu.feseliud.block.ModBlocks;
 import fengliu.feseliud.fluid.BaseFluid;
 import fengliu.feseliud.item.IModItem;
+import fengliu.feseliud.item.icecream.IIceCream;
 import fengliu.feseliud.utils.RegisterUtil;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -11,11 +13,13 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.TypedActionResult;
 import net.minecraft.util.UseAction;
+import net.minecraft.world.RaycastContext;
 import net.minecraft.world.World;
 
 import java.util.List;
 
 public class IceCreamLiquidBucket extends BucketItem implements IModItem {
+    public static final String PREFIXED_PATH = IIceCream.PREFIXED_PATH + "bucket" + "/";
     public final String name;
 
     public IceCreamLiquidBucket(String name, Fluid fluid, FoodComponent food) {
@@ -43,6 +47,10 @@ public class IceCreamLiquidBucket extends BucketItem implements IModItem {
 
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
+        if (world.getBlockState(raycast(world, user, RaycastContext.FluidHandling.WATER).getBlockPos()).isOf(ModBlocks.ICE_CREAM_BAR_MOLD_BLOCK)){
+            return TypedActionResult.pass(user.getStackInHand(hand));
+        }
+
         TypedActionResult<ItemStack> result = super.use(world, user, hand);
         if (result.getResult() == ActionResult.FAIL || result.getResult() == ActionResult.PASS){
             user.setCurrentHand(hand);
@@ -70,5 +78,10 @@ public class IceCreamLiquidBucket extends BucketItem implements IModItem {
     @Override
     public String getTextureName() {
         return this.name;
+    }
+
+    @Override
+    public String getPrefixedPath() {
+        return PREFIXED_PATH;
     }
 }

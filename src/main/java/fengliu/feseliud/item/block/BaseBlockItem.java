@@ -1,6 +1,7 @@
 package fengliu.feseliud.item.block;
 
 import fengliu.feseliud.block.IModBlock;
+import fengliu.feseliud.item.IModItem;
 import fengliu.feseliud.utils.IdUtil;
 import net.minecraft.block.Block;
 import net.minecraft.client.item.TooltipContext;
@@ -15,23 +16,43 @@ import java.util.List;
 import java.util.Optional;
 
 
-public class BaseBlockItem extends BlockItem {
+public class BaseBlockItem extends BlockItem implements IModItem {
     public static final String PREFIXED_PATH = "block/";
+    public final String subName;
     public final String name;
 
-    public BaseBlockItem(IModBlock block, Settings settings) {
+    public BaseBlockItem(String subName, IModBlock block, Settings settings) {
         super((Block) block, settings);
         this.name = block.getBlockName();
+        this.subName = subName;
+    }
+
+    public BaseBlockItem(IModBlock block, Settings settings) {
+        this("", block, settings);
+    }
+
+    public BaseBlockItem(String subName, IModBlock block, int count) {
+        this(subName, block, new Settings().maxCount(count));
     }
 
     public BaseBlockItem(IModBlock block, int count) {
-        this(block, new Settings().maxCount(count));
+        this("", block, count);
     }
+
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         tooltip.add(Text.translatable(IdUtil.getItemTooltip(this.name)));
         super.appendTooltip(stack, world, tooltip, context);
+    }
+
+    public String getSubName(){
+        return this.subName;
+    }
+
+    @Override
+    public String getItemName() {
+        return this.name;
     }
 
     /**
@@ -55,6 +76,7 @@ public class BaseBlockItem extends BlockItem {
      * @param itemModelGenerator 物品模型生成器
      */
     public void generateModel(ItemModelGenerator itemModelGenerator){
-        itemModelGenerator.register(this, new Model(Optional.of(IdUtil.get(this.getTextureName()).withPrefixedPath(this.getPrefixedPath())), Optional.empty()));
+        itemModelGenerator.register(this,
+                new Model(Optional.of(IdUtil.get(this.getTextureName()).withPrefixedPath(this.getPrefixedPath()).withSuffixedPath(this.getSubName())), Optional.empty()));
     }
 }

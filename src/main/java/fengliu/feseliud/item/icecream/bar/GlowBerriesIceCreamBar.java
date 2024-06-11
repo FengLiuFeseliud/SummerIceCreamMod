@@ -73,13 +73,13 @@ public class GlowBerriesIceCreamBar extends IceCreamBar {
         }
 
         @Override
-        public String getIdName() {
+        public String getName() {
             return "glow_berries_ice_cream_bar";
         }
 
         @Override
         public BaseItem getItem() {
-            return new GlowBerriesIceCreamBar(new FabricItemSettings().maxCount(1).maxDamage(this.getMaxLevel()).food(this.getFoodComponent()), this.getIdName());
+            return new GlowBerriesIceCreamBar(new FabricItemSettings().maxCount(1).maxDamage(this.getMaxLevel()).food(this.getFoodComponent()), this.getName());
         }
     }
 }

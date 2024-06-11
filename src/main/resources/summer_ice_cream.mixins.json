@@ -3,7 +3,10 @@
     "package": "fengliu.feseliud.mixin",
     "compatibilityLevel": "JAVA_17",
     "mixins": [
-        "MixinMilkBucketItem"
+        "MixinBiome",
+        "MixinIceBlock",
+        "MixinMilkBucketItem",
+        "MixinServerWorld"
     ],
     "injectors": {
         "defaultRequire": 1
