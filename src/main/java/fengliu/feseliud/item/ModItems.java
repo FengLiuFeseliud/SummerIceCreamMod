@@ -80,7 +80,7 @@ public class ModItems {
     public static final Map<IceCreamBar, IIceCreamLevel> MILK_POPSICLES = RegisterUtil.registerItems(MilkPopsicle.IceCreamLevels.values(), ModItemGroups.FOOD_GROUP);
     public static final Map<IceCreamBar, IIceCreamLevel> CRUSHED_ICE = RegisterUtil.registerItems(CrushedIce.IceCreamLevels.values(), ModItemGroups.FOOD_GROUP);
     public static final Map<IceCreamBar, IIceCreamLevel> ICE_CUBES = RegisterUtil.registerItems(IceCube.IceCreamLevels.values(), ModItemGroups.FOOD_GROUP);
-    public static final SerratedKnife SERRATED_KNIFE = register(new SerratedKnife(new Item.Settings().maxCount(1).maxDamage(64), "serrated_knife"), ModItemGroups.ITEM_GROUP);
+    public static final SerratedKnife SERRATED_KNIFE = register(new SerratedKnife(new Item.Settings().maxCount(1).maxDamage(32), "serrated_knife"), ModItemGroups.ITEM_GROUP);
 
     private static <I extends IModItem> I register(I item, RegistryKey<ItemGroup> group){
         return RegisterUtil.registerItem(item, group);

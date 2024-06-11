@@ -10,6 +10,8 @@ import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.FoodComponent;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 
 import java.util.Map;
 
@@ -80,6 +82,11 @@ public class GlowBerriesIceCreamBrick extends IceCreamBrick{
         @Override
         public String getIdName() {
             return this.getName();
+        }
+
+        @Override
+        public ItemStack getAllThawItemStack() {
+            return Items.AIR.getDefaultStack();
         }
 
         @Override
