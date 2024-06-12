@@ -1,12 +1,10 @@
 package fengliu.feseliud.item;
 
-import fengliu.feseliud.item.icecream.IIceCream;
-import fengliu.feseliud.item.icecream.IIceCreamPack;
+import fengliu.feseliud.item.icecream.IIceCreamLevelItem;
 import fengliu.feseliud.item.icecream.cup.IceCreamCup;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.util.ClickType;
@@ -32,18 +30,18 @@ public class Spoon extends BaseItem{
             return super.onStackClicked(stack, slot, clickType, player);
         }
 
-        if (slotStack.getNbt() == null || !slotStack.getNbt().contains(IIceCream.THAW_TIME_KEY, NbtElement.INT_TYPE)) {
-            slotStack.getOrCreateNbt().putInt(IIceCream.THAW_TIME_KEY, 0);
+        if (slotStack.getNbt() == null || !slotStack.getNbt().contains(IIceCreamLevelItem.THAW_TIME_KEY, NbtElement.INT_TYPE)) {
+            slotStack.getOrCreateNbt().putInt(IIceCreamLevelItem.THAW_TIME_KEY, 0);
         }
 
-        int iceCreamLevelInt = iceCreamCup.getIceCreams().get(iceCreamCup).getLevel();
+        int iceCreamLevelInt = iceCreamCup.getLevelItems().get(iceCreamCup).getLevel();
         iceCreamCup.getIceCreamAndSpoons().forEach((iceCreamCupItem, iceCreamLevel) -> {
             if(iceCreamLevel.getLevel() != iceCreamLevelInt){
                 return;
             }
 
             ItemStack iceCreamCupItemStack = iceCreamCupItem.getDefaultStack();
-            iceCreamCupItemStack.getOrCreateNbt().putInt(IIceCream.THAW_TIME_KEY, slotStack.getNbt().getInt(IIceCream.THAW_TIME_KEY));
+            iceCreamCupItemStack.getOrCreateNbt().putInt(IIceCreamLevelItem.THAW_TIME_KEY, slotStack.getNbt().getInt(IIceCreamLevelItem.THAW_TIME_KEY));
 
             stack.decrement(1);
             slotStack.decrement(1);

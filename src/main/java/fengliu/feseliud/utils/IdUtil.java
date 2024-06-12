@@ -32,4 +32,8 @@ public class IdUtil {
     public static String getItemInfo(String name, int index){
         return IdUtil.getItemInfo(name) + "." + index;
     }
+
+    public static String getItemName(String name){
+        return "item." + SummerIceCream.MOD_ID + "." + name;
+    }
 }

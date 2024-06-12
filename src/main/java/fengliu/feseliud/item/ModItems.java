@@ -8,13 +8,13 @@ import fengliu.feseliud.item.icecream.liquid.ChorusFruitIceCreamLiquidBucket;
 import fengliu.feseliud.item.icecream.liquid.IceCreamLiquidBucket;
 import fengliu.feseliud.item.icecream.bar.*;
 import fengliu.feseliud.item.icecream.cup.*;
+import fengliu.feseliud.item.icecream.potion.IcePotionCup;
+import fengliu.feseliud.item.icecream.potion.PotionCup;
 import fengliu.feseliud.utils.RegisterUtil;
-import net.fabricmc.fabric.api.item.v1.FabricItem;
-import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import fengliu.feseliud.utils.level.IItemLevel;
 import net.minecraft.item.FoodComponents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
-import net.minecraft.item.ToolMaterials;
 import net.minecraft.registry.RegistryKey;
 import net.minecraft.util.DyeColor;
 
@@ -81,6 +81,11 @@ public class ModItems {
     public static final Map<IceCreamBar, IIceCreamLevel> CRUSHED_ICE = RegisterUtil.registerItems(CrushedIce.IceCreamLevels.values(), ModItemGroups.FOOD_GROUP);
     public static final Map<IceCreamBar, IIceCreamLevel> ICE_CUBES = RegisterUtil.registerItems(IceCube.IceCreamLevels.values(), ModItemGroups.FOOD_GROUP);
     public static final SerratedKnife SERRATED_KNIFE = register(new SerratedKnife(new Item.Settings().maxCount(1).maxDamage(32), "serrated_knife"), ModItemGroups.ITEM_GROUP);
+
+    public static final BaseItem CUP = register(new BaseItem("cup", 16), ModItemGroups.ITEM_GROUP);
+    public static final Map<IceCreamBar, IIceCreamLevel> ICE_CUPS = RegisterUtil.registerItems(IceCup.IceCreamLevels.values(), ModItemGroups.ITEM_GROUP);
+    public static final Map<IcePotionCup, IIceCreamLevel> ICE_POTION_CUPS = RegisterUtil.registerItems(IcePotionCup.IceCreamLevels.values(), ModItemGroups.FOOD_GROUP);
+    public static final Map<PotionCup, IItemLevel> POTION_CUPS = RegisterUtil.registerItems(PotionCup.PotionCupLevels.values(), ModItemGroups.FOOD_GROUP);
 
     private static <I extends IModItem> I register(I item, RegistryKey<ItemGroup> group){
         return RegisterUtil.registerItem(item, group);

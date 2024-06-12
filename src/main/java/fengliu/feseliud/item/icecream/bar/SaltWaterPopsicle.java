@@ -17,7 +17,7 @@ public class SaltWaterPopsicle extends IceCreamBar {
     }
 
     @Override
-    public Map<IceCreamBar, IIceCreamLevel> getIceCreams() {
+    public Map<IceCreamBar, IIceCreamLevel> getLevelItems() {
         return ModItems.SALT_WATER_POPSICLES;
     }
 
@@ -58,7 +58,7 @@ public class SaltWaterPopsicle extends IceCreamBar {
         }
 
         @Override
-        public String getThawName() {
+        public String getSubName() {
             return this.thawName;
         }
 

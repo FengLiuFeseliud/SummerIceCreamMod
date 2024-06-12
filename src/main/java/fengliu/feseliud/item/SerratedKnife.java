@@ -35,6 +35,6 @@ public class SerratedKnife extends BaseItem{
 
     @Override
     public void generateModel(ItemModelGenerator itemModelGenerator) {
-        Models.HANDHELD.upload(ModelIds.getItemModelId(this), TextureMap.layer0(IdUtil.get(this.getTextureName()).withPrefixedPath(this.getPrefixedPath())), itemModelGenerator.writer);
+        Models.HANDHELD.upload(ModelIds.getItemModelId(this), TextureMap.layer0(this.getTexturePath()), itemModelGenerator.writer);
     }
 }

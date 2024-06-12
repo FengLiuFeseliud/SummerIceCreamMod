@@ -5,7 +5,7 @@ import fengliu.feseliud.block.ModBlocks;
 import fengliu.feseliud.block.icecream.IceCreamBlock;
 import fengliu.feseliud.item.block.BaseBlockItem;
 import fengliu.feseliud.item.block.ModBlockItems;
-import fengliu.feseliud.item.icecream.IIceCream;
+import fengliu.feseliud.item.icecream.IIceCreamLevelItem;
 import fengliu.feseliud.utils.IdUtil;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.client.item.TooltipContext;
@@ -24,7 +24,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.Map;
 
-public class IceCream extends BaseBlockItem implements IIceCream {
+public class IceCream extends BaseBlockItem implements IIceCreamLevelItem {
     public IceCream(IModBlock block, Settings settings) {
         super(block, settings);
     }
@@ -36,7 +36,7 @@ public class IceCream extends BaseBlockItem implements IIceCream {
 
     @Override
     @SuppressWarnings("unchecked")
-    public Map<IceCream, IIceCreamBlockLevel> getIceCreams() {
+    public Map<IceCream, IIceCreamBlockLevel> getLevelItems() {
         return ModBlockItems.ICE_CREAMS;
     }
 
@@ -49,7 +49,7 @@ public class IceCream extends BaseBlockItem implements IIceCream {
     @Override
     public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
         target.setFireTicks(0);
-        attacker.setStackInHand(attacker.getActiveHand(), this.getIceThawCreamItemStack(stack));
+        attacker.setStackInHand(attacker.getActiveHand(), this.getNextItemStack(stack));
         return super.postHit(stack, target, attacker);
     }
 
@@ -60,7 +60,7 @@ public class IceCream extends BaseBlockItem implements IIceCream {
         }
 
         user.setFireTicks(0);
-        ItemStack iceCreamStack = this.getIceThawCreamItemStack(stack);
+        ItemStack iceCreamStack = this.getNextItemStack(stack);
         super.finishUsing(stack, world, user);
         return iceCreamStack;
     }
@@ -72,7 +72,7 @@ public class IceCream extends BaseBlockItem implements IIceCream {
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-        tooltip.add(Text.translatable(IdUtil.getItemTooltip(this.getIceCreamLevel().getName())));
+        tooltip.add(Text.translatable(IdUtil.getItemTooltip(this.getItemLevel().getName())));
         this.appendThawTimeTooltip(stack, world, tooltip, context);
     }
 
@@ -107,7 +107,7 @@ public class IceCream extends BaseBlockItem implements IIceCream {
         }
 
         @Override
-        public String getThawName() {
+        public String getSubName() {
             return this.thawName;
         }
 
@@ -132,7 +132,7 @@ public class IceCream extends BaseBlockItem implements IIceCream {
         }
 
         @Override
-        public ItemStack getAllThawItemStack() {
+        public ItemStack getOutItemStack() {
             return Items.AIR.getDefaultStack();
         }
 

@@ -6,7 +6,8 @@
         "MixinBiome",
         "MixinIceBlock",
         "MixinMilkBucketItem",
-        "MixinServerWorld"
+        "MixinServerWorld",
+        "MixinStatusEffectInstance"
     ],
     "injectors": {
         "defaultRequire": 1

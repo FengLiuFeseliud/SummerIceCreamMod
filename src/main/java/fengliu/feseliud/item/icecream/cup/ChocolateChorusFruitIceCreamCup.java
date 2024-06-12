@@ -58,7 +58,7 @@ public class ChocolateChorusFruitIceCreamCup extends ChorusFruitIceCreamCup{
         }
 
         @Override
-        public String getThawName() {
+        public String getSubName() {
             return this.thawName;
         }
 
@@ -88,7 +88,7 @@ public class ChocolateChorusFruitIceCreamCup extends ChorusFruitIceCreamCup{
         }
 
         @Override
-        public ItemStack getAllThawItemStack() {
+        public ItemStack getOutItemStack() {
             return ModItems.ICE_CREAM_CUPS_PACK.getDefaultStack();
         }
     }
@@ -126,7 +126,7 @@ public class ChocolateChorusFruitIceCreamCup extends ChorusFruitIceCreamCup{
         }
 
         @Override
-        public String getThawName() {
+        public String getSubName() {
             return this.thawName;
         }
 
@@ -156,7 +156,7 @@ public class ChocolateChorusFruitIceCreamCup extends ChorusFruitIceCreamCup{
         }
 
         @Override
-        public ItemStack getAllThawItemStack() {
+        public ItemStack getOutItemStack() {
             return ModItems.ICE_CREAM_CUPS_PACK.getDefaultStack();
         }
     }

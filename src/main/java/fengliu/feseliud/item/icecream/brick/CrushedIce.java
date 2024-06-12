@@ -20,7 +20,7 @@ public class CrushedIce extends IceCreamBrick{
     }
 
     @Override
-    public Map<IceCreamBar, IIceCreamLevel> getIceCreams() {
+    public Map<IceCreamBar, IIceCreamLevel> getLevelItems() {
         return ModItems.CRUSHED_ICE;
     }
 
@@ -53,7 +53,7 @@ public class CrushedIce extends IceCreamBrick{
         }
 
         @Override
-        public String getThawName() {
+        public String getSubName() {
             return this.thawName;
         }
 
@@ -83,7 +83,7 @@ public class CrushedIce extends IceCreamBrick{
         }
 
         @Override
-        public ItemStack getAllThawItemStack() {
+        public ItemStack getOutItemStack() {
             return Items.AIR.getDefaultStack();
         }
 

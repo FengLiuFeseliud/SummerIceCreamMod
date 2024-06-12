@@ -5,6 +5,8 @@ import fengliu.feseliud.block.ModBlocks;
 import fengliu.feseliud.block.icecream.IceCreamBlock;
 import fengliu.feseliud.item.block.BaseBlockItem;
 import fengliu.feseliud.item.block.ModBlockItems;
+import fengliu.feseliud.item.icecream.IIceCreamLevel;
+import fengliu.feseliud.item.icecream.bar.IceCreamBar;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
@@ -20,7 +22,7 @@ public class GoldenAppleIceCream extends IceCream{
     }
 
     @Override
-    public Map<IceCream, IIceCreamBlockLevel> getIceCreams() {
+    public Map<IceCream, IIceCreamBlockLevel> getLevelItems() {
         return ModBlockItems.GOLDEN_APPLE_ICE_CREAMS;
     }
 
@@ -58,7 +60,7 @@ public class GoldenAppleIceCream extends IceCream{
         }
 
         @Override
-        public String getThawName() {
+        public String getSubName() {
             return this.thawName;
         }
 
@@ -83,7 +85,7 @@ public class GoldenAppleIceCream extends IceCream{
         }
 
         @Override
-        public ItemStack getAllThawItemStack() {
+        public ItemStack getOutItemStack() {
             return Items.AIR.getDefaultStack();
         }
 

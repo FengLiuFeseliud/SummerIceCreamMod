@@ -1,15 +1,13 @@
 package fengliu.feseliud.block.entity;
 
-import fengliu.feseliud.SummerIceCream;
 import fengliu.feseliud.block.ModBlocks;
 import fengliu.feseliud.block.icecream.IceCreamBlock;
 import fengliu.feseliud.item.block.icecream.IIceCreamBlockLevel;
-import fengliu.feseliud.item.icecream.IIceCream;
+import fengliu.feseliud.item.icecream.IIceCreamLevelItem;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
-import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
@@ -43,12 +41,12 @@ public class IceCreamBlockEntity extends BlockEntity {
 
     public void initTick(ItemStack iceCreamBlockStack){
         NbtCompound nbt = iceCreamBlockStack.getOrCreateNbt();
-        if (nbt.contains(IIceCream.THAW_TIME_KEY, NbtElement.INT_TYPE)){
-            this.tick = nbt.getInt(IIceCream.THAW_TIME_KEY);
+        if (nbt.contains(IIceCreamLevelItem.THAW_TIME_KEY, NbtElement.INT_TYPE)){
+            this.tick = nbt.getInt(IIceCreamLevelItem.THAW_TIME_KEY);
             return;
         }
 
-        this.tick = ((IIceCream) iceCreamBlockStack.getItem()).getThawTime();
+        this.tick = ((IIceCreamLevelItem) iceCreamBlockStack.getItem()).getThawTime();
     }
 
     public void initTick(IceCreamBlock block){
@@ -99,14 +97,14 @@ public class IceCreamBlockEntity extends BlockEntity {
     @Override
     protected void writeNbt(NbtCompound nbt) {
         super.writeNbt(nbt);
-        nbt.putInt(IIceCream.THAW_TIME_KEY, this.tick);
+        nbt.putInt(IIceCreamLevelItem.THAW_TIME_KEY, this.tick);
         this.markDirty();
     }
 
     @Override
     public void readNbt(NbtCompound nbt) {
         super.readNbt(nbt);
-        this.tick = nbt.getInt(IIceCream.THAW_TIME_KEY);
+        this.tick = nbt.getInt(IIceCreamLevelItem.THAW_TIME_KEY);
         this.markDirty();
     }
 }

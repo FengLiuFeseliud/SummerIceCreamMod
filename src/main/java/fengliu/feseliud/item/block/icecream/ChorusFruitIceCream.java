@@ -5,6 +5,7 @@ import fengliu.feseliud.block.ModBlocks;
 import fengliu.feseliud.block.icecream.IceCreamBlock;
 import fengliu.feseliud.item.block.BaseBlockItem;
 import fengliu.feseliud.item.block.ModBlockItems;
+import fengliu.feseliud.item.icecream.IIceCreamLevel;
 import fengliu.feseliud.item.icecream.bar.ChorusFruitIceCreamBar;
 import fengliu.feseliud.item.icecream.bar.IceCreamBar;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
@@ -30,7 +31,7 @@ public class ChorusFruitIceCream extends IceCream {
     }
 
     @Override
-    public Map<IceCream, IIceCreamBlockLevel> getIceCreams() {
+    public Map<IceCream, IIceCreamBlockLevel> getLevelItems() {
         return ModBlockItems.CHORUS_FRUIT_ICE_CREAMS;
     }
 
@@ -66,7 +67,7 @@ public class ChorusFruitIceCream extends IceCream {
         }
 
         @Override
-        public String getThawName() {
+        public String getSubName() {
             return this.thawName;
         }
 
@@ -91,7 +92,7 @@ public class ChorusFruitIceCream extends IceCream {
         }
 
         @Override
-        public ItemStack getAllThawItemStack() {
+        public ItemStack getOutItemStack() {
             return Items.AIR.getDefaultStack();
         }
 

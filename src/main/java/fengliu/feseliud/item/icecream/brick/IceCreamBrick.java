@@ -3,7 +3,7 @@ package fengliu.feseliud.item.icecream.brick;
 import com.google.gson.JsonObject;
 import fengliu.feseliud.item.BaseItem;
 import fengliu.feseliud.item.ModItems;
-import fengliu.feseliud.item.icecream.IIceCream;
+import fengliu.feseliud.item.icecream.IIceCreamLevelItem;
 import fengliu.feseliud.item.icecream.IIceCreamLevel;
 import fengliu.feseliud.item.icecream.bar.IceCreamBar;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
@@ -16,14 +16,14 @@ import net.minecraft.item.Items;
 import java.util.Map;
 
 public class IceCreamBrick extends IceCreamBar {
-    public static final String PREFIXED_PATH = IIceCream.PREFIXED_PATH + "brick" + "/";
+    public static final String PREFIXED_PATH = IIceCreamLevelItem.PREFIXED_PATH + "brick" + "/";
 
     public IceCreamBrick(Settings settings, String name) {
         super(settings, name);
     }
 
     @Override
-    public Map<IceCreamBar, IIceCreamLevel> getIceCreams() {
+    public Map<IceCreamBar, IIceCreamLevel> getLevelItems() {
         return ModItems.ICE_CREAM_BRICKS;
     }
 
@@ -33,10 +33,10 @@ public class IceCreamBrick extends IceCreamBar {
      * @return stack 冰淇淋
      */
     @Override
-    public ItemStack getIceThawCreamItemStack(ItemStack stack) {
+    public ItemStack getNextItemStack(ItemStack stack) {
         stack.decrement(1);
         if (stack.isEmpty()){
-            return this.getIceCreamLevel().getAllThawItemStack();
+            return this.getItemLevel().getOutItemStack();
         }
 
         ItemStack newStack = stack.getItem().getDefaultStack();
@@ -46,7 +46,7 @@ public class IceCreamBrick extends IceCreamBar {
 
     @Override
     public String getTextureName() {
-        return this.getIceCreamLevel().getName();
+        return this.getItemLevel().getName();
     }
 
     @Override
@@ -83,7 +83,7 @@ public class IceCreamBrick extends IceCreamBar {
         }
 
         @Override
-        public String getThawName() {
+        public String getSubName() {
             return this.thawName;
         }
 
@@ -113,7 +113,7 @@ public class IceCreamBrick extends IceCreamBar {
         }
 
         @Override
-        public ItemStack getAllThawItemStack() {
+        public ItemStack getOutItemStack() {
             return Items.AIR.getDefaultStack();
         }
 

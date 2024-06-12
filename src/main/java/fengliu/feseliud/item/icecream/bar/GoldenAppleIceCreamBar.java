@@ -17,7 +17,7 @@ public class GoldenAppleIceCreamBar extends IceCreamBar {
     }
 
     @Override
-    public Map<IceCreamBar, IIceCreamLevel> getIceCreams() {
+    public Map<IceCreamBar, IIceCreamLevel> getLevelItems() {
         return ModItems.GOLDEN_APPLE_ICE_CREAM_BARS;
     }
 
@@ -54,7 +54,7 @@ public class GoldenAppleIceCreamBar extends IceCreamBar {
         }
 
         @Override
-        public String getThawName() {
+        public String getSubName() {
             return this.thawName;
         }
 

@@ -1,16 +1,13 @@
 package fengliu.feseliud.item;
 
-import fengliu.feseliud.item.icecream.IIceCream;
+import fengliu.feseliud.item.icecream.IIceCreamLevelItem;
 import fengliu.feseliud.item.icecream.IIceCreamPack;
-import fengliu.feseliud.item.icecream.bar.IceCreamBar;
 import fengliu.feseliud.item.icecream.bar.PackIceCreamBar;
-import fengliu.feseliud.utils.color.IColor;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricRecipeProvider;
 import net.minecraft.data.server.recipe.RecipeJsonProvider;
 import net.minecraft.data.server.recipe.ShapelessRecipeJsonBuilder;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.DyeItem;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
 import net.minecraft.nbt.NbtCompound;
@@ -35,11 +32,11 @@ public class IceCreamBarPack extends BaseColorItem{
             return super.onStackClicked(stack, slot, clickType, player);
         }
 
-        if (!(slotStack.getItem() instanceof IIceCream iceCream)){
+        if (!(slotStack.getItem() instanceof IIceCreamLevelItem iceCream)){
             return super.onStackClicked(stack, slot, clickType, player);
         }
 
-        if (iceCream.getIceCreams().keySet().stream().toList().indexOf(iceCream) != 0){
+        if (iceCream.getLevelItems().keySet().stream().toList().indexOf(iceCream) != 0){
             return super.onStackClicked(stack, slot, clickType, player);
         }
 
@@ -52,9 +49,8 @@ public class IceCreamBarPack extends BaseColorItem{
         packIceCreamStack.getOrCreateNbt().put(IIceCreamPack.PACK_ICE_CREAM_KEY, slotStack.writeNbt(new NbtCompound()));
 
         stack.decrement(1);
-        slotStack.decrement(1);
         slot.setStack(packIceCreamStack);
-        return super.onStackClicked(stack, slot, clickType, player);
+        return true;
     }
 
     @Override

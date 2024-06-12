@@ -3,7 +3,7 @@ package fengliu.feseliud.item.icecream.liquid;
 import fengliu.feseliud.block.ModBlocks;
 import fengliu.feseliud.fluid.BaseFluid;
 import fengliu.feseliud.item.IModItem;
-import fengliu.feseliud.item.icecream.IIceCream;
+import fengliu.feseliud.item.icecream.IIceCreamLevelItem;
 import fengliu.feseliud.utils.RegisterUtil;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
@@ -19,7 +19,7 @@ import net.minecraft.world.World;
 import java.util.List;
 
 public class IceCreamLiquidBucket extends BucketItem implements IModItem {
-    public static final String PREFIXED_PATH = IIceCream.PREFIXED_PATH + "bucket" + "/";
+    public static final String PREFIXED_PATH = IIceCreamLevelItem.PREFIXED_PATH + "bucket" + "/";
     public final String name;
 
     public IceCreamLiquidBucket(String name, Fluid fluid, FoodComponent food) {

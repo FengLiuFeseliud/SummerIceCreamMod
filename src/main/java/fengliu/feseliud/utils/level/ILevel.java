@@ -8,6 +8,12 @@ import net.minecraft.util.Identifier;
  */
 public interface ILevel {
     /**
+     * 状态 ID
+     * @return 状态 ID
+     */
+    String getSubName();
+
+    /**
      * 获取等级物品等级
      * @return 等级
      */
@@ -32,11 +38,11 @@ public interface ILevel {
     String getName();
 
     /**
-     * 获取等级物品完整名字 (加上等级)
+     * 获取等级物品完整名字 (加上状态)
      * @return 等级物品路径
      */
-    default String getIdName(){
-        return this.getName() + "_lv_" + this.getLevel();
+    default String getIdName() {
+        return this.getName() + "_" + this.getSubName();
     }
 
     /**

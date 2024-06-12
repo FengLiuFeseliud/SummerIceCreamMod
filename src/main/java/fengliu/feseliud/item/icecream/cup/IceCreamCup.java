@@ -2,7 +2,7 @@ package fengliu.feseliud.item.icecream.cup;
 
 import fengliu.feseliud.item.BaseItem;
 import fengliu.feseliud.item.ModItems;
-import fengliu.feseliud.item.icecream.IIceCream;
+import fengliu.feseliud.item.icecream.IIceCreamLevelItem;
 import fengliu.feseliud.item.icecream.IIceCreamLevel;
 import fengliu.feseliud.item.icecream.bar.IceCreamBar;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
@@ -18,7 +18,7 @@ import net.minecraft.world.World;
 import java.util.Map;
 
 public class IceCreamCup extends IceCreamBar {
-    public static final String PREFIXED_PATH = IIceCream.PREFIXED_PATH + "cup" + "/";
+    public static final String PREFIXED_PATH = IIceCreamLevelItem.PREFIXED_PATH + "cup" + "/";
 
     private final boolean spoon;
 
@@ -40,7 +40,7 @@ public class IceCreamCup extends IceCreamBar {
     }
 
     @Override
-    public Map<IceCreamBar, IIceCreamLevel> getIceCreams() {
+    public Map<IceCreamBar, IIceCreamLevel> getLevelItems() {
         if (this.isSpoon()){
             return this.getIceCreamAndSpoons();
         }
@@ -51,7 +51,7 @@ public class IceCreamCup extends IceCreamBar {
     public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
         if (this.isSpoon()){
             ItemStack nextIceCream = super.finishUsing(stack, world, user);
-            if (nextIceCream.isOf(this.getIceCreamLevel().getAllThawItemStack().getItem())){
+            if (nextIceCream.isOf(this.getItemLevel().getOutItemStack().getItem())){
                 user.dropStack(ModItems.SPOON.getDefaultStack());
             }
             return nextIceCream;
@@ -69,7 +69,7 @@ public class IceCreamCup extends IceCreamBar {
 
     @Override
     public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
-        IIceCreamLevel iceCreamLevel = this.getIceCreamLevel();
+        IIceCreamLevel iceCreamLevel = this.getItemLevel();
         if (iceCreamLevel.getLevel() == iceCreamLevel.getMaxLevel()){
             return;
         }
@@ -79,7 +79,7 @@ public class IceCreamCup extends IceCreamBar {
 
     @Override
     public String getPrefixedPath() {
-        return PREFIXED_PATH + this.getIceCreamLevel().getName() + "/";
+        return PREFIXED_PATH + this.getItemLevel().getName() + "/";
     }
 
     public enum IceCreamLevels implements IIceCreamLevel {
@@ -111,7 +111,7 @@ public class IceCreamCup extends IceCreamBar {
         }
 
         @Override
-        public String getThawName() {
+        public String getSubName() {
             return this.thawName;
         }
 
@@ -141,7 +141,7 @@ public class IceCreamCup extends IceCreamBar {
         }
 
         @Override
-        public ItemStack getAllThawItemStack() {
+        public ItemStack getOutItemStack() {
             return ModItems.ICE_CREAM_CUPS_PACK.getDefaultStack();
         }
     }
@@ -178,7 +178,7 @@ public class IceCreamCup extends IceCreamBar {
         }
 
         @Override
-        public String getThawName() {
+        public String getSubName() {
             return this.thawName;
         }
 
@@ -208,7 +208,7 @@ public class IceCreamCup extends IceCreamBar {
         }
 
         @Override
-        public ItemStack getAllThawItemStack() {
+        public ItemStack getOutItemStack() {
             return ModItems.ICE_CREAM_CUPS_PACK.getDefaultStack();
         }
     }

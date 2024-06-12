@@ -56,7 +56,7 @@ public class GlowBerriesIceCreamCup extends IceCreamCup{
         }
 
         @Override
-        public String getThawName() {
+        public String getSubName() {
             return this.thawName;
         }
 
@@ -86,7 +86,7 @@ public class GlowBerriesIceCreamCup extends IceCreamCup{
         }
 
         @Override
-        public ItemStack getAllThawItemStack() {
+        public ItemStack getOutItemStack() {
             return ModItems.ICE_CREAM_CUPS_PACK.getDefaultStack();
         }
     }
@@ -124,7 +124,7 @@ public class GlowBerriesIceCreamCup extends IceCreamCup{
         }
 
         @Override
-        public String getThawName() {
+        public String getSubName() {
             return this.thawName;
         }
 
@@ -154,7 +154,7 @@ public class GlowBerriesIceCreamCup extends IceCreamCup{
         }
 
         @Override
-        public ItemStack getAllThawItemStack() {
+        public ItemStack getOutItemStack() {
             return ModItems.ICE_CREAM_CUPS_PACK.getDefaultStack();
         }
     }

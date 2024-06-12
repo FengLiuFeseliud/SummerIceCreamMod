@@ -20,7 +20,7 @@ public class GoldenAppleIceCreamBrick extends IceCreamBrick{
     }
 
     @Override
-    public Map<IceCreamBar, IIceCreamLevel> getIceCreams() {
+    public Map<IceCreamBar, IIceCreamLevel> getLevelItems() {
         return ModItems.GOLDEN_APPLE_ICE_CREAM_BRICKS;
     }
 
@@ -55,7 +55,7 @@ public class GoldenAppleIceCreamBrick extends IceCreamBrick{
         }
 
         @Override
-        public String getThawName() {
+        public String getSubName() {
             return this.thawName;
         }
 
@@ -85,7 +85,7 @@ public class GoldenAppleIceCreamBrick extends IceCreamBrick{
         }
 
         @Override
-        public ItemStack getAllThawItemStack() {
+        public ItemStack getOutItemStack() {
             return Items.AIR.getDefaultStack();
         }
 

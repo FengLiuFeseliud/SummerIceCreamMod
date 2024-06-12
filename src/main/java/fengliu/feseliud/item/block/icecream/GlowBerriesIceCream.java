@@ -1,14 +1,12 @@
 package fengliu.feseliud.item.block.icecream;
 
-import com.google.gson.JsonObject;
 import fengliu.feseliud.block.IModBlock;
 import fengliu.feseliud.block.ModBlocks;
 import fengliu.feseliud.block.icecream.IceCreamBlock;
-import fengliu.feseliud.item.BaseItem;
 import fengliu.feseliud.item.block.BaseBlockItem;
 import fengliu.feseliud.item.block.ModBlockItems;
 import fengliu.feseliud.item.icecream.IIceCreamLevel;
-import fengliu.feseliud.item.icecream.bar.GlowBerriesIceCreamBar;
+import fengliu.feseliud.item.icecream.bar.IceCreamBar;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
@@ -22,7 +20,7 @@ public class GlowBerriesIceCream extends IceCream{
     }
 
     @Override
-    public Map<IceCream, IIceCreamBlockLevel> getIceCreams() {
+    public Map<IceCream, IIceCreamBlockLevel> getLevelItems() {
         return ModBlockItems.GLOW_BERRIES_ICE_CREAMS;
     }
 
@@ -58,7 +56,7 @@ public class GlowBerriesIceCream extends IceCream{
         }
 
         @Override
-        public String getThawName() {
+        public String getSubName() {
             return this.thawName;
         }
 

@@ -25,17 +25,21 @@
   "item.summer_ice_cream.pack_ice_cream": "%s包装雪糕",
   "item.summer_ice_cream.pack_ice_cream.tooltip": "带包装的雪糕, 化了也可以冻一冻, 在包装中的雪糕好像融化的更慢了?",
 
-  "thaw.summer_ice_cream.not_thaw": "%s",
-  "thaw.summer_ice_cream.thaw_half": "融化一半的%s",
-  "thaw.summer_ice_cream.thaw_most": "融化大部分的%s",
-  "thaw.summer_ice_cream.thaw_almost_all": "几乎全部融化的%s",
-  "thaw.summer_ice_cream.thaw_all": "完全融化的%s",
-  "thaw.summer_ice_cream.spoon_not_thaw": "带勺子的%s",
-  "thaw.summer_ice_cream.spoon_thaw_half": "带勺子的融化一半的%s",
-  "thaw.summer_ice_cream.spoon_thaw_most": "带勺子的融化大部分的%s",
-  "thaw.summer_ice_cream.spoon_thaw_most": "带勺子的融化大部分的%s",
-  "thaw.summer_ice_cream.spoon_thaw_almost_all": "带勺子的几乎全部融化的%s",
-  "thaw.summer_ice_cream.spoon_thaw_all": "带勺子的完全融化的%s",
+  "level.summer_ice_cream.not_thaw": "%s",
+  "level.summer_ice_cream.thaw_half": "融化一半的%s",
+  "level.summer_ice_cream.thaw_most": "融化大部分的%s",
+  "level.summer_ice_cream.thaw_almost_all": "几乎全部融化的%s",
+  "level.summer_ice_cream.thaw_all": "完全融化的%s",
+  "level.summer_ice_cream.spoon_not_thaw": "带勺子的%s",
+  "level.summer_ice_cream.spoon_thaw_half": "带勺子的融化一半的%s",
+  "level.summer_ice_cream.spoon_thaw_most": "带勺子的融化大部分的%s",
+  "level.summer_ice_cream.spoon_thaw_most": "带勺子的融化大部分的%s",
+  "level.summer_ice_cream.spoon_thaw_almost_all": "带勺子的几乎全部融化的%s",
+  "level.summer_ice_cream.spoon_thaw_all": "带勺子的完全融化的%s",
+
+  "level.summer_ice_cream.drink_all": "一杯%s",
+  "level.summer_ice_cream.drink_half": "半杯%s",
+  "level.summer_ice_cream.drink_most": "一小口%s",
 
   "item.summer_ice_cream.crushed_ice": "碎冰",
   "item.summer_ice_cream.crushed_ice.tooltip": "冰块被粗暴的砸碎了...",
@@ -51,6 +55,18 @@
 
   "block.summer_ice_cream.incomplete_ice_slab": "半砖形冰",
   "item.summer_ice_cream.incomplete_ice_slab.tooltip": "再次被切割的冰...",
+
+  "item.summer_ice_cream.cup": "玻璃杯",
+  "item.summer_ice_cream.cup.tooltip": "玻璃杯, 可以用来装喝的",
+
+  "item.summer_ice_cream.ice_cup": "冰杯",
+  "item.summer_ice_cream.ice_cup.tooltip": "装着冰块的玻璃杯, 十分凉",
+
+  "item.summer_ice_cream.ice_potion_cup": "冰%s",
+  "item.summer_ice_cream.ice_potion_cup.tooltip": "装着冰凉饮品的玻璃杯, 十分凉",
+
+  "item.summer_ice_cream.potion_cup": "%s",
+  "item.summer_ice_cream.potion_cup.tooltip": "装着饮品的玻璃杯",
 
   "item.summer_ice_cream.milk_ice_cream_liquid_bucket": "奶油冰淇淋液",
   "item.summer_ice_cream.milk_ice_cream_liquid_bucket.tooltip": "从牛奶搅打而来!有股浓浓的奶油味~",

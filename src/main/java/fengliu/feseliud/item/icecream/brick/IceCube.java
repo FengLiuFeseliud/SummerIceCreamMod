@@ -2,15 +2,20 @@ package fengliu.feseliud.item.icecream.brick;
 
 import com.google.gson.JsonObject;
 import fengliu.feseliud.item.BaseItem;
+import fengliu.feseliud.item.IceCup;
 import fengliu.feseliud.item.ModItems;
 import fengliu.feseliud.item.icecream.IIceCreamLevel;
 import fengliu.feseliud.item.icecream.bar.IceCreamBar;
+import fengliu.feseliud.item.icecream.potion.IcePotionCup;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.FoodComponent;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.screen.slot.Slot;
+import net.minecraft.util.ClickType;
 
 import java.util.Map;
 
@@ -20,8 +25,21 @@ public class IceCube extends IceCreamBrick{
     }
 
     @Override
-    public Map<IceCreamBar, IIceCreamLevel> getIceCreams() {
+    public Map<IceCreamBar, IIceCreamLevel> getLevelItems() {
         return ModItems.ICE_CUBES;
+    }
+
+    @Override
+    public boolean onStackClicked(ItemStack stack, Slot slot, ClickType clickType, PlayerEntity player) {
+        ItemStack slotStack = slot.getStack();
+        if (slotStack.isEmpty() || !slotStack.isOf(ModItems.CUP) || slotStack.getCount() > 1){
+            return super.onStackClicked(stack, slot, clickType, player);
+        }
+
+        ItemStack iceCupStack = ((IceCup) ModItems.ICE_CUPS.keySet().toArray()[0]).getDefaultStack();
+        stack.decrement(1);
+        slot.setStack(setItemStack(iceCupStack, stack));
+        return true;
     }
 
     public enum IceCreamLevels implements IIceCreamLevel{
@@ -53,7 +71,7 @@ public class IceCube extends IceCreamBrick{
         }
 
         @Override
-        public String getThawName() {
+        public String getSubName() {
             return this.thawName;
         }
 
@@ -83,7 +101,7 @@ public class IceCube extends IceCreamBrick{
         }
 
         @Override
-        public ItemStack getAllThawItemStack() {
+        public ItemStack getOutItemStack() {
             return Items.AIR.getDefaultStack();
         }
 

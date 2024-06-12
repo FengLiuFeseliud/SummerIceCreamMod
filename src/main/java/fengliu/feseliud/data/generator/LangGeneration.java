@@ -7,7 +7,8 @@ import fengliu.feseliud.SummerIceCreamDataGenerator;
 import fengliu.feseliud.item.BaseColorItem;
 import fengliu.feseliud.item.ModItems;
 import fengliu.feseliud.item.block.ModBlockItems;
-import fengliu.feseliud.utils.level.ILevelItem;
+import fengliu.feseliud.item.icecream.IIceCreamLevel;
+import fengliu.feseliud.utils.level.IItemLevel;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
 import net.minecraft.item.Item;
@@ -55,13 +56,13 @@ public class LangGeneration extends FabricLanguageProvider {
         }
 
         maps.forEach((objItem, levelItem) -> {
-            if(!(objItem instanceof Item item) || !(levelItem instanceof ILevelItem iLevelItem)){
+            if(!(objItem instanceof Item item) || !(levelItem instanceof IItemLevel level)){
                 return;
             }
 
-            String translationKey = type + "." + SummerIceCream.MOD_ID + "." + iLevelItem.getName();
+            String translationKey = type + "." + SummerIceCream.MOD_ID + "." + level.getName();
             try {
-                String langData =  iLevelItem.getTranslations(translationKey, translations);
+                String langData =  level.getTranslations(translationKey, translations);
                 if (langData == null){
                     return;
                 }

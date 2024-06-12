@@ -1,36 +1,63 @@
-package fengliu.feseliud.item.icecream.brick;
+package fengliu.feseliud.item;
 
 import com.google.gson.JsonObject;
-import fengliu.feseliud.item.BaseItem;
-import fengliu.feseliud.item.ModItems;
 import fengliu.feseliud.item.icecream.IIceCreamLevel;
-import fengliu.feseliud.item.icecream.bar.ChorusFruitIceCreamBar;
+import fengliu.feseliud.item.icecream.IIceCreamLevelItem;
 import fengliu.feseliud.item.icecream.bar.IceCreamBar;
+import fengliu.feseliud.item.icecream.brick.IceCube;
+import fengliu.feseliud.item.icecream.potion.IcePotionCup;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
-import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.FoodComponent;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.world.World;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionUtil;
+import net.minecraft.screen.slot.Slot;
+import net.minecraft.util.ClickType;
 
 import java.util.Map;
 
-public class ChorusFruitIceCreamBrick extends IceCreamBrick {
-    public ChorusFruitIceCreamBrick(Settings settings, String name) {
+public class IceCup extends IceCreamBar {
+    public IceCup(Settings settings, String name) {
         super(settings, name);
     }
 
     @Override
-    public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
-        ChorusFruitIceCreamBar.useChorusFruit(world, user);
-        return super.finishUsing(stack, world, user);
+    public Map<IceCreamBar, IIceCreamLevel> getLevelItems() {
+        return ModItems.ICE_CUPS;
     }
 
     @Override
-    public Map<IceCreamBar, IIceCreamLevel> getLevelItems() {
-        return ModItems.CHORUS_FRUIT_ICE_CREAM_BRICKS;
+    public boolean onStackClicked(ItemStack stack, Slot slot, ClickType clickType, PlayerEntity player) {
+        ItemStack slotStack = slot.getStack();
+        if (slotStack.isEmpty() || !slotStack.isOf(Items.POTION)){
+            return super.onStackClicked(stack, slot, clickType, player);
+        }
+
+        Potion potion = PotionUtil.getPotion(slotStack);
+        if (potion.getEffects().isEmpty()){
+            return super.onStackClicked(stack, slot, clickType, player);
+        }
+
+        ItemStack icePotionCupStack = ((IcePotionCup) ModItems.ICE_POTION_CUPS.keySet().toArray()[0]).getDefaultStack();
+        PotionUtil.setPotion(icePotionCupStack, potion);
+
+        stack.decrement(1);
+        slot.setStack(setItemStack(icePotionCupStack, stack));
+        return true;
+    }
+
+    @Override
+    public String getTextureName() {
+        return this.getItemLevel().getName();
+    }
+
+    @Override
+    public String getPrefixedPath() {
+        return IModItem.PREFIXED_PATH;
     }
 
     public enum IceCreamLevels implements IIceCreamLevel{
@@ -51,8 +78,8 @@ public class ChorusFruitIceCreamBrick extends IceCreamBrick {
         @Override
         public FoodComponent getFoodComponent() {
             return new FoodComponent.Builder()
-                    .hunger(2 * this.gain).saturationModifier((float) (this.gain))
-                    .statusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 100 * this.gain), 1.0f)
+                    .hunger(this.gain)
+                    .statusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 50), 1.0f)
                     .alwaysEdible().build();
         }
 
@@ -73,7 +100,7 @@ public class ChorusFruitIceCreamBrick extends IceCreamBrick {
 
         @Override
         public int getMaxLevel() {
-            return IceCreamLevels.values().length;
+            return IceCube.IceCreamLevels.values().length;
         }
 
         @Override
@@ -83,7 +110,7 @@ public class ChorusFruitIceCreamBrick extends IceCreamBrick {
 
         @Override
         public String getName() {
-            return "chorus_fruit_ice_cream_brick";
+            return "ice_cup";
         }
 
         @Override
@@ -93,12 +120,12 @@ public class ChorusFruitIceCreamBrick extends IceCreamBrick {
 
         @Override
         public ItemStack getOutItemStack() {
-            return Items.AIR.getDefaultStack();
+            return ModItems.CUP.getDefaultStack();
         }
 
         @Override
         public BaseItem getItem() {
-            return new ChorusFruitIceCreamBrick(new FabricItemSettings().maxCount(16).food(this.getFoodComponent()), this.getName());
+            return new IceCup(new FabricItemSettings().maxCount(1).food(this.getFoodComponent()), this.getName());
         }
 
         @Override

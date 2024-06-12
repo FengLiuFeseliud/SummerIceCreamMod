@@ -6,7 +6,7 @@ import fengliu.feseliud.fluid.BaseFluid;
 import fengliu.feseliud.item.BaseColorItem;
 import fengliu.feseliud.item.IModItem;
 import fengliu.feseliud.item.block.icecream.IIceCreamBlockLevel;
-import fengliu.feseliud.utils.level.ILevelItem;
+import fengliu.feseliud.utils.level.IItemLevel;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
 import net.minecraft.block.Block;
@@ -63,7 +63,7 @@ public class RegisterUtil {
      * @return 等级物品列表
      */
     @SuppressWarnings("unchecked")
-    public static <IL extends ILevelItem, I extends IModItem> Map<I, IL> registerItems(IL[] levels, RegistryKey<ItemGroup> group){
+    public static <IL extends IItemLevel, I extends IModItem> Map<I, IL> registerItems(IL[] levels, RegistryKey<ItemGroup> group){
         LinkedHashMap<I, IL> items = new LinkedHashMap<>();
         Arrays.stream(levels).forEach(level -> items.put((I) RegisterUtil.registerItem(IdUtil.get(level.getIdName()), level.getItem(), group), level));
         return items;

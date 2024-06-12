@@ -2,7 +2,7 @@ package fengliu.feseliud.item.icecream.bar;
 
 import fengliu.feseliud.item.BaseItem;
 import fengliu.feseliud.item.ModItems;
-import fengliu.feseliud.item.icecream.IIceCream;
+import fengliu.feseliud.item.icecream.IIceCreamLevelItem;
 import fengliu.feseliud.item.icecream.IIceCreamLevel;
 import net.fabricmc.fabric.api.item.v1.FabricItem;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
@@ -22,8 +22,8 @@ import java.util.List;
 import java.util.Map;
 
 
-public class IceCreamBar extends BaseItem implements IIceCream, FabricItem {
-    public static final String PREFIXED_PATH = IIceCream.PREFIXED_PATH + "bar" + "/";
+public class IceCreamBar extends BaseItem implements IIceCreamLevelItem, FabricItem {
+    public static final String PREFIXED_PATH = IIceCreamLevelItem.PREFIXED_PATH + "bar" + "/";
 
     public IceCreamBar(Settings settings, String name) {
         super(settings, name);
@@ -36,7 +36,7 @@ public class IceCreamBar extends BaseItem implements IIceCream, FabricItem {
 
     @Override
     @SuppressWarnings("unchecked")
-    public Map<IceCreamBar, IIceCreamLevel> getIceCreams() {
+    public Map<IceCreamBar, IIceCreamLevel> getLevelItems() {
         return ModItems.ICE_CREAM_BAR;
     }
 
@@ -49,7 +49,7 @@ public class IceCreamBar extends BaseItem implements IIceCream, FabricItem {
     @Override
     public boolean postHit(ItemStack stack, LivingEntity target, LivingEntity attacker) {
         target.setFireTicks(0);
-        attacker.setStackInHand(attacker.getActiveHand(), this.getIceThawCreamItemStack(stack));
+        attacker.setStackInHand(attacker.getActiveHand(), this.getNextItemStack(stack));
         return super.postHit(stack, target, attacker);
     }
 
@@ -60,19 +60,19 @@ public class IceCreamBar extends BaseItem implements IIceCream, FabricItem {
         }
 
         user.setFireTicks(0);
-        ItemStack iceCreamStack = this.getIceThawCreamItemStack(stack);
+        ItemStack iceCreamStack = this.getNextItemStack(stack);
         super.finishUsing(stack, world, user);
         return iceCreamStack;
     }
 
     @Override
     public String getTextureName() {
-        return this.getIceCreamLevel().getThawName();
+        return this.getItemLevel().getSubName();
     }
 
     @Override
     public String getPrefixedPath() {
-        return PREFIXED_PATH + this.getIceCreamLevel().getName() + "/";
+        return PREFIXED_PATH + this.getItemLevel().getName() + "/";
     }
 
     @Override
@@ -117,7 +117,7 @@ public class IceCreamBar extends BaseItem implements IIceCream, FabricItem {
         }
 
         @Override
-        public String getThawName() {
+        public String getSubName() {
             return this.thawName;
         }
 

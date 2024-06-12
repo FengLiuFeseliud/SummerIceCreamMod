@@ -2,14 +2,13 @@ package fengliu.feseliud.item.icecream;
 
 import fengliu.feseliud.SummerIceCream;
 import fengliu.feseliud.item.BaseItem;
-import fengliu.feseliud.item.icecream.bar.IceCreamBar;
 import fengliu.feseliud.utils.IdUtil;
+import fengliu.feseliud.utils.level.IItemLevel;
 import fengliu.feseliud.utils.level.ILevelItem;
 import net.fabricmc.fabric.api.item.v1.FabricItem;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
@@ -45,7 +44,7 @@ public interface IIceCreamPack extends FabricItem {
         }
 
         ItemStack iceCreamItemStack = ItemStack.fromNbt(nbt.getCompound(PACK_ICE_CREAM_KEY));
-        if (!(iceCreamItemStack.getItem() instanceof IIceCream iceCreamItem)){
+        if (!(iceCreamItemStack.getItem() instanceof IIceCreamLevelItem iceCreamItem)){
             return iceCreamPack;
         }
 
@@ -60,8 +59,8 @@ public interface IIceCreamPack extends FabricItem {
         }
 
         int allThawTime = 0;
-        for (Map.Entry<IIceCream, IIceCreamLevel> iceCream: iceCreamItem.getIceCreams().entrySet()){
-            allThawTime += iceCream.getValue().getThawTime();
+        for (Map.Entry<ILevelItem, IItemLevel> iceCream: iceCreamItem.getLevelItems().entrySet()){
+            allThawTime += ((IIceCreamLevel) iceCream.getValue()).getThawTime();
             if (iceCreamPackTime > allThawTime){
                 continue;
             }
@@ -71,7 +70,7 @@ public interface IIceCreamPack extends FabricItem {
             PackIceCreamItemStack.getOrCreateNbt().putInt(iceCreamItem.THAW_TIME_KEY, allThawTime - iceCreamPackTime);
             return PackIceCreamItemStack;
         }
-        return iceCreamItem.getIceCreams().get(iceCreamItem).getAllThawItemStack();
+        return iceCreamItem.getLevelItems().get(iceCreamItem).getOutItemStack();
     }
 
     /**

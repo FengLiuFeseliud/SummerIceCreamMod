@@ -20,7 +20,7 @@ public class MilkPopsicle extends IceCreamBar {
     }
 
     @Override
-    public Map<IceCreamBar, IIceCreamLevel> getIceCreams() {
+    public Map<IceCreamBar, IIceCreamLevel> getLevelItems() {
         return ModItems.MILK_POPSICLES;
     }
 
@@ -65,7 +65,7 @@ public class MilkPopsicle extends IceCreamBar {
         }
 
         @Override
-        public String getThawName() {
+        public String getSubName() {
             return this.thawName;
         }
 

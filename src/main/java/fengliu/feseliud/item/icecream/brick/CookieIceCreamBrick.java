@@ -4,7 +4,6 @@ import com.google.gson.JsonObject;
 import fengliu.feseliud.item.BaseItem;
 import fengliu.feseliud.item.ModItems;
 import fengliu.feseliud.item.icecream.IIceCreamLevel;
-import fengliu.feseliud.item.icecream.bar.CookieIceCreamBar;
 import fengliu.feseliud.item.icecream.bar.IceCreamBar;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -21,7 +20,7 @@ public class CookieIceCreamBrick extends IceCreamBrick{
     }
 
     @Override
-    public Map<IceCreamBar, IIceCreamLevel> getIceCreams() {
+    public Map<IceCreamBar, IIceCreamLevel> getLevelItems() {
         return ModItems.COOKIE_ICE_CREAM_BRICKS;
     }
 
@@ -55,7 +54,7 @@ public class CookieIceCreamBrick extends IceCreamBrick{
         }
 
         @Override
-        public String getThawName() {
+        public String getSubName() {
             return this.thawName;
         }
 
@@ -85,7 +84,7 @@ public class CookieIceCreamBrick extends IceCreamBrick{
         }
 
         @Override
-        public ItemStack getAllThawItemStack() {
+        public ItemStack getOutItemStack() {
             return Items.AIR.getDefaultStack();
         }
 

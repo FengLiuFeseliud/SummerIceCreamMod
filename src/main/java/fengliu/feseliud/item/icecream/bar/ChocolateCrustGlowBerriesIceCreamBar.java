@@ -17,7 +17,7 @@ public class ChocolateCrustGlowBerriesIceCreamBar extends IceCreamBar {
     }
 
     @Override
-    public Map<IceCreamBar, IIceCreamLevel> getIceCreams() {
+    public Map<IceCreamBar, IIceCreamLevel> getLevelItems() {
         return ModItems.CHOCOLATE_CRUST_GLOW_BERRIES_ICE_CREAM_BARS;
     }
 
@@ -55,7 +55,7 @@ public class ChocolateCrustGlowBerriesIceCreamBar extends IceCreamBar {
         }
 
         @Override
-        public String getThawName() {
+        public String getSubName() {
             return this.thawName;
         }
 
