@@ -7,6 +7,7 @@ import fengliu.feseliud.item.ModItems;
 import fengliu.feseliud.item.icecream.IIceCreamLevel;
 import fengliu.feseliud.item.icecream.bar.IceCreamBar;
 import fengliu.feseliud.item.icecream.potion.IcePotionCup;
+import fengliu.feseliud.item.icecream.potion.PotionCup;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
@@ -14,10 +15,12 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.FoodComponent;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.potion.PotionUtil;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.util.ClickType;
 
 import java.util.Map;
+import java.util.Optional;
 
 public class IceCube extends IceCreamBrick{
     public IceCube(Settings settings, String name) {
@@ -32,13 +35,22 @@ public class IceCube extends IceCreamBrick{
     @Override
     public boolean onStackClicked(ItemStack stack, Slot slot, ClickType clickType, PlayerEntity player) {
         ItemStack slotStack = slot.getStack();
-        if (slotStack.isEmpty() || !slotStack.isOf(ModItems.CUP) || slotStack.getCount() > 1){
+        if (slotStack.isEmpty() || !(slotStack.isOf(ModItems.CUP) || slotStack.getItem() instanceof PotionCup) || slotStack.getCount() > 1){
             return super.onStackClicked(stack, slot, clickType, player);
         }
 
-        ItemStack iceCupStack = ((IceCup) ModItems.ICE_CUPS.keySet().toArray()[0]).getDefaultStack();
         stack.decrement(1);
-        slot.setStack(setItemStack(iceCupStack, stack));
+        if (!(slotStack.getItem() instanceof PotionCup potionCup)){
+            ItemStack iceCupStack = ((IceCup) ModItems.ICE_CUPS.keySet().toArray()[0]).getDefaultStack();
+            slot.setStack(setItemStack(iceCupStack, stack));
+            return true;
+        }
+
+        Optional<IcePotionCup> icePotionCupOptional = ModItems.ICE_POTION_CUPS.keySet().stream().filter(icePotionCup -> icePotionCup.getItemLevel().getLevel() == potionCup.getItemLevel().getLevel()).findAny();
+        if (icePotionCupOptional.isEmpty()){
+            return super.onStackClicked(stack, slot, clickType, player);
+        }
+        slot.setStack(setItemStack(PotionUtil.setPotion(icePotionCupOptional.get().getDefaultStack(), PotionUtil.getPotion(slotStack)), stack));
         return true;
     }
 

@@ -5,6 +5,7 @@
     "mixins": [
         "MixinBiome",
         "MixinIceBlock",
+        "MixinLivingEntity",
         "MixinMilkBucketItem",
         "MixinServerWorld",
         "MixinStatusEffectInstance"

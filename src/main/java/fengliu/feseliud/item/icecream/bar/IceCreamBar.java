@@ -1,9 +1,11 @@
 package fengliu.feseliud.item.icecream.bar;
 
+import fengliu.feseliud.SummerIceCream;
 import fengliu.feseliud.item.BaseItem;
 import fengliu.feseliud.item.ModItems;
 import fengliu.feseliud.item.icecream.IIceCreamLevelItem;
 import fengliu.feseliud.item.icecream.IIceCreamLevel;
+import fengliu.feseliud.mixin.MixinLivingEntity;
 import net.fabricmc.fabric.api.item.v1.FabricItem;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.client.item.TooltipContext;
@@ -13,9 +15,11 @@ import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.FoodComponent;
 import net.minecraft.item.ItemStack;
+import net.minecraft.sound.SoundCategory;
 import net.minecraft.text.Text;
 import net.minecraft.util.UseAction;
 import net.minecraft.world.World;
+import net.minecraft.world.event.GameEvent;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
@@ -55,10 +59,6 @@ public class IceCreamBar extends BaseItem implements IIceCreamLevelItem, FabricI
 
     @Override
     public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
-        if (world.isClient()) {
-            return super.finishUsing(stack, world, user);
-        }
-
         user.setFireTicks(0);
         ItemStack iceCreamStack = this.getNextItemStack(stack);
         super.finishUsing(stack, world, user);

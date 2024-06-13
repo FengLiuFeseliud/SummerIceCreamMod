@@ -19,26 +19,16 @@ public interface ILevelItem {
      * @return 下一阶段物品
      */
     default ItemStack getNextItemStack(ItemStack stack){
-        boolean nextIn = false;
-        Map.Entry<ILevelItem, IItemLevel> iceCreamEnd = null;
-
         for (Map.Entry<ILevelItem, IItemLevel> iceCream: this.getLevelItems().entrySet()){
-            if (nextIn){
+            int level = iceCream.getValue().getLevel();
+            int itemLevel = this.getItemLevel().getLevel();
+
+            if (itemLevel + 1 == level){
                 ItemStack iceCreamStack = ((Item) iceCream.getKey()).getDefaultStack();
-                iceCreamStack.setDamage(iceCream.getValue().getLevel() - 1);
+                iceCreamStack.setDamage(itemLevel);
                 return iceCreamStack;
             }
-
-            if (stack.isOf((Item) iceCream.getKey())){
-                nextIn = true;
-            }
-
-            iceCreamEnd = iceCream;
         }
-
-        if (iceCreamEnd == null){
-            return ItemStack.EMPTY;
-        }
-        return iceCreamEnd.getValue().getOutItemStack();
+        return this.getItemLevel().getOutItemStack();
     }
 }

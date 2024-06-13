@@ -9,6 +9,7 @@ import fengliu.feseliud.item.icecream.IIceCreamLevel;
 import fengliu.feseliud.mixin.MixinStatusEffectInstance;
 import fengliu.feseliud.utils.IdUtil;
 import fengliu.feseliud.utils.level.IItemLevel;
+import fengliu.feseliud.utils.level.ILevelItem;
 import net.fabricmc.fabric.api.item.v1.FabricItem;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.block.Blocks;
@@ -99,9 +100,12 @@ public class IcePotionCup extends BaseItem implements IIceCreamLevelItem, Fabric
         return PotionUtil.setPotion(potionCup, PotionUtil.getPotion(stack));
     }
 
-    @Override
-    public ItemStack getNextItemStack(ItemStack stack) {
-        return PotionUtil.setPotion(IIceCreamLevelItem.super.getNextItemStack(stack), PotionUtil.getPotion(stack));
+    public static ItemStack resetItemStack(ILevelItem cup, ItemStack stack) {
+        ItemStack nextItem = cup.getNextItemStack(stack);
+        if (nextItem.isOf(ModItems.CUP)){
+            return nextItem;
+        }
+        return PotionUtil.setPotion(nextItem, PotionUtil.getPotion(stack));
     }
 
     @Override
@@ -115,15 +119,9 @@ public class IcePotionCup extends BaseItem implements IIceCreamLevelItem, Fabric
     }
 
     public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
-        if (world.isClient()) {
-            return super.finishUsing(stack, world, user);
-        }
-
         user.setFireTicks(0);
         IcePotionCup.getStatusEffectInstances(stack, this.getItemLevel()).forEach(statusEffectInstance -> user.addStatusEffect(statusEffectInstance, user));
-        ItemStack iceCreamStack = this.getNextItemStack(stack);
-        super.finishUsing(stack, world, user);
-        return iceCreamStack;
+        return IcePotionCup.resetItemStack(this, stack);
     }
 
     public UseAction getUseAction(ItemStack stack) {

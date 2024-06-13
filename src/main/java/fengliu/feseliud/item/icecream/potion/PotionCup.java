@@ -3,6 +3,7 @@ package fengliu.feseliud.item.icecream.potion;
 import fengliu.feseliud.item.BaseItem;
 import fengliu.feseliud.item.IModItem;
 import fengliu.feseliud.item.ModItems;
+import fengliu.feseliud.item.icecream.IIceCreamLevelItem;
 import fengliu.feseliud.utils.IdUtil;
 import fengliu.feseliud.utils.level.IItemLevel;
 import fengliu.feseliud.utils.level.ILevelItem;
@@ -55,13 +56,8 @@ public class PotionCup extends BaseItem implements ILevelItem {
 
     @Override
     public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
-        if (world.isClient()) {
-            return super.finishUsing(stack, world, user);
-        }
-
         IcePotionCup.getStatusEffectInstances(stack, this.getItemLevel()).forEach(statusEffectInstance -> user.addStatusEffect(statusEffectInstance, user));
-        super.finishUsing(stack, world, user);
-        return PotionUtil.setPotion(this.getNextItemStack(stack), PotionUtil.getPotion(stack));
+        return IcePotionCup.resetItemStack(this, stack);
     }
 
     @Override
