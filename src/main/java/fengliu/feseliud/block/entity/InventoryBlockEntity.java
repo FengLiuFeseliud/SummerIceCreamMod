@@ -22,7 +22,7 @@ import net.minecraft.util.math.BlockPos;
 import java.util.List;
 
 
-public abstract class InventoryBlockEntity extends BlockEntity implements IInventory, Nameable {
+public abstract class InventoryBlockEntity extends BlockEntity implements IInventory {
     private DefaultedList<ItemStack> inventory;
 
     public InventoryBlockEntity(BlockEntityType<?> type, BlockPos pos, BlockState state) {
@@ -72,8 +72,9 @@ public abstract class InventoryBlockEntity extends BlockEntity implements IInven
 
     @Override
     public void markDirty() {
+        super.markDirty();
+
         if (this.world == null){
-            super.markDirty();
             return;
         }
 

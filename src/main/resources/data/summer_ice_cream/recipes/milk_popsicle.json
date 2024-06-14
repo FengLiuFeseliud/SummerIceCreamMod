@@ -1,0 +1,8 @@
+{
+    "type": "summer_ice_cream:list_recipes",
+    "inputs":  [
+        "summer_ice_cream:bar",
+        "minecraft:milk_bucket"
+    ],
+    "result": "summer_ice_cream:milk_popsicle_not_thaw"
+}

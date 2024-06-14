@@ -1,0 +1,8 @@
+{
+    "type": "summer_ice_cream:list_recipes",
+    "inputs":  [
+        "minecraft:milk_bucket",
+        "minecraft:sugar"
+    ],
+    "result": "summer_ice_cream:milk_ice_cream_liquid_bucket"
+}

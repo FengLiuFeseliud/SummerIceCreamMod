@@ -4,25 +4,21 @@ import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonSyntaxException;
-import fengliu.feseliud.block.entity.IceCreamBarMoldBlockEntity;
 import fengliu.feseliud.utils.IdUtil;
 import net.minecraft.inventory.SimpleInventory;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
-import net.minecraft.recipe.Ingredient;
 import net.minecraft.recipe.Recipe;
 import net.minecraft.recipe.RecipeSerializer;
 import net.minecraft.recipe.RecipeType;
 import net.minecraft.registry.DynamicRegistryManager;
 import net.minecraft.registry.Registries;
-import net.minecraft.registry.Registry;
 import net.minecraft.util.Identifier;
 import net.minecraft.world.World;
 
 import java.util.*;
 
-public class IceCreamBarMoldRecipes implements Recipe<SimpleInventory> {
+public class ListRecipes implements Recipe<SimpleInventory> {
     private final Identifier id;
     private final List<ItemStack> inputs;
     private final ItemStack result;
@@ -32,7 +28,7 @@ public class IceCreamBarMoldRecipes implements Recipe<SimpleInventory> {
         String result;
     }
 
-    public IceCreamBarMoldRecipes(Identifier id, List<ItemStack> inputs, ItemStack result){
+    public ListRecipes(Identifier id, List<ItemStack> inputs, ItemStack result){
         this.id = id;
         this.inputs = inputs;
         this.result = result;
@@ -76,12 +72,12 @@ public class IceCreamBarMoldRecipes implements Recipe<SimpleInventory> {
         return this.inputs;
     }
 
-    public static class IceCreamBarMoldRecipesSerializer implements RecipeSerializer<IceCreamBarMoldRecipes>{
-        public static final IceCreamBarMoldRecipesSerializer INSTANCE = new IceCreamBarMoldRecipesSerializer();
-        public static final Identifier ID = IdUtil.get("ice_cream_bar_mold_recipes");
+    public static class ListRecipesSerializer implements RecipeSerializer<ListRecipes>{
+        public static final ListRecipesSerializer INSTANCE = new ListRecipesSerializer();
+        public static final Identifier ID = IdUtil.get("list_recipes");
 
         @Override
-        public IceCreamBarMoldRecipes read(Identifier id, JsonObject json) {
+        public ListRecipes read(Identifier id, JsonObject json) {
             IceCreamBarMoldRecipesJsonFormat recipeJson = new Gson().fromJson(json, IceCreamBarMoldRecipesJsonFormat.class);
 
             List<ItemStack> inputs = new ArrayList<>();
@@ -90,12 +86,12 @@ public class IceCreamBarMoldRecipes implements Recipe<SimpleInventory> {
                         .orElseThrow(() -> new JsonSyntaxException("No such item " + input)).getDefaultStack());
             });
 
-            return new IceCreamBarMoldRecipes(id, inputs, Registries.ITEM.getOrEmpty(new Identifier(recipeJson.result))
+            return new ListRecipes(id, inputs, Registries.ITEM.getOrEmpty(new Identifier(recipeJson.result))
                     .orElseThrow(() -> new JsonSyntaxException("No such item " + recipeJson.result)).getDefaultStack());
         }
 
         @Override
-        public void write(PacketByteBuf buf, IceCreamBarMoldRecipes recipe) {
+        public void write(PacketByteBuf buf, ListRecipes recipe) {
             buf.writeItemStack(recipe.getResult());
             for (ItemStack input: recipe.getInputs()){
                 buf.writeItemStack(input);
@@ -103,24 +99,24 @@ public class IceCreamBarMoldRecipes implements Recipe<SimpleInventory> {
         }
 
         @Override
-        public IceCreamBarMoldRecipes read(Identifier id, PacketByteBuf buf) {
+        public ListRecipes read(Identifier id, PacketByteBuf buf) {
             ItemStack result = buf.readItemStack();
             List<ItemStack> inputs = new ArrayList<>();
-            for (int index = 0; index < 3; index++){
+            for (int index = 0; index < 9; index++){
                 inputs.add( buf.readItemStack());
             }
-            return new IceCreamBarMoldRecipes(id, inputs, result);
+            return new ListRecipes(id, inputs, result);
         }
     }
 
     @Override
     public RecipeSerializer<?> getSerializer() {
-        return IceCreamBarMoldRecipesSerializer.INSTANCE;
+        return ListRecipesSerializer.INSTANCE;
     }
-    public static class Type implements RecipeType<IceCreamBarMoldRecipes> {
+    public static class Type implements RecipeType<ListRecipes> {
         private Type() {}
         public static final Type INSTANCE = new Type();
-        public static final String ID = "ice_cream_bar_mold_recipes";
+        public static final String ID = "list_recipes";
     }
 
     @Override

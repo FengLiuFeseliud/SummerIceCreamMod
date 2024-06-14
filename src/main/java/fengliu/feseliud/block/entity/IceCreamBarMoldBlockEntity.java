@@ -3,7 +3,7 @@ package fengliu.feseliud.block.entity;
 import fengliu.feseliud.item.ModItems;
 import fengliu.feseliud.item.icecream.bar.IceCreamBar;
 import fengliu.feseliud.item.icecream.liquid.IceCreamLiquidBucket;
-import fengliu.feseliud.recipes.IceCreamBarMoldRecipes;
+import fengliu.feseliud.recipes.ListRecipes;
 import fengliu.feseliud.utils.IHitSlot;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -135,7 +135,7 @@ public class IceCreamBarMoldBlockEntity extends InventoryBlockEntity{
         List<SimpleInventory> inventories = splitInput(be);
         for (SimpleInventory inventory : inventories) {
             int index = inventories.indexOf(inventory);
-            Optional<IceCreamBarMoldRecipes> match = world.getRecipeManager().getFirstMatch(IceCreamBarMoldRecipes.Type.INSTANCE, inventory, world);
+            Optional<ListRecipes> match = world.getRecipeManager().getFirstMatch(ListRecipes.Type.INSTANCE, inventory, world);
             if (match.isPresent()) {
                 be.freezingTick[index]++;
                 if (be.freezingTick[index] <= IceCreamBarMoldBlockEntity.freezingUesTick) {
@@ -154,8 +154,4 @@ public class IceCreamBarMoldBlockEntity extends InventoryBlockEntity{
         }
     }
 
-    @Override
-    public Text getName() {
-        return null;
-    }
 }

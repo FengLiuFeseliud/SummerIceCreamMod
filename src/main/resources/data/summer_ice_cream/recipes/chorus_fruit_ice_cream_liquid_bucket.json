@@ -1,0 +1,8 @@
+{
+    "type": "summer_ice_cream:list_recipes",
+    "inputs":  [
+        "summer_ice_cream:milk_ice_cream_liquid_bucket",
+        "minecraft:chorus_fruit"
+    ],
+    "result": "summer_ice_cream:chorus_fruit_ice_cream_liquid_bucket"
+}

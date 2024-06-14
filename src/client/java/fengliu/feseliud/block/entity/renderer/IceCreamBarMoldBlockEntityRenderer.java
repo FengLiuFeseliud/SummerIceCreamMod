@@ -1,27 +1,18 @@
 package fengliu.feseliud.block.entity.renderer;
 
-import fengliu.feseliud.SummerIceCream;
 import fengliu.feseliud.block.entity.IceCreamBarMoldBlockEntity;
 import fengliu.feseliud.block.icecream.IceCreamBarMoldBlock;
-import fengliu.feseliud.item.ModItems;
-import fengliu.feseliud.item.block.ModBlockItems;
-import fengliu.feseliud.recipes.IceCreamBarMoldRecipes;
-import net.fabricmc.fabric.api.renderer.v1.Renderer;
-import net.fabricmc.fabric.api.renderer.v1.RendererAccess;
-import net.fabricmc.fabric.api.renderer.v1.mesh.MeshBuilder;
-import net.fabricmc.fabric.api.renderer.v1.mesh.QuadEmitter;
+import fengliu.feseliud.recipes.ListRecipes;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 import net.minecraft.client.render.model.json.ModelTransformationMode;
 import net.minecraft.client.util.math.MatrixStack;
-import net.minecraft.datafixer.fix.ChunkPalettedStorageFix;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.RotationAxis;
-import org.joml.AxisAngle4d;
 import org.joml.Quaternionf;
 
 import java.util.List;
@@ -68,7 +59,7 @@ public class IceCreamBarMoldBlockEntityRenderer implements BlockEntityRenderer<I
 
         List<SimpleInventory> inventories = IceCreamBarMoldBlockEntity.splitInput(be);
         for (SimpleInventory inventory : inventories) {
-            Optional<IceCreamBarMoldRecipes> match = be.getWorld().getRecipeManager().getFirstMatch(IceCreamBarMoldRecipes.Type.INSTANCE, inventory, be.getWorld());
+            Optional<ListRecipes> match = be.getWorld().getRecipeManager().getFirstMatch(ListRecipes.Type.INSTANCE, inventory, be.getWorld());
             ItemStack rendererStack;
             if (match.isPresent()) {
                 rendererStack = match.get().getResult();

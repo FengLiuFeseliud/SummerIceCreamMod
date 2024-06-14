@@ -7,7 +7,7 @@ import net.minecraft.registry.Registry;
 public class ModRecipes {
 
     public static void registerAllRecipes(){
-        Registry.register(Registries.RECIPE_SERIALIZER, IceCreamBarMoldRecipes.IceCreamBarMoldRecipesSerializer.ID, IceCreamBarMoldRecipes.IceCreamBarMoldRecipesSerializer.INSTANCE);
-        Registry.register(Registries.RECIPE_TYPE, IdUtil.get(IceCreamBarMoldRecipes.Type.ID), IceCreamBarMoldRecipes.Type.INSTANCE);
+        Registry.register(Registries.RECIPE_SERIALIZER, ListRecipes.ListRecipesSerializer.ID, ListRecipes.ListRecipesSerializer.INSTANCE);
+        Registry.register(Registries.RECIPE_TYPE, IdUtil.get(ListRecipes.Type.ID), ListRecipes.Type.INSTANCE);
     }
 }
