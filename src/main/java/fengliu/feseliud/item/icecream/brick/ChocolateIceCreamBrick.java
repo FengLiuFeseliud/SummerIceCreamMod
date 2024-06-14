@@ -1,38 +1,38 @@
-package fengliu.feseliud.item.icecream.bar;
+package fengliu.feseliud.item.icecream.brick;
 
+import com.google.gson.JsonObject;
 import fengliu.feseliud.item.BaseItem;
 import fengliu.feseliud.item.ModItems;
 import fengliu.feseliud.item.icecream.IIceCreamLevel;
+import fengliu.feseliud.item.icecream.bar.IceCreamBar;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.FoodComponent;
-import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 
 import java.util.Map;
 
-public class ChocolateCrustGlowBerriesIceCreamBar extends IceCreamBar {
-    public ChocolateCrustGlowBerriesIceCreamBar(Item.Settings settings, String name) {
+public class ChocolateIceCreamBrick extends IceCreamBrick{
+    public ChocolateIceCreamBrick(Settings settings, String name) {
         super(settings, name);
     }
 
     @Override
     public Map<IceCreamBar, IIceCreamLevel> getLevelItems() {
-        return ModItems.CHOCOLATE_CRUST_GLOW_BERRIES_ICE_CREAM_BARS;
+        return ModItems.CHOCOLATE_ICE_CREAM_BRICKS;
     }
 
     public enum IceCreamLevels implements IIceCreamLevel {
-        NOT_THAW(1, 600, 4, "not_thaw"),
-        THAW_HALF(2, 300, 3, "thaw_half"),
-        THAW_MOST(3, 150, 2, "thaw_most"),
-        THAW_ALMOST_ALL(4, 100, 1, "thaw_almost_all");
+        NOT_THAW(1, 150, 1, "not_thaw");
 
         private final int level;
         private final int thawTime;
         private final int gain;
         private final String thawName;
 
-        IceCreamLevels(int level, int thawTime, int gain, String thawName) {
+        IceCreamLevels(int level, int thawTime, int gain, String thawName){
             this.thawTime = thawTime * 20;
             this.level = level;
             this.gain = gain;
@@ -42,10 +42,8 @@ public class ChocolateCrustGlowBerriesIceCreamBar extends IceCreamBar {
         @Override
         public FoodComponent getFoodComponent() {
             return new FoodComponent.Builder()
-                    .hunger(2 * this.gain).saturationModifier(1.5f * this.gain)
-                    .statusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 80 * this.gain), 1.0f)
-                    .statusEffect(new StatusEffectInstance(StatusEffects.GLOWING, 100 * this.gain), 1.0f)
-                    .statusEffect(new StatusEffectInstance(StatusEffects.SATURATION, 5 * this.gain), 0.25f)
+                    .hunger(3 * this.gain).saturationModifier((float) (1.5 * this.gain))
+                    .statusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 100 * this.gain), 1.0f)
                     .alwaysEdible().build();
         }
 
@@ -76,12 +74,27 @@ public class ChocolateCrustGlowBerriesIceCreamBar extends IceCreamBar {
 
         @Override
         public String getName() {
-            return "chocolate_crust_glow_berries_ice_cream_bar";
+            return "chocolate_ice_cream_brick";
+        }
+
+        @Override
+        public String getIdName() {
+            return this.getName();
+        }
+
+        @Override
+        public ItemStack getOutItemStack() {
+            return Items.AIR.getDefaultStack();
         }
 
         @Override
         public BaseItem getItem() {
-            return new ChocolateCrustGlowBerriesIceCreamBar(new FabricItemSettings().maxCount(1).maxDamage(this.getMaxLevel()).food(this.getFoodComponent()), this.getName());
+            return new ChocolateIceCreamBrick(new FabricItemSettings().maxCount(16).food(this.getFoodComponent()), this.getName());
+        }
+
+        @Override
+        public String getTranslations(String translationKey, JsonObject translations) {
+            return null;
         }
     }
 }

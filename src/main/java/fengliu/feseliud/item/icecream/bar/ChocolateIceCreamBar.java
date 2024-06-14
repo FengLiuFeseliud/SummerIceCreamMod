@@ -7,25 +7,23 @@ import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.FoodComponent;
-import net.minecraft.item.Item;
 
 import java.util.Map;
 
-public class ChocolateCrustGlowBerriesIceCreamBar extends IceCreamBar {
-    public ChocolateCrustGlowBerriesIceCreamBar(Item.Settings settings, String name) {
+public class ChocolateIceCreamBar extends IceCreamBar{
+    public ChocolateIceCreamBar(Settings settings, String name) {
         super(settings, name);
     }
 
     @Override
     public Map<IceCreamBar, IIceCreamLevel> getLevelItems() {
-        return ModItems.CHOCOLATE_CRUST_GLOW_BERRIES_ICE_CREAM_BARS;
+        return ModItems.CHOCOLATE_ICE_CREAM_BARS;
     }
 
     public enum IceCreamLevels implements IIceCreamLevel {
-        NOT_THAW(1, 600, 4, "not_thaw"),
-        THAW_HALF(2, 300, 3, "thaw_half"),
-        THAW_MOST(3, 150, 2, "thaw_most"),
-        THAW_ALMOST_ALL(4, 100, 1, "thaw_almost_all");
+        NOT_THAW(1, 600, 3, "not_thaw"),
+        THAW_HALF(2, 300, 2, "thaw_half"),
+        THAW_MOST(3, 150, 1, "thaw_most");
 
         private final int level;
         private final int thawTime;
@@ -42,10 +40,8 @@ public class ChocolateCrustGlowBerriesIceCreamBar extends IceCreamBar {
         @Override
         public FoodComponent getFoodComponent() {
             return new FoodComponent.Builder()
-                    .hunger(2 * this.gain).saturationModifier(1.5f * this.gain)
-                    .statusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 80 * this.gain), 1.0f)
-                    .statusEffect(new StatusEffectInstance(StatusEffects.GLOWING, 100 * this.gain), 1.0f)
-                    .statusEffect(new StatusEffectInstance(StatusEffects.SATURATION, 5 * this.gain), 0.25f)
+                    .hunger(3 * this.gain).saturationModifier((float) (1.5 * this.gain))
+                    .statusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 100 * this.gain), 1.0f)
                     .alwaysEdible().build();
         }
 
@@ -76,12 +72,12 @@ public class ChocolateCrustGlowBerriesIceCreamBar extends IceCreamBar {
 
         @Override
         public String getName() {
-            return "chocolate_crust_glow_berries_ice_cream_bar";
+            return "chocolate_ice_cream_bar";
         }
 
         @Override
         public BaseItem getItem() {
-            return new ChocolateCrustGlowBerriesIceCreamBar(new FabricItemSettings().maxCount(1).maxDamage(this.getMaxLevel()).food(this.getFoodComponent()), this.getName());
+            return new ChocolateIceCreamBar(new FabricItemSettings().maxCount(1).maxDamage(this.getMaxLevel()).food(this.getFoodComponent()), this.getName());
         }
     }
 }

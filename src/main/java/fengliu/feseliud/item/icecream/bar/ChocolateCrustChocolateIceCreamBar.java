@@ -7,18 +7,17 @@ import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.FoodComponent;
-import net.minecraft.item.Item;
 
 import java.util.Map;
 
-public class ChocolateCrustGlowBerriesIceCreamBar extends IceCreamBar {
-    public ChocolateCrustGlowBerriesIceCreamBar(Item.Settings settings, String name) {
+public class ChocolateCrustChocolateIceCreamBar extends IceCreamBar{
+    public ChocolateCrustChocolateIceCreamBar(Settings settings, String name) {
         super(settings, name);
     }
 
     @Override
     public Map<IceCreamBar, IIceCreamLevel> getLevelItems() {
-        return ModItems.CHOCOLATE_CRUST_GLOW_BERRIES_ICE_CREAM_BARS;
+        return ModItems.CHOCOLATE_CRUST_CHOCOLATE_ICE_CREAM_BARS;
     }
 
     public enum IceCreamLevels implements IIceCreamLevel {
@@ -42,10 +41,8 @@ public class ChocolateCrustGlowBerriesIceCreamBar extends IceCreamBar {
         @Override
         public FoodComponent getFoodComponent() {
             return new FoodComponent.Builder()
-                    .hunger(2 * this.gain).saturationModifier(1.5f * this.gain)
+                    .hunger(4* this.gain).saturationModifier((float) (1.5 * this.gain))
                     .statusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 80 * this.gain), 1.0f)
-                    .statusEffect(new StatusEffectInstance(StatusEffects.GLOWING, 100 * this.gain), 1.0f)
-                    .statusEffect(new StatusEffectInstance(StatusEffects.SATURATION, 5 * this.gain), 0.25f)
                     .alwaysEdible().build();
         }
 
@@ -76,12 +73,12 @@ public class ChocolateCrustGlowBerriesIceCreamBar extends IceCreamBar {
 
         @Override
         public String getName() {
-            return "chocolate_crust_glow_berries_ice_cream_bar";
+            return "chocolate_crust_chocolate_ice_cream_bar";
         }
 
         @Override
         public BaseItem getItem() {
-            return new ChocolateCrustGlowBerriesIceCreamBar(new FabricItemSettings().maxCount(1).maxDamage(this.getMaxLevel()).food(this.getFoodComponent()), this.getName());
+            return new ChocolateCrustChocolateIceCreamBar(new FabricItemSettings().maxCount(1).maxDamage(this.getMaxLevel()).food(this.getFoodComponent()), this.getName());
         }
     }
 }

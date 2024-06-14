@@ -92,6 +92,27 @@
   "block.summer_ice_cream.ice_cream_block": "牛奶冰淇淋块",
   "item.summer_ice_cream.ice_cream_block.tooltip": "牛奶冰淇淋液直接在寒冷的地方冻洁了... 有股浓浓的奶油味~",
 
+  "item.summer_ice_cream.chocolate_ice_cream_liquid_bucket": "巧克力冰淇淋液",
+  "item.summer_ice_cream.chocolate_ice_cream_liquid_bucket.tooltip": "从牛奶与巧克力搅打而来!有股浓浓的巧克力味~",
+
+  "item.summer_ice_cream.chocolate_ice_cream_bar": "巧克力雪糕",
+  "item.summer_ice_cream.chocolate_ice_cream_bar.tooltip": "巧克力的冰淇淋, 能补充大量热量!有股浓浓的巧克力味~",
+
+  "item.summer_ice_cream.base_chocolate_ice_cream_cup": "巧克力冰淇淋",
+  "item.summer_ice_cream.base_chocolate_ice_cream_cup.tooltip": "巧克力的冰淇淋, 能补充大量热量!有股浓浓的巧克力味~",
+
+  "item.summer_ice_cream.chocolate_crust_chocolate_ice_cream_bar": "巧克力脆皮巧克力雪糕",
+  "item.summer_ice_cream.chocolate_crust_chocolate_ice_cream_bar.tooltip": "添加了巧克力脆皮的巧克力雪糕, 超大份热量",
+
+  "item.summer_ice_cream.chocolate_base_chocolate_ice_cream_cup": "熔岩巧克力冰淇淋",
+  "item.summer_ice_cream.chocolate_base_chocolate_ice_cream_cup.tooltip": "巧克力冰淇淋又淋上了一层巧克力酱, 超大份热量",
+
+  "item.summer_ice_cream.chocolate_ice_cream_brick": "巧克力冰砖",
+  "item.summer_ice_cream.chocolate_ice_cream_brick.tooltip": "从巧克力冰淇淋块拆解而来, 可以一次带好多!有股浓浓的巧克力味~",
+
+  "block.summer_ice_cream.chocolate_ice_cream": "巧克力冰淇淋块",
+  "item.summer_ice_cream.chocolate_ice_cream.tooltip": "巧克力冰淇淋液直接在寒冷的地方冻洁了... !有股浓浓的巧克力味~",
+
   "item.summer_ice_cream.cookie_ice_cream_liquid_bucket": "奶油曲奇冰淇淋液",
   "item.summer_ice_cream.cookie_ice_cream_liquid_bucket.tooltip": "从牛奶与曲奇搅打混合而来!有股浓浓的奶油跟曲奇碎味~",
 
