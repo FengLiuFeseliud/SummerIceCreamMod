@@ -5,20 +5,30 @@ import fengliu.feseliud.item.ModItems;
 import fengliu.feseliud.item.icecream.IIceCreamLevelItem;
 import fengliu.feseliud.item.icecream.IIceCreamLevel;
 import fengliu.feseliud.item.icecream.bar.IceCreamBar;
+import fengliu.feseliud.utils.IdUtil;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import net.minecraft.data.client.ItemModelGenerator;
+import net.minecraft.data.client.ModelIds;
+import net.minecraft.data.client.TextureMap;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.FoodComponent;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.UseAction;
 import net.minecraft.world.World;
 
 import java.util.Map;
 
+import static net.minecraft.data.client.Models.*;
+
 public class IceCreamCup extends IceCreamBar {
     public static final String PREFIXED_PATH = IIceCreamLevelItem.PREFIXED_PATH + "cup" + "/";
+    public static final String CUP_SPOON_PATH = PREFIXED_PATH + "cup_spoon";
+    public static final String CUP_PATH = PREFIXED_PATH + "cup_";
 
     private final boolean spoon;
 
@@ -80,6 +90,33 @@ public class IceCreamCup extends IceCreamBar {
     @Override
     public String getPrefixedPath() {
         return PREFIXED_PATH + this.getItemLevel().getName() + "/";
+    }
+
+    @Override
+    public String getTextureName() {
+        return super.getTextureName().replaceAll("spoon_", "");
+    }
+
+    @Override
+    public void generateModel(ItemModelGenerator itemModelGenerator) {
+        Identifier cupTexturePath = IdUtil.get(CUP_PATH + (Math.min(this.getItemLevel().getLevel(), 3)));
+
+        if (this.isSpoon()){
+            GENERATED_THREE_LAYERS.upload(ModelIds.getItemModelId(this),
+                    TextureMap.layered(
+                            IdUtil.get(CUP_SPOON_PATH),
+                            cupTexturePath,
+                            this.getTexturePath()
+                    ),
+                    itemModelGenerator.writer);
+            return;
+        }
+
+        GENERATED_TWO_LAYERS.upload(ModelIds.getItemModelId(this),
+                TextureMap.layered(
+                        cupTexturePath,
+                        this.getTexturePath()
+                ), itemModelGenerator.writer);
     }
 
     public enum IceCreamLevels implements IIceCreamLevel {

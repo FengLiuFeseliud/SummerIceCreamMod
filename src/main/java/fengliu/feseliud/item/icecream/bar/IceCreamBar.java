@@ -6,14 +6,19 @@ import fengliu.feseliud.item.ModItems;
 import fengliu.feseliud.item.icecream.IIceCreamLevelItem;
 import fengliu.feseliud.item.icecream.IIceCreamLevel;
 import fengliu.feseliud.mixin.MixinLivingEntity;
+import fengliu.feseliud.utils.IdUtil;
 import net.fabricmc.fabric.api.item.v1.FabricItem;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.client.item.TooltipContext;
+import net.minecraft.data.client.ItemModelGenerator;
+import net.minecraft.data.client.ModelIds;
+import net.minecraft.data.client.TextureMap;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.FoodComponent;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.text.Text;
@@ -25,9 +30,12 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.Map;
 
+import static net.minecraft.data.client.Models.GENERATED;
+
 
 public class IceCreamBar extends BaseItem implements IIceCreamLevelItem, FabricItem {
     public static final String PREFIXED_PATH = IIceCreamLevelItem.PREFIXED_PATH + "bar" + "/";
+    public static final String CHOCOLATE_CRUST_ICE_CREAM_PATH = IIceCreamLevelItem.PREFIXED_PATH + "bar/chocolate_crust_ice_cream_bar_not_thaw";
 
     public IceCreamBar(Settings settings, String name) {
         super(settings, name);
@@ -84,6 +92,16 @@ public class IceCreamBar extends BaseItem implements IIceCreamLevelItem, FabricI
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         super.appendTooltip(stack, world, tooltip, context);
         this.appendThawTimeTooltip(stack, world, tooltip, context);
+    }
+
+    @Override
+    public void generateModel(ItemModelGenerator itemModelGenerator) {
+        IIceCreamLevel iceCreamLevel = this.getItemLevel();
+        if (iceCreamLevel.getName().contains("chocolate_crust_") && iceCreamLevel.getLevel() == 1){
+            GENERATED.upload(ModelIds.getItemModelId(this), TextureMap.layer0(IdUtil.get(CHOCOLATE_CRUST_ICE_CREAM_PATH)), itemModelGenerator.writer);
+            return;
+        }
+        super.generateModel(itemModelGenerator);
     }
 
     public enum IceCreamLevels implements IIceCreamLevel{
