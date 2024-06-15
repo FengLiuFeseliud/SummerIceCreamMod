@@ -33,11 +33,8 @@ import org.jetbrains.annotations.Nullable;
 
 public class MixerBlock extends FacingEntityBlock implements ITranslucent {
     public static final BooleanProperty RUN = BooleanProperty.of("run");
-    public final String name;
-
     public MixerBlock(Settings settings, String name) {
         super(settings, name);
-        this.name = name;
     }
 
     @Override
@@ -48,11 +45,6 @@ public class MixerBlock extends FacingEntityBlock implements ITranslucent {
     @Override
     public BlockEntityTicker<? super BlockEntity> uesTick() {
         return MixerBlockEntity::tick;
-    }
-
-    @Override
-    public String getTextureName() {
-        return this.name;
     }
 
     @Override

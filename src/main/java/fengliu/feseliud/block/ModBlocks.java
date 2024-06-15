@@ -12,6 +12,7 @@ import java.util.Map;
 public class ModBlocks {
     public static final IceCreamBarMoldBlock ICE_CREAM_BAR_MOLD_BLOCK = register(new IceCreamBarMoldBlock(AbstractBlock.Settings.create().nonOpaque(), "ice_cream_bar_mold"));
     public static final MixerBlock MIXER_BLOCK = register(new MixerBlock(AbstractBlock.Settings.create().nonOpaque(), "mixer"));
+    public static final CoolerBoxBlock COOLER_BOX_BLOCK = register(new CoolerBoxBlock(AbstractBlock.Settings.create().strength(1.5f).nonOpaque(), "cooler_box"));
     public static final BaseLiquidFluidBlock MIKI_BLOCK = register(new BaseLiquidFluidBlock(ModFluids.MILK_FLUIDS));
 
     public static final BaseLiquidFluidBlock MILK_ICE_CREAM_LIQUID_BLOCK = register(new BaseLiquidFluidBlock(ModFluids.MILK_ICE_CREAM_LIQUID_FLUIDS));

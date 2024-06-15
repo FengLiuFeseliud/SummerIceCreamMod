@@ -68,106 +68,11 @@ public class IceCreamBarMoldBlock extends FacingEntityBlock {
     }
 
     @Override
-    public String getTextureName() {
-        return this.name;
-    }
-
-    @Override
     public void generateBlockModel(BlockStateModelGenerator blockStateModelGenerator) {
     }
 
     @Override
     public void generateBlockStateModel(BlockStateModelGenerator blockStateModelGenerator) {
-    }
-
-    public enum HitSlots implements IHitSlot {
-        SLOT1(0, 93, 73, 71, 1),
-        SLOT2(1, 60, 72, 40, 1),
-        SLOT3(2, 27, 71, 8, 1);
-
-        public final int index;
-        public final int x1;
-        public final int z1;
-        public final int x2;
-        public final int z2;
-
-        HitSlots(int index, int x1, int z1, int x2, int z2){
-            this.index = index;
-            this.x1 = x1;
-            this.z1 = z1;
-            this.x2 = x2;
-            this.z2 = z2;
-        }
-
-        @Override
-        public int getIndex() {
-            return this.index;
-        }
-
-        @Override
-        public int getX1() {
-            return this.x1;
-        }
-
-        @Override
-        public int getX2() {
-            return this.x2;
-        }
-
-        @Override
-        public int getZ1() {
-            return this.z1;
-        }
-
-        @Override
-        public int getZ2() {
-            return this.z2;
-        }
-    }
-
-    public enum HitSlots2 implements IHitSlot {
-        SLOT1(2, 93, 73, 71, 1),
-        SLOT2(1, 60, 72, 40, 1),
-        SLOT3(0, 27, 71, 8, 1);
-
-        public final int index;
-        public final int x1;
-        public final int z1;
-        public final int x2;
-        public final int z2;
-
-        HitSlots2(int index, int x1, int z1, int x2, int z2){
-            this.index = index;
-            this.x1 = x1;
-            this.z1 = z1;
-            this.x2 = x2;
-            this.z2 = z2;
-        }
-
-        @Override
-        public int getIndex() {
-            return this.index;
-        }
-
-        @Override
-        public int getX1() {
-            return this.x1;
-        }
-
-        @Override
-        public int getX2() {
-            return this.x2;
-        }
-
-        @Override
-        public int getZ1() {
-            return this.z1;
-        }
-
-        @Override
-        public int getZ2() {
-            return this.z2;
-        }
     }
 
     @Override
@@ -176,7 +81,7 @@ public class IceCreamBarMoldBlock extends FacingEntityBlock {
             return super.onUse(state, world, pos, player, hand, hit);
         }
 
-        IHitSlot hitSlots = IHitSlot.getHitSlot(hit, state, HitSlots.values(), HitSlots2.values());
+        IHitSlot hitSlots = IHitSlot.getHitSlot(state, hit, IHitSlot.ThreeHitSlot.values());
         if (hitSlots == null){
             return super.onUse(state, world, pos, player, hand, hit);
         }

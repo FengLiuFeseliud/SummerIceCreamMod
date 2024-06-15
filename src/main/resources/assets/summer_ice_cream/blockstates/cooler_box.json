@@ -1,0 +1,83 @@
+{
+    "multipart": [
+        {
+            "when": {
+                "facing": "north",
+                "close": true
+            },
+            "apply": {
+                "model": "summer_ice_cream:block/cooler_box/close"
+            }
+        },
+        {
+            "when": {
+                "facing": "east",
+                "close": true
+            },
+            "apply": {
+                "model": "summer_ice_cream:block/cooler_box/close",
+                "y": 90
+            }
+        },
+        {
+            "when": {
+                "facing": "south",
+                "close": true
+            },
+            "apply": {
+                "model": "summer_ice_cream:block/cooler_box/close",
+                "y": 180
+            }
+        },
+        {
+            "when": {
+                "facing": "west",
+                "close": true
+            },
+            "apply": {
+                "model": "summer_ice_cream:block/cooler_box/close",
+                "y": 270
+            }
+        },
+
+        {
+            "when": {
+                "facing": "north",
+                "close": false
+            },
+            "apply": {
+                "model": "summer_ice_cream:block/cooler_box/open"
+            }
+        },
+        {
+            "when": {
+                "facing": "east",
+                "close": false
+            },
+            "apply": {
+                "model": "summer_ice_cream:block/cooler_box/open",
+                "y": 90
+            }
+        },
+        {
+            "when": {
+                "facing": "south",
+                "close": false
+            },
+            "apply": {
+                "model": "summer_ice_cream:block/cooler_box/open",
+                "y": 180
+            }
+        },
+        {
+            "when": {
+                "facing": "west",
+                "close": false
+            },
+            "apply": {
+                "model": "summer_ice_cream:block/cooler_box/open",
+                "y": 270
+            }
+        }
+    ]
+}

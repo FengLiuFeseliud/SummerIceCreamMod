@@ -103,25 +103,6 @@ public class IceCreamBarMoldBlockEntity extends InventoryBlockEntity{
         }
     }
 
-    /**
-     *  将9个格子拆分成三块返回
-     * @param be 方块实体
-     * @return 三块库存
-     */
-    public static List<SimpleInventory> splitInput(IceCreamBarMoldBlockEntity be){
-        List<SimpleInventory> inventories = new ArrayList<>();
-        SimpleInventory simpleInventory = new SimpleInventory(3);
-        for (int slot = 0; slot < be.size(); slot++) {
-            if (slot % 3 == 0 && slot != 0){
-                inventories.add(simpleInventory);
-                simpleInventory = new SimpleInventory(3);
-            }
-            simpleInventory.addStack(be.getStack(slot));
-        };
-        inventories.add(simpleInventory);
-        return inventories;
-    }
-
     public static void tick(World world, BlockPos pos, BlockState state, BlockEntity blockEntity) {
         if (!(blockEntity instanceof IceCreamBarMoldBlockEntity be)){
             return;
@@ -132,7 +113,7 @@ public class IceCreamBarMoldBlockEntity extends InventoryBlockEntity{
             return;
         }
 
-        List<SimpleInventory> inventories = splitInput(be);
+        List<SimpleInventory> inventories = IHitSlot.splitInput(be, IHitSlot.ThreeHitSlot.values());
         for (SimpleInventory inventory : inventories) {
             int index = inventories.indexOf(inventory);
             Optional<ListRecipes> match = world.getRecipeManager().getFirstMatch(ListRecipes.Type.INSTANCE, inventory, world);

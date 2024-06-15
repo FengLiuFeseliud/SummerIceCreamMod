@@ -71,6 +71,9 @@
   "block.summer_ice_cream.mixer": "搅拌器",
   "item.summer_ice_cream.mixer.tooltip": "能将材料与材料混合",
 
+  "block.summer_ice_cream.cooler_box": "保温箱",
+  "item.summer_ice_cream.cooler_box.tooltip": "把雪糕放进去好像可以减缓雪糕融化速度?",
+
   "item.summer_ice_cream.milk_ice_cream_liquid_bucket": "奶油冰淇淋液",
   "item.summer_ice_cream.milk_ice_cream_liquid_bucket.tooltip": "从牛奶搅打而来!有股浓浓的奶油味~",
 

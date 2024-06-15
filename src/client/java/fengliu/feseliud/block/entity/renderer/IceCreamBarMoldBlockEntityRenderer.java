@@ -3,6 +3,7 @@ package fengliu.feseliud.block.entity.renderer;
 import fengliu.feseliud.block.entity.IceCreamBarMoldBlockEntity;
 import fengliu.feseliud.block.icecream.IceCreamBarMoldBlock;
 import fengliu.feseliud.recipes.ListRecipes;
+import fengliu.feseliud.utils.IHitSlot;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
@@ -57,7 +58,7 @@ public class IceCreamBarMoldBlockEntityRenderer implements BlockEntityRenderer<I
             matrices.translate(0.1f, -0.26f, 0f);
         }
 
-        List<SimpleInventory> inventories = IceCreamBarMoldBlockEntity.splitInput(be);
+        List<SimpleInventory> inventories = IHitSlot.splitInput(be, IHitSlot.ThreeHitSlot.values());
         for (SimpleInventory inventory : inventories) {
             Optional<ListRecipes> match = be.getWorld().getRecipeManager().getFirstMatch(ListRecipes.Type.INSTANCE, inventory, be.getWorld());
             ItemStack rendererStack;

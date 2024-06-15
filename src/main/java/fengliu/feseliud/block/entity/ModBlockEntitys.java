@@ -17,6 +17,7 @@ public class ModBlockEntitys {
     public static final Map<IIceCreamBlockLevel, BlockEntityType<ChorusFruitIceCreamBlockEntity>> CHORUS_FRUIT_ICE_CREAM_BLOCK_ENTITYS = RegisterUtil.registerIceCreamBlockEntity(ModBlocks.CHORUS_FRUIT_ICE_CREAM_BLOCKS, ChorusFruitIceCreamBlockEntity::new);
     public static final Map<IIceCreamBlockLevel, BlockEntityType<GlowBerriesIceCreamBlockEntity>> GLOW_BERRIES_CREAM_BLOCK_ENTITYS = RegisterUtil.registerIceCreamBlockEntity(ModBlocks.GLOW_BERRIES_ICE_CREAM_BLOCKS, GlowBerriesIceCreamBlockEntity::new);
     public static final Map<IIceCreamBlockLevel, BlockEntityType<CookieIceCreamBlockEntity>> COOKIE_ICE_CREAM_BLOCK_ENTITYS = RegisterUtil.registerIceCreamBlockEntity(ModBlocks.COOKIE_ICE_CREAM_BLOCKS, CookieIceCreamBlockEntity::new);
+    public static final BlockEntityType<CoolerBoxBlockEntity> COOLER_BOX_BLOCK_ENTITY = RegisterUtil.registerBlockEntity(ModBlocks.COOLER_BOX_BLOCK, CoolerBoxBlockEntity::new);
 
     public static void registerAllBlockEntity(){
     }

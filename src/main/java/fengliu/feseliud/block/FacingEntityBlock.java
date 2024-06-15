@@ -18,9 +18,11 @@ import org.jetbrains.annotations.Nullable;
 
 public abstract class FacingEntityBlock extends BaseEntityBlock implements IModBlock {
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
+    private final String name;
 
     public FacingEntityBlock(Settings settings, String name) {
         super(settings, name);
+        this.name = name;
     }
 
     @Nullable
@@ -37,5 +39,10 @@ public abstract class FacingEntityBlock extends BaseEntityBlock implements IModB
     @Override
     public BlockRenderType getRenderType(BlockState state) {
         return BlockRenderType.MODEL;
+    }
+
+    @Override
+    public String getTextureName() {
+        return this.name;
     }
 }
