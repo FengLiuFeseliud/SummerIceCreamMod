@@ -1,13 +1,12 @@
 package fengliu.feseliud.item;
 
 import fengliu.feseliud.fluid.ModFluids;
-import fengliu.feseliud.item.icecream.brick.*;
 import fengliu.feseliud.item.icecream.IIceCreamLevel;
-import fengliu.feseliud.item.icecream.bar.MilkPopsicle;
+import fengliu.feseliud.item.icecream.bar.*;
+import fengliu.feseliud.item.icecream.brick.*;
+import fengliu.feseliud.item.icecream.cup.*;
 import fengliu.feseliud.item.icecream.liquid.ChorusFruitIceCreamLiquidBucket;
 import fengliu.feseliud.item.icecream.liquid.FoodLiquidBucket;
-import fengliu.feseliud.item.icecream.bar.*;
-import fengliu.feseliud.item.icecream.cup.*;
 import fengliu.feseliud.item.icecream.potion.IcePotionCup;
 import fengliu.feseliud.item.icecream.potion.PotionCup;
 import fengliu.feseliud.utils.RegisterUtil;
@@ -79,7 +78,7 @@ public class ModItems {
     public static final Map<IceCreamBar, IIceCreamLevel> CHOCOLATE_GLOW_BERRIES_ICE_CREAM_CUPS_AND_SPOON = RegisterUtil.registerItems(ChocolateGlowBerriesIceCreamCup.IceCreamAndSpoonLevels.values(), ModItemGroups.FOOD_GROUP);
     public static final Map<IceCreamBar, IIceCreamLevel> GLOW_BERRIES_ICE_CREAM_BRICK = RegisterUtil.registerItems(GlowBerriesIceCreamBrick.IceCreamLevels.values(), ModItemGroups.FOOD_GROUP);
 
-    public static final FoodLiquidBucket GOLDEN_APPLE_ICE_CREAM_LIQUID_BUCKET = register(new FoodLiquidBucket("golden_apple_cream_liquid_bucket", ModFluids.GOLDEN_APPLE_CREAM_LIQUID_FLUIDS, FoodComponents.GOLDEN_APPLE), ModItemGroups.MATERIALS_GROUP);
+    public static final FoodLiquidBucket GOLDEN_APPLE_ICE_CREAM_LIQUID_BUCKET = register(new FoodLiquidBucket("golden_apple_ice_cream_liquid_bucket", ModFluids.GOLDEN_APPLE_CREAM_LIQUID_FLUIDS, FoodComponents.GOLDEN_APPLE), ModItemGroups.MATERIALS_GROUP);
     public static final Map<IceCreamBar, IIceCreamLevel> GOLDEN_APPLE_ICE_CREAM_BARS = RegisterUtil.registerItems(GoldenAppleIceCreamBar.IceCreamLevels.values(), ModItemGroups.FOOD_GROUP);
     public static final Map<IceCreamBar, IIceCreamLevel> CHOCOLATE_CRUST_GOLDEN_APPLE_ICE_CREAM_BARS = RegisterUtil.registerItems(ChocolateCrustGoldenAppleIceCreamBar.IceCreamLevels.values(), ModItemGroups.FOOD_GROUP);
     public static final Map<IceCreamBar, IIceCreamLevel> GOLDEN_APPLE_ICE_CREAM_CUPS = RegisterUtil.registerItems(GoldenAppleIceCreamCup.IceCreamLevels.values(), ModItemGroups.FOOD_GROUP);

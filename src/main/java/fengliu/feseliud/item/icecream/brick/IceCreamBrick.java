@@ -3,10 +3,11 @@ package fengliu.feseliud.item.icecream.brick;
 import com.google.gson.JsonObject;
 import fengliu.feseliud.item.BaseItem;
 import fengliu.feseliud.item.ModItems;
-import fengliu.feseliud.item.icecream.IIceCreamLevelItem;
 import fengliu.feseliud.item.icecream.IIceCreamLevel;
+import fengliu.feseliud.item.icecream.IIceCreamLevelItem;
 import fengliu.feseliud.item.icecream.bar.IceCreamBar;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import net.minecraft.data.server.recipe.RecipeJsonProvider;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
@@ -17,6 +18,7 @@ import net.minecraft.item.Items;
 import net.minecraft.world.World;
 
 import java.util.Map;
+import java.util.function.Consumer;
 
 public class IceCreamBrick extends IceCreamBar {
     public static final String PREFIXED_PATH = IIceCreamLevelItem.PREFIXED_PATH + "brick" + "/";
@@ -68,6 +70,10 @@ public class IceCreamBrick extends IceCreamBar {
     @Override
     public String getPrefixedPath() {
         return PREFIXED_PATH;
+    }
+
+    @Override
+    public void generateRecipe(Consumer<RecipeJsonProvider> exporter) {
     }
 
     public enum IceCreamLevels implements IIceCreamLevel{

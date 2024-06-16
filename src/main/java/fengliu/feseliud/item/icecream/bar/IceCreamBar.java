@@ -1,11 +1,10 @@
 package fengliu.feseliud.item.icecream.bar;
 
-import fengliu.feseliud.SummerIceCream;
 import fengliu.feseliud.item.BaseItem;
 import fengliu.feseliud.item.ModItems;
-import fengliu.feseliud.item.icecream.IIceCreamLevelItem;
 import fengliu.feseliud.item.icecream.IIceCreamLevel;
-import fengliu.feseliud.mixin.MixinLivingEntity;
+import fengliu.feseliud.item.icecream.IIceCreamLevelItem;
+import fengliu.feseliud.recipes.builder.ListRecipeJsonBuilder;
 import fengliu.feseliud.utils.IdUtil;
 import net.fabricmc.fabric.api.item.v1.FabricItem;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
@@ -13,6 +12,7 @@ import net.minecraft.client.item.TooltipContext;
 import net.minecraft.data.client.ItemModelGenerator;
 import net.minecraft.data.client.ModelIds;
 import net.minecraft.data.client.TextureMap;
+import net.minecraft.data.server.recipe.RecipeJsonProvider;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -20,15 +20,16 @@ import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.FoodComponent;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.sound.SoundCategory;
+import net.minecraft.item.Items;
+import net.minecraft.registry.Registries;
 import net.minecraft.text.Text;
 import net.minecraft.util.UseAction;
 import net.minecraft.world.World;
-import net.minecraft.world.event.GameEvent;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 import java.util.Map;
+import java.util.function.Consumer;
 
 import static net.minecraft.data.client.Models.GENERATED;
 
@@ -102,6 +103,27 @@ public class IceCreamBar extends BaseItem implements IIceCreamLevelItem, FabricI
             return;
         }
         super.generateModel(itemModelGenerator);
+    }
+
+    @Override
+    public void generateRecipe(Consumer<RecipeJsonProvider> exporter) {
+        IIceCreamLevel iceCreamLevel = this.getItemLevel();
+        if (iceCreamLevel.getLevel() != 1){
+            return;
+        }
+
+        if (iceCreamLevel.getName().contains("chocolate_crust_")){
+            new ListRecipeJsonBuilder(this, Registries.ITEM.get(IdUtil.get(this.getItemLevel().getIdName().replaceAll("chocolate_crust_", ""))), ModItems.CHOCOLATE_LIQUID_BUCKET).offerTo(exporter);
+        } else {
+            Item item = Registries.ITEM.get(IdUtil.get(this.getItemLevel().getName().replaceAll("_bar", "_liquid_bucket")));
+            if (item.equals(Items.AIR)){
+                item = Registries.ITEM.get(IdUtil.get(this.getItemLevel().getName().replaceAll("_popsicle", "_bucket")));
+                if (item.equals(Items.AIR)){
+                    item = Registries.ITEM.get(IdUtil.get("milk_" + this.getItemLevel().getName().replaceAll("_bar", "_liquid_bucket")));
+                }
+            }
+            new ListRecipeJsonBuilder(this, ModItems.BAR, item).offerTo(exporter);
+        }
     }
 
     public enum IceCreamLevels implements IIceCreamLevel{

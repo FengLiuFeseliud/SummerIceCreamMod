@@ -1,12 +1,9 @@
 package fengliu.feseliud.block.icecream;
 
-import fengliu.feseliud.SummerIceCream;
-import fengliu.feseliud.block.FacingEntityBlock;
 import fengliu.feseliud.block.FacingBlock;
+import fengliu.feseliud.block.FacingEntityBlock;
 import fengliu.feseliud.block.entity.IceCreamBarMoldBlockEntity;
 import fengliu.feseliud.block.entity.ModBlockEntitys;
-import fengliu.feseliud.data.generator.LootTablesGeneration;
-import fengliu.feseliud.item.block.ModBlockItems;
 import fengliu.feseliud.utils.IHitSlot;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
@@ -21,14 +18,11 @@ import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
-
-import java.text.DecimalFormat;
 
 
 public class IceCreamBarMoldBlock extends FacingEntityBlock {
@@ -102,12 +96,7 @@ public class IceCreamBarMoldBlock extends FacingEntityBlock {
             return ActionResult.SUCCESS;
         }
 
-        ItemStack stack = be.putItem(player, hitSlots, handStack);
-        if (handStack.isEmpty()){
-            player.setStackInHand(hand, stack);
-        } else {
-            dropStack(world, pos, stack);
-        }
+        player.setStackInHand(hand, be.putItem(player, hitSlots, handStack));
         return ActionResult.SUCCESS;
     }
 }

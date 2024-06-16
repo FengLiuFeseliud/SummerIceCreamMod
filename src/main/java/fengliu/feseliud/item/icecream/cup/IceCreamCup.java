@@ -2,28 +2,30 @@ package fengliu.feseliud.item.icecream.cup;
 
 import fengliu.feseliud.item.BaseItem;
 import fengliu.feseliud.item.ModItems;
-import fengliu.feseliud.item.icecream.IIceCreamLevelItem;
 import fengliu.feseliud.item.icecream.IIceCreamLevel;
+import fengliu.feseliud.item.icecream.IIceCreamLevelItem;
 import fengliu.feseliud.item.icecream.bar.IceCreamBar;
 import fengliu.feseliud.utils.IdUtil;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.data.client.ItemModelGenerator;
 import net.minecraft.data.client.ModelIds;
 import net.minecraft.data.client.TextureMap;
+import net.minecraft.data.server.recipe.RecipeJsonProvider;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.FoodComponent;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.UseAction;
 import net.minecraft.world.World;
 
 import java.util.Map;
+import java.util.function.Consumer;
 
-import static net.minecraft.data.client.Models.*;
+import static net.minecraft.data.client.Models.GENERATED_THREE_LAYERS;
+import static net.minecraft.data.client.Models.GENERATED_TWO_LAYERS;
 
 public class IceCreamCup extends IceCreamBar {
     public static final String PREFIXED_PATH = IIceCreamLevelItem.PREFIXED_PATH + "cup" + "/";
@@ -117,6 +119,10 @@ public class IceCreamCup extends IceCreamBar {
                         cupTexturePath,
                         this.getTexturePath()
                 ), itemModelGenerator.writer);
+    }
+
+    @Override
+    public void generateRecipe(Consumer<RecipeJsonProvider> exporter) {
     }
 
     public enum IceCreamLevels implements IIceCreamLevel {

@@ -3,16 +3,20 @@ package fengliu.feseliud.item.icecream.bar;
 import fengliu.feseliud.item.BaseItem;
 import fengliu.feseliud.item.ModItems;
 import fengliu.feseliud.item.icecream.IIceCreamLevel;
+import fengliu.feseliud.recipes.builder.ListRecipeJsonBuilder;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import net.minecraft.data.server.recipe.RecipeJsonProvider;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.FoodComponent;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.world.World;
 
 import java.util.Map;
+import java.util.function.Consumer;
 
 public class MilkPopsicle extends IceCreamBar {
     public MilkPopsicle(Settings settings, String name) {
@@ -32,6 +36,15 @@ public class MilkPopsicle extends IceCreamBar {
 
         player.clearStatusEffects();
         return super.finishUsing(stack, world, user);
+    }
+
+    @Override
+    public void generateRecipe(Consumer<RecipeJsonProvider> exporter) {
+        if (this.getItemLevel().getLevel() != 1){
+            return;
+        }
+
+        new ListRecipeJsonBuilder(this, ModItems.BAR, Items.MILK_BUCKET).offerTo(exporter);
     }
 
     public enum IceCreamLevels implements IIceCreamLevel {

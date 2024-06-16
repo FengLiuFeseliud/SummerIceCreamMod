@@ -1,8 +1,0 @@
-{
-    "type": "summer_ice_cream:list_recipes",
-    "inputs":  [
-        "summer_ice_cream:chocolate_liquid_bucket",
-        "summer_ice_cream:ice_cream_brick"
-    ],
-    "result": "summer_ice_cream:chocolate_ice_cream_liquid_bucket"
-}

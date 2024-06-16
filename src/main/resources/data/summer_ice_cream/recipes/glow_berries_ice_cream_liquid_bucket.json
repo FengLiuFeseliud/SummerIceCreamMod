@@ -1,8 +1,0 @@
-{
-    "type": "summer_ice_cream:list_recipes",
-    "inputs":  [
-        "summer_ice_cream:milk_ice_cream_liquid_bucket",
-        "minecraft:glow_berries"
-    ],
-    "result": "summer_ice_cream:glow_berries_ice_cream_liquid_bucket"
-}

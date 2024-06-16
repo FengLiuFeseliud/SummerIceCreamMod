@@ -3,24 +3,26 @@ package fengliu.feseliud.item.icecream.liquid;
 import fengliu.feseliud.block.ModBlocks;
 import fengliu.feseliud.fluid.BaseFluid;
 import fengliu.feseliud.item.IModItem;
+import fengliu.feseliud.item.ModItems;
 import fengliu.feseliud.item.icecream.IIceCreamLevelItem;
+import fengliu.feseliud.recipes.builder.ListRecipeJsonBuilder;
 import fengliu.feseliud.utils.IdUtil;
 import fengliu.feseliud.utils.RegisterUtil;
 import net.minecraft.client.item.TooltipContext;
+import net.minecraft.data.server.recipe.RecipeJsonProvider;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.item.*;
+import net.minecraft.registry.Registries;
 import net.minecraft.text.Text;
-import net.minecraft.util.ActionResult;
-import net.minecraft.util.Hand;
-import net.minecraft.util.TypedActionResult;
-import net.minecraft.util.UseAction;
+import net.minecraft.util.*;
 import net.minecraft.world.RaycastContext;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.function.Consumer;
 
 public class FoodLiquidBucket extends BucketItem implements IModItem {
     public static final String PREFIXED_PATH = IIceCreamLevelItem.PREFIXED_PATH + "bucket" + "/";
@@ -93,5 +95,27 @@ public class FoodLiquidBucket extends BucketItem implements IModItem {
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
         super.appendTooltip(stack, world, tooltip, context);
         tooltip.add(Text.translatable(IdUtil.getItemTooltip(this.getItemName())));
+    }
+
+    @Override
+    public void generateRecipe(Consumer<RecipeJsonProvider> exporter) {
+        if (this.equals(ModItems.MILK_ICE_CREAM_LIQUID_BUCKET)){
+            new ListRecipeJsonBuilder(this, Items.MILK_BUCKET, Items.SUGAR).offerTo(exporter);
+        } else if (this.equals(ModItems.CHOCOLATE_LIQUID_BUCKET)){
+            new ListRecipeJsonBuilder(this, Items.MILK_BUCKET, ModItems.COOKED_CACAO_BEANS).offerTo(exporter);
+        } else if (this.equals(ModItems.CHOCOLATE_ICE_CREAM_LIQUID_BUCKET)){
+            new ListRecipeJsonBuilder(this, ModItems.CHOCOLATE_LIQUID_BUCKET, (ItemConvertible) ModItems.ICE_CREAM_BRICKS.keySet().toArray()[0]).offerTo(exporter);
+        } else if (this.equals(ModItems.SALT_WATER_BUCKET)){
+            new ListRecipeJsonBuilder(this, Items.WATER_BUCKET, ModItems.SALT).offerTo(exporter);
+        } else {
+            Item item = Registries.ITEM.get(IdUtil.get(this.getItemName().replaceAll("_ice_cream_liquid_bucket", "")));
+            if (item.equals(Items.AIR)){
+                item = Registries.ITEM.get(new Identifier("minecraft", this.getItemName().replaceAll("_ice_cream_liquid_bucket", "")));
+            }
+
+            if (!item.equals(Items.AIR)){
+                new ListRecipeJsonBuilder(this, Items.MILK_BUCKET, item).offerTo(exporter);
+            }
+        }
     }
 }

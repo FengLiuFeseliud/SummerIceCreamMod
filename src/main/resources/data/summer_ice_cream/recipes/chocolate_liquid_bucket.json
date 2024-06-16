@@ -1,8 +1,0 @@
-{
-    "type": "summer_ice_cream:list_recipes",
-    "inputs":  [
-        "minecraft:milk_bucket",
-        "summer_ice_cream:cooked_cacao_beans"
-    ],
-    "result": "summer_ice_cream:chocolate_liquid_bucket"
-}
