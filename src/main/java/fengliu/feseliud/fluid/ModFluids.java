@@ -8,6 +8,7 @@ import java.util.List;
 public class ModFluids{
     public static final List<MilkFluid> MILK_FLUIDS= RegisterUtil.registerFluids(new MilkFluid.Still(), new MilkFluid.Flowing());
     public static final List<MilkIceCreamLiquidFluid> MILK_ICE_CREAM_LIQUID_FLUIDS = RegisterUtil.registerFluids(new MilkIceCreamLiquidFluid.Still(), new MilkIceCreamLiquidFluid.Flowing());
+    public static final List<ChocolateLiquidFluid> CHOCOLATE_LIQUID_FLUIDS = RegisterUtil.registerFluids(new ChocolateLiquidFluid.Still(), new ChocolateLiquidFluid.Flowing());
     public static final List<ChocolateIceCreamLiquidFluid> CHOCOLATE_ICE_CREAM_LIQUID_FLUIDS = RegisterUtil.registerFluids(new ChocolateIceCreamLiquidFluid.Still(), new ChocolateIceCreamLiquidFluid.Flowing());
     public static final List<CookieIceCreamLiquidFluid> COOKIE_ICE_CREAM_LIQUID_FLUIDS = RegisterUtil.registerFluids(new CookieIceCreamLiquidFluid.Still(), new CookieIceCreamLiquidFluid.Flowing());
     public static final List<GoldenAppleIceCreamLiquidFluid> GOLDEN_APPLE_CREAM_LIQUID_FLUIDS = RegisterUtil.registerFluids(new GoldenAppleIceCreamLiquidFluid.Still(), new GoldenAppleIceCreamLiquidFluid.Flowing());

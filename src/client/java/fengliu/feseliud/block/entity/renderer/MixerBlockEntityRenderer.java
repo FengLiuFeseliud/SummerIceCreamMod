@@ -1,47 +1,24 @@
 package fengliu.feseliud.block.entity.renderer;
 
-import fengliu.feseliud.SummerIceCream;
-import fengliu.feseliud.SummerIceCreamClient;
-import fengliu.feseliud.block.ModBlocks;
-import fengliu.feseliud.block.entity.IceCreamBarMoldBlockEntity;
 import fengliu.feseliud.block.entity.MixerBlockEntity;
-import fengliu.feseliud.fluid.BaseFluid;
 import fengliu.feseliud.fluid.ModFluids;
-import fengliu.feseliud.item.icecream.liquid.IceCreamLiquidBucket;
-import fengliu.feseliud.mixin.MixinBucketItem;
+import fengliu.feseliud.item.icecream.liquid.FoodLiquidBucket;
 import fengliu.feseliud.mixin.MixinBucketItemAccessor;
-import fengliu.feseliud.utils.IdUtil;
-import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandler;
 import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry;
-import net.fabricmc.fabric.api.renderer.v1.Renderer;
-import net.fabricmc.fabric.api.renderer.v1.RendererAccess;
-import net.fabricmc.fabric.api.renderer.v1.mesh.MeshBuilder;
-import net.fabricmc.fabric.api.renderer.v1.mesh.MutableQuadView;
-import net.fabricmc.fabric.api.renderer.v1.mesh.QuadEmitter;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.Blocks;
-import net.minecraft.block.FluidBlock;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.*;
-import net.minecraft.client.render.block.FluidRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 import net.minecraft.client.texture.Sprite;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.fluid.Fluid;
-import net.minecraft.fluid.FluidState;
 import net.minecraft.fluid.Fluids;
-import net.minecraft.fluid.WaterFluid;
 import net.minecraft.item.BucketItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.screen.PlayerScreenHandler;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.RotationAxis;
 import net.minecraft.world.World;
-
-import static net.minecraft.client.render.RenderPhase.TRANSLUCENT_NO_CRUMBLING_PROGRAM;
 
 public class MixerBlockEntityRenderer implements BlockEntityRenderer<MixerBlockEntity> {
     private static final float yLightFactor = 0.5f;
@@ -286,7 +263,7 @@ public class MixerBlockEntityRenderer implements BlockEntityRenderer<MixerBlockE
             return;
         }
 
-        if (stack.getItem() instanceof BucketItem || stack.getItem() instanceof IceCreamLiquidBucket){
+        if (stack.getItem() instanceof BucketItem || stack.getItem() instanceof FoodLiquidBucket){
             this.fluidRender(((MixinBucketItemAccessor) stack.getItem()).getFluid(), world, pos, matrices, vertexConsumers, light);
         }
     }

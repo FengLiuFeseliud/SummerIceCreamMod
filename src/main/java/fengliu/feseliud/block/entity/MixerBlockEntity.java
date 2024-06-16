@@ -1,6 +1,7 @@
 package fengliu.feseliud.block.entity;
 
 import fengliu.feseliud.SummerIceCream;
+import fengliu.feseliud.block.icecream.IceCreamBlock;
 import fengliu.feseliud.fluid.ModFluids;
 import fengliu.feseliud.item.icecream.IIceCreamLevelItem;
 import fengliu.feseliud.recipes.ListRecipes;
@@ -106,7 +107,7 @@ public class MixerBlockEntity extends InventoryBlockEntity {
             recipeStack = stack;
         }
 
-        if (recipeStack.isEmpty()){
+        if (recipeStack.isEmpty() || recipeStack.getItem() instanceof IIceCreamLevelItem){
             be.uesTick = 0;
             return;
         }

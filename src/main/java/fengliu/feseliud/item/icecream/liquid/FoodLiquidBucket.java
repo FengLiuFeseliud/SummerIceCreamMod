@@ -22,17 +22,17 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class IceCreamLiquidBucket extends BucketItem implements IModItem {
+public class FoodLiquidBucket extends BucketItem implements IModItem {
     public static final String PREFIXED_PATH = IIceCreamLevelItem.PREFIXED_PATH + "bucket" + "/";
     public final String name;
 
-    public IceCreamLiquidBucket(String name, Fluid fluid, FoodComponent food) {
-        super(fluid, new Settings().food(IceCreamLiquidBucket.setIceCreamLiquidFoodComponent(food)).maxCount(1));
+    public FoodLiquidBucket(String name, Fluid fluid, FoodComponent food) {
+        super(fluid, new Settings().food(FoodLiquidBucket.setIceCreamLiquidFoodComponent(food)).maxCount(1));
         this.name = name;
     }
 
-    public IceCreamLiquidBucket(String name, List<? extends BaseFluid> fluids, FoodComponent food) {
-        super(fluids.get(RegisterUtil.FluidType.STILL.ordinal()), new Settings().food(IceCreamLiquidBucket.setIceCreamLiquidFoodComponent(food)).maxCount(1));
+    public FoodLiquidBucket(String name, List<? extends BaseFluid> fluids, FoodComponent food) {
+        super(fluids.get(RegisterUtil.FluidType.STILL.ordinal()), new Settings().food(FoodLiquidBucket.setIceCreamLiquidFoodComponent(food)).maxCount(1));
         this.name = name;
     }
 

@@ -21,7 +21,7 @@ public class MilkFluid extends BaseFluid {
     public static final String name = "milk_fluid";
 
     @Override
-    public Block getIceBlock() {
+    public Block getCongealBlock() {
         return null;
     }
 

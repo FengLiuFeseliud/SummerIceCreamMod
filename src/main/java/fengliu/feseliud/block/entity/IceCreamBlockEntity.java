@@ -28,7 +28,7 @@ public class IceCreamBlockEntity extends BlockEntity {
     }
 
     public static <IE extends IceCreamBlockEntity> BlockEntityType<?> getBlockEntitytype(Map<IIceCreamBlockLevel, BlockEntityType<IE>> iceCreamBlockEntitys, BlockState state){
-        return iceCreamBlockEntitys.get(((IceCreamBlock) state.getBlock()).getIceCreamBlockLevel());
+        return iceCreamBlockEntitys.get(((IceCreamBlock) state.getBlock()).getItemLevel());
     }
 
     public Map<IIceCreamBlockLevel, IceCreamBlock> getIceCreamBlocks(){
@@ -51,7 +51,7 @@ public class IceCreamBlockEntity extends BlockEntity {
 
     public void initTick(IceCreamBlock block){
         if (this.tick == 0){
-            this.tick = block.getIceCreamBlockLevel().getThawTime();
+            this.tick = block.getItemLevel().getThawTime();
         }
     }
 
@@ -63,9 +63,9 @@ public class IceCreamBlockEntity extends BlockEntity {
 
     public BlockState getIceCreamThawBlockState(BlockState iceCreamBlockState){
         IceCreamBlock iceCreamBlock = (IceCreamBlock) iceCreamBlockState.getBlock();
-        int level = iceCreamBlock.getIceCreamBlockLevel().getLevel();
+        int level = iceCreamBlock.getItemLevel().getLevel();
 
-        if (level >= iceCreamBlock.getIceCreamBlockLevel().getMaxLevel()){
+        if (level >= iceCreamBlock.getItemLevel().getMaxLevel()){
             return Blocks.AIR.getDefaultState();
         }
         return ((IceCreamBlock) this.getIceCreamBlocks().values().toArray()[level]).getDefaultState().with(IceCreamBlock.FACING, iceCreamBlockState.get(IceCreamBlock.FACING));

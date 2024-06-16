@@ -6,18 +6,22 @@ import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.fluid.FlowableFluid;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.FluidState;
-import net.minecraft.util.DyeColor;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
+import net.minecraft.world.biome.Biome;
 
 public abstract class BaseFluid extends FlowableFluid  {
     String PREFIXED_PATH = "fluid/";
 
-    public abstract Block getIceBlock();
+    public abstract Block getCongealBlock();
+
+    public boolean canCongeal(WorldView world, BlockPos pos, Biome biome, FluidState fluidState){
+        return false;
+    }
 
     @Override
     public boolean matchesType(Fluid fluid) {

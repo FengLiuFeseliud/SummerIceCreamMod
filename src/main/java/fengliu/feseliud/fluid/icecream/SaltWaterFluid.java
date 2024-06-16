@@ -43,7 +43,7 @@ public class SaltWaterFluid extends MilkIceCreamLiquidFluid{
     }
 
     @Override
-    public Block getIceBlock() {
+    public Block getCongealBlock() {
         return null;
     }
 

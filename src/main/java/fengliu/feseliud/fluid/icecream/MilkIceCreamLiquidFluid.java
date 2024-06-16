@@ -1,7 +1,6 @@
 package fengliu.feseliud.fluid.icecream;
 
 import fengliu.feseliud.block.ModBlocks;
-import fengliu.feseliud.block.icecream.IceCreamBlock;
 import fengliu.feseliud.fluid.BaseFluid;
 import fengliu.feseliud.fluid.ModFluids;
 import fengliu.feseliud.item.ModItems;
@@ -14,7 +13,9 @@ import net.minecraft.fluid.FluidState;
 import net.minecraft.item.Item;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.Properties;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.WorldView;
+import net.minecraft.world.biome.Biome;
 
 public class MilkIceCreamLiquidFluid extends BaseFluid {
     public static final String name = "milk_ice_cream_liquid_fluid";
@@ -35,8 +36,13 @@ public class MilkIceCreamLiquidFluid extends BaseFluid {
     }
 
     @Override
-    public Block getIceBlock() {
+    public Block getCongealBlock() {
         return ModBlocks.ICE_CREAM_BLOCKS.get(IceCream.IceCreamLevels.NOT_THAW);
+    }
+
+    @Override
+    public boolean canCongeal(WorldView world, BlockPos pos, Biome biome, FluidState fluidState) {
+        return !biome.doesNotSnow(pos) && fluidState.isStill();
     }
 
     @Override

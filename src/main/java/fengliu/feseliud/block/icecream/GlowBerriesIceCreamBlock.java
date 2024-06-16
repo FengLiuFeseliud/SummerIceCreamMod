@@ -22,13 +22,13 @@ public class GlowBerriesIceCreamBlock extends IceCreamBlock{
     }
 
     @Override
-    public Map<IceCreamBar, IIceCreamLevel> getIceCreams() {
+    public Map<IceCreamBar, IIceCreamLevel> getLevelBrickItems() {
         return ModItems.GLOW_BERRIES_ICE_CREAM_BRICK;
     }
 
     @Override
     public BlockEntityType<?> getBlockEntityType() {
-        return ModBlockEntitys.GLOW_BERRIES_CREAM_BLOCK_ENTITYS.get(this.getIceCreamBlockLevel());
+        return ModBlockEntitys.GLOW_BERRIES_CREAM_BLOCK_ENTITYS.get(this.getItemLevel());
     }
 
     @Override

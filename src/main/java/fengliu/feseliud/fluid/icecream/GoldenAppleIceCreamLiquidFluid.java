@@ -34,7 +34,7 @@ public class GoldenAppleIceCreamLiquidFluid extends MilkIceCreamLiquidFluid{
     }
 
     @Override
-    public Block getIceBlock() {
+    public Block getCongealBlock() {
         return ModBlocks.GOLDEN_APPLE_ICE_CREAM_BLOCKS.get(GoldenAppleIceCream.IceCreamLevels.NOT_THAW);
     }
 

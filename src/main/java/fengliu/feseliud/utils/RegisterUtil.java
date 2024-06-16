@@ -1,11 +1,13 @@
 package fengliu.feseliud.utils;
 
+import fengliu.feseliud.block.IDetachableBlock;
 import fengliu.feseliud.block.IModBlock;
 import fengliu.feseliud.block.icecream.IceCreamBlock;
 import fengliu.feseliud.fluid.BaseFluid;
 import fengliu.feseliud.item.BaseColorItem;
 import fengliu.feseliud.item.IModItem;
 import fengliu.feseliud.item.block.icecream.IIceCreamBlockLevel;
+import fengliu.feseliud.utils.level.IBlockItemLevel;
 import fengliu.feseliud.utils.level.IItemLevel;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
 import net.fabricmc.fabric.api.object.builder.v1.block.entity.FabricBlockEntityTypeBuilder;
@@ -86,9 +88,10 @@ public class RegisterUtil {
         return Registry.register(Registries.BLOCK, block.getId(), (B) block);
     }
 
-    public static <B extends IceCreamBlock, IL extends IIceCreamBlockLevel> Map<IL, B> registerIceCreamBlock(IL[] iceCreamBlockLevels, Function<IL, B> getBlock){
+    @SuppressWarnings("unchecked")
+    public static <B extends IDetachableBlock, IL extends IBlockItemLevel> Map<IL, B> registerDetachableBlocks(IL[] iceCreamBlockLevels, Function<IL, B> getBlock){
         Map<IL, B> map = new HashMap<>();
-        Arrays.stream(iceCreamBlockLevels).forEach(iceCreamBlockLevel -> map.put(iceCreamBlockLevel, registerBlock(getBlock.apply(iceCreamBlockLevel))));
+        Arrays.stream(iceCreamBlockLevels).forEach(iceCreamBlockLevel -> map.put(iceCreamBlockLevel, (B) registerBlock(getBlock.apply(iceCreamBlockLevel))));
         return map;
     }
 

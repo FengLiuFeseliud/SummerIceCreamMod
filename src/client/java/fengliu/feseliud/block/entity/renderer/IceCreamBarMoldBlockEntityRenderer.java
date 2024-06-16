@@ -2,28 +2,98 @@ package fengliu.feseliud.block.entity.renderer;
 
 import fengliu.feseliud.block.entity.IceCreamBarMoldBlockEntity;
 import fengliu.feseliud.block.icecream.IceCreamBarMoldBlock;
+import fengliu.feseliud.fluid.BaseFluid;
+import fengliu.feseliud.item.ModItems;
+import fengliu.feseliud.item.icecream.bar.IceCreamBar;
+import fengliu.feseliud.mixin.MixinBucketItem;
+import fengliu.feseliud.mixin.MixinBucketItemAccessor;
 import fengliu.feseliud.recipes.ListRecipes;
 import fengliu.feseliud.utils.IHitSlot;
+import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry;
 import net.minecraft.client.MinecraftClient;
+import net.minecraft.client.render.RenderLayer;
+import net.minecraft.client.render.VertexConsumer;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
 import net.minecraft.client.render.model.json.ModelTransformationMode;
+import net.minecraft.client.texture.Sprite;
 import net.minecraft.client.util.math.MatrixStack;
+import net.minecraft.fluid.Fluid;
+import net.minecraft.fluid.Fluids;
 import net.minecraft.inventory.SimpleInventory;
+import net.minecraft.item.BucketItem;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.RotationAxis;
+import net.minecraft.world.World;
 import org.joml.Quaternionf;
 
 import java.util.List;
 import java.util.Optional;
 
 public class IceCreamBarMoldBlockEntityRenderer implements BlockEntityRenderer<IceCreamBarMoldBlockEntity> {
+    private static final float yLightFactor = 0.5f;
     private final MinecraftClient client = MinecraftClient.getInstance();
 
     public IceCreamBarMoldBlockEntityRenderer(BlockEntityRendererFactory.Context ctx){
 
+    }
+
+    private void fluidRender(Fluid fluid, IceCreamBarMoldBlockEntity be, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light){
+        World world = be.getWorld();
+        BlockPos pos = be.getPos();
+
+        Sprite topSprite =  FluidRenderHandlerRegistry.INSTANCE.get(fluid).getFluidSprites(world, pos, fluid.getDefaultState())[0];
+        int color = FluidRenderHandlerRegistry.INSTANCE.get(fluid).getFluidColor(world, pos, fluid.getDefaultState());
+
+        float colorR = (float) (color >> 16 & 255) / 255.0F;
+        float colorG = (float) (color >> 8 & 255) / 255.0F;
+        float colorB = (float) (color & 255) / 255.0F;
+        float alpha = 1f;
+
+        matrices.push();
+        matrices.multiply(RotationAxis.NEGATIVE_X.rotation(1.55f));
+        matrices.multiply(RotationAxis.NEGATIVE_Y.rotation(0.78F));
+        matrices.translate(-0.01f, 0.02f, 0f);
+
+        VertexConsumer translucentBuffer = vertexConsumers.getBuffer(RenderLayer.getSolid());
+        MatrixStack.Entry worldMatrix = matrices.peek();
+
+        float h = 1f / 16 * 5.5F;
+        float w = 1f / 16 * 3.5f;
+
+        translucentBuffer
+                .vertex(worldMatrix.getPositionMatrix(), 0f, 0.01f, h)
+                .color(colorR, colorG, colorB, alpha)
+                .texture(topSprite.getMinU(), topSprite.getMinV())
+                .light(light)
+                .normal(0f, 1f, 0f)
+                .next();
+        translucentBuffer
+                .vertex(worldMatrix.getPositionMatrix(), w, 0.01f, h)
+                .color(colorR, colorG, colorB, alpha)
+                .texture(topSprite.getMaxU(), topSprite.getMinV())
+                .light(light)
+                .normal(0f, 1f, 0f)
+                .next();
+        translucentBuffer
+                .vertex(worldMatrix.getPositionMatrix(), w, 0.01f, 0f)
+                .color(colorR, colorG, colorB, alpha)
+                .texture(topSprite.getMaxU(), topSprite.getMaxV())
+                .light(light)
+                .normal(0f, 1f, 0f)
+                .next();
+        translucentBuffer
+                .vertex(worldMatrix.getPositionMatrix(), 0f, 0.01f, 0f)
+                .color(colorR, colorG, colorB, alpha)
+                .texture(topSprite.getMinU(), topSprite.getMaxV())
+                .light(light)
+                .normal(0f, 1f, 0f)
+                .next();
+        matrices.pop();
     }
 
     @Override
@@ -60,18 +130,19 @@ public class IceCreamBarMoldBlockEntityRenderer implements BlockEntityRenderer<I
 
         List<SimpleInventory> inventories = IHitSlot.splitInput(be, IHitSlot.ThreeHitSlot.values());
         for (SimpleInventory inventory : inventories) {
-            Optional<ListRecipes> match = be.getWorld().getRecipeManager().getFirstMatch(ListRecipes.Type.INSTANCE, inventory, be.getWorld());
-            ItemStack rendererStack;
-            if (match.isPresent()) {
-                rendererStack = match.get().getResult();
-            } else {
-                rendererStack = inventory.getStack(0);
+            ItemStack rendererStack = inventory.getStack(0);
+            if (rendererStack.getItem() instanceof IceCreamBar || rendererStack.isOf(ModItems.BAR)){
+                client.getItemRenderer().renderItem(
+                        rendererStack, ModelTransformationMode.GROUND, false, matrices, vertexConsumers, light, overlay,
+                        client.getItemRenderer().getModel(rendererStack, be.getWorld(), null, 0)
+                );
             }
 
-            client.getItemRenderer().renderItem(
-                    rendererStack, ModelTransformationMode.GROUND, false, matrices, vertexConsumers, light, overlay,
-                    client.getItemRenderer().getModel(rendererStack, be.getWorld(), null, 0)
-            );
+           inventory.stacks.forEach(stack -> {
+                if ((stack.getItem() instanceof BucketItem bucketItem) && !((MixinBucketItemAccessor) bucketItem).getFluid().equals(Fluids.EMPTY)){
+                    this.fluidRender(((MixinBucketItemAccessor) stack.getItem()).getFluid(), be, matrices, vertexConsumers, light);
+                }
+            });
             matrices.translate(-0.175f, -0.165f, 0f);
         }
     }

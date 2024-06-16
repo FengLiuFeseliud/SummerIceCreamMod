@@ -12,9 +12,11 @@ import org.jetbrains.annotations.Nullable;
 
 public abstract class FacingBlock extends Block implements IModBlock {
     public static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
+    private final String name;
 
-    public FacingBlock(Settings settings) {
+    public FacingBlock(Settings settings, String name) {
         super(settings);
+        this.name = name;
     }
 
     public static VoxelShape getFacingShape(BlockState state, VoxelShape... facingShapes){
@@ -46,5 +48,10 @@ public abstract class FacingBlock extends Block implements IModBlock {
     @Override
     public BlockRenderType getRenderType(BlockState state) {
         return BlockRenderType.MODEL;
+    }
+
+    @Override
+    public String getBlockName() {
+        return this.name;
     }
 }

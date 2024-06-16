@@ -14,7 +14,6 @@ import net.minecraft.item.Item;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.Properties;
 
-
 public class CookieIceCreamLiquidFluid extends MilkIceCreamLiquidFluid{
     public static final String name = "cookie_ice_cream_liquid_fluid";
 
@@ -34,7 +33,7 @@ public class CookieIceCreamLiquidFluid extends MilkIceCreamLiquidFluid{
     }
 
     @Override
-    public Block getIceBlock() {
+    public Block getCongealBlock() {
         return ModBlocks.COOKIE_ICE_CREAM_BLOCKS.get(CookieIceCream.IceCreamLevels.NOT_THAW);
     }
 

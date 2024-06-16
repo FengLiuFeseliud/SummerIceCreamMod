@@ -2,7 +2,6 @@ package fengliu.feseliud.block.icecream;
 
 import fengliu.feseliud.block.ModBlocks;
 import fengliu.feseliud.block.entity.ChorusFruitIceCreamBlockEntity;
-import fengliu.feseliud.block.entity.GoldenAppleIceCreamBlockEntity;
 import fengliu.feseliud.block.entity.ModBlockEntitys;
 import fengliu.feseliud.item.ModItems;
 import fengliu.feseliud.item.block.icecream.IIceCreamBlockLevel;
@@ -23,13 +22,13 @@ public class ChorusFruitIceCreamBlock extends IceCreamBlock{
     }
 
     @Override
-    public Map<IceCreamBar, IIceCreamLevel> getIceCreams() {
+    public Map<IceCreamBar, IIceCreamLevel> getLevelBrickItems() {
         return ModItems.CHORUS_FRUIT_ICE_CREAM_BRICKS;
     }
 
     @Override
     public BlockEntityType<?> getBlockEntityType() {
-        return ModBlockEntitys.CHORUS_FRUIT_ICE_CREAM_BLOCK_ENTITYS.get(this.getIceCreamBlockLevel());
+        return ModBlockEntitys.CHORUS_FRUIT_ICE_CREAM_BLOCK_ENTITYS.get(this.getItemLevel());
     }
 
     @Override

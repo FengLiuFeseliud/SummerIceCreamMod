@@ -1,5 +1,6 @@
 package fengliu.feseliud.mixin;
 
+import fengliu.feseliud.block.entity.IceCreamBarMoldBlockEntity;
 import fengliu.feseliud.fluid.BaseFluid;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -11,12 +12,10 @@ import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.profiler.Profiler;
 import net.minecraft.world.MutableWorldProperties;
 import net.minecraft.world.World;
-import net.minecraft.world.chunk.WorldChunk;
 import net.minecraft.world.dimension.DimensionType;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Redirect;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 
 import java.util.function.Supplier;
 
@@ -39,6 +38,6 @@ public abstract class MixinServerWorld extends World {
             return this.setBlockState(pos, state, Block.NOTIFY_ALL);
         }
 
-        return this.setBlockState(pos, baseFluid.getIceBlock().getDefaultState(), Block.NOTIFY_ALL);
+        return this.setBlockState(pos, baseFluid.getCongealBlock().getDefaultState(), Block.NOTIFY_ALL);
     }
 }

@@ -7,11 +7,14 @@ import fengliu.feseliud.item.icecream.IIceCreamLevelItem;
 import fengliu.feseliud.item.icecream.IIceCreamLevel;
 import fengliu.feseliud.item.icecream.bar.IceCreamBar;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
+import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.FoodComponent;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
+import net.minecraft.world.World;
 
 import java.util.Map;
 
@@ -42,6 +45,19 @@ public class IceCreamBrick extends IceCreamBar {
         ItemStack newStack = stack.getItem().getDefaultStack();
         newStack.setCount(stack.getCount());
         return newStack;
+    }
+
+    @Override
+    public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
+        if (!(user instanceof PlayerEntity player)){
+            return super.finishUsing(stack, world, user);
+        }
+
+        if (player.isCreative()){
+            player.eatFood(world, stack);
+            return stack;
+        }
+        return super.finishUsing(stack, world, user);
     }
 
     @Override

@@ -3,7 +3,7 @@ package fengliu.feseliud.fluid.icecream;
 import fengliu.feseliud.block.ModBlocks;
 import fengliu.feseliud.fluid.ModFluids;
 import fengliu.feseliud.item.ModItems;
-import fengliu.feseliud.item.block.icecream.GlowBerriesIceCream;
+import fengliu.feseliud.item.block.Chocolate;
 import fengliu.feseliud.utils.RegisterUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -13,41 +13,49 @@ import net.minecraft.fluid.FluidState;
 import net.minecraft.item.Item;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.Properties;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.world.WorldView;
+import net.minecraft.world.biome.Biome;
 
-public class GlowBerriesIceCreamLiquidFluid extends MilkIceCreamLiquidFluid{
-    public static final String name = "glow_berries_ice_cream_liquid_fluid";
+public class ChocolateLiquidFluid extends MilkIceCreamLiquidFluid{
+    public static final String name = "chocolate_liquid_fluid";
 
     @Override
     public MilkIceCreamLiquidFluid getFlowing() {
-        return ModFluids.GLOW_BERRIES_CREAM_LIQUID_FLUIDS.get(RegisterUtil.FluidType.FLOWING.ordinal());
+        return ModFluids.CHOCOLATE_LIQUID_FLUIDS.get(RegisterUtil.FluidType.FLOWING.ordinal());
     }
 
     @Override
     public MilkIceCreamLiquidFluid getStill() {
-        return ModFluids.GLOW_BERRIES_CREAM_LIQUID_FLUIDS.get(RegisterUtil.FluidType.STILL.ordinal());
+        return ModFluids.CHOCOLATE_LIQUID_FLUIDS.get(RegisterUtil.FluidType.STILL.ordinal());
     }
 
     @Override
     public Item getBucketItem() {
-        return ModItems.GLOW_BERRIES_ICE_CREAM_LIQUID_BUCKET;
+        return ModItems.CHOCOLATE_LIQUID_BUCKET;
     }
 
     @Override
     public Block getCongealBlock() {
-        return ModBlocks.GLOW_BERRIES_ICE_CREAM_BLOCKS.get(GlowBerriesIceCream.IceCreamLevels.NOT_THAW);
+        return ModBlocks.CHOCOLATE_BLOCKS.get(Chocolate.ChocolateLevels.EAT_NOT);
+    }
+
+    @Override
+    public boolean canCongeal(WorldView world, BlockPos pos, Biome biome, FluidState fluidState) {
+        return fluidState.isStill();
     }
 
     @Override
     protected BlockState toBlockState(FluidState fluidState) {
-        return ModBlocks.GLOW_BERRIES_CREAM_LIQUID_BLOCK.getDefaultState().with(Properties.LEVEL_15, FlowableFluid.getBlockStateLevel(fluidState));
+        return ModBlocks.CHOCOLATE_LIQUID_BLOCK.getDefaultState().with(Properties.LEVEL_15, FlowableFluid.getBlockStateLevel(fluidState));
     }
 
     @Override
     public String getName() {
-        return GlowBerriesIceCreamLiquidFluid.name;
+        return ChocolateLiquidFluid.name;
     }
 
-    public static class Flowing extends GlowBerriesIceCreamLiquidFluid {
+    public static class Flowing extends ChocolateLiquidFluid {
         @Override
         protected void appendProperties(StateManager.Builder<Fluid, FluidState> builder) {
             super.appendProperties(builder);
@@ -60,7 +68,7 @@ public class GlowBerriesIceCreamLiquidFluid extends MilkIceCreamLiquidFluid{
         }
     }
 
-    public static class Still extends GlowBerriesIceCreamLiquidFluid {
+    public static class Still extends ChocolateLiquidFluid {
         @Override
         public int getLevel(FluidState fluidState) {
             return 8;

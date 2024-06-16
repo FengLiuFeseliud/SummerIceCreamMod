@@ -41,6 +41,10 @@
   "level.summer_ice_cream.drink_half": "半杯%s",
   "level.summer_ice_cream.drink_most": "一小口%s",
 
+  "level.summer_ice_cream.eat_not": "%s",
+  "level.summer_ice_cream.eat_half": "半块%s",
+  "level.summer_ice_cream.eat_most": "一小块%s",
+
   "item.summer_ice_cream.crushed_ice": "碎冰",
   "item.summer_ice_cream.crushed_ice.tooltip": "冰块被粗暴的砸碎了...",
 
@@ -73,6 +77,18 @@
 
   "block.summer_ice_cream.cooler_box": "保温箱",
   "item.summer_ice_cream.cooler_box.tooltip": "把雪糕放进去好像可以减缓雪糕融化速度?",
+
+  "item.summer_ice_cream.cooked_cacao_beans": "熟可可豆",
+  "item.summer_ice_cream.cooked_cacao_beans.tooltip": "被烤制过的可可豆",
+
+  "item.summer_ice_cream.chocolate_liquid_bucket": "巧克力液",
+  "item.summer_ice_cream.chocolate_liquid_bucket.tooltip": "熟可可豆与牛奶混合而来, 有股浓浓的巧克力味~",
+
+  "item.summer_ice_cream.chocolate_brick": "巧克力砖",
+  "item.summer_ice_cream.chocolate_brick.tooltip": "从巧克力块拆解而来, 有股浓浓的巧克力味~",
+
+  "block.summer_ice_cream.chocolate_block": "巧克力块",
+  "item.summer_ice_cream.chocolate_block.tooltip": "从巧克力液凝固成了块!有股浓浓的巧克力味~",
 
   "item.summer_ice_cream.milk_ice_cream_liquid_bucket": "奶油冰淇淋液",
   "item.summer_ice_cream.milk_ice_cream_liquid_bucket.tooltip": "从牛奶搅打而来!有股浓浓的奶油味~",

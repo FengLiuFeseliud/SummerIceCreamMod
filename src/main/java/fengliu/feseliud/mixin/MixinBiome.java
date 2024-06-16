@@ -1,6 +1,6 @@
 package fengliu.feseliud.mixin;
 
-import fengliu.feseliud.block.icecream.IceCreamBlock;
+import fengliu.feseliud.block.entity.IceCreamBarMoldBlockEntity;
 import fengliu.feseliud.fluid.BaseFluid;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.FluidBlock;
@@ -28,27 +28,18 @@ public class MixinBiome{
             at = @At(value = "HEAD"),
             cancellable = true
     )
-    public void canSetBaseFluidIce(WorldView world, BlockPos pos, boolean doWaterCheck, CallbackInfoReturnable<Boolean> cir){
-        if (this.doesNotSnow(pos)) {
-            return;
-        }
-
-        if (pos.getY() <= world.getBottomY() || pos.getY() > world.getTopY() || world.getLightLevel(LightType.BLOCK, pos) > 10){
-            return;
-        }
-
+    public void canCongealBaseFluid(WorldView world, BlockPos pos, boolean doWaterCheck, CallbackInfoReturnable<Boolean> cir){
         BlockState blockState = world.getBlockState(pos);
+        if (!(blockState.getBlock() instanceof FluidBlock)){
+            return;
+        }
+
         FluidState fluidState = world.getFluidState(pos);
-
-        if (!(fluidState.getFluid() instanceof BaseFluid baseFluid) || !(blockState.getBlock() instanceof FluidBlock)){
+        if (!(fluidState.getFluid() instanceof BaseFluid baseFluid)){
             return;
         }
 
-        if (baseFluid.getIceBlock() == null || !baseFluid.isStill(fluidState)){
-            return;
-        }
-
-        cir.setReturnValue(true);
+        cir.setReturnValue(baseFluid.canCongeal(world, pos, (Biome)(Object) this, fluidState));
         cir.cancel();
     }
 }

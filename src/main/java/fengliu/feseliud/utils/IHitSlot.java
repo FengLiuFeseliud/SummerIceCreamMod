@@ -8,12 +8,15 @@ import net.minecraft.block.BlockState;
 import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.Direction;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.function.Consumer;
 
 public interface IHitSlot{
     int getIndex();
@@ -34,6 +37,10 @@ public interface IHitSlot{
         public int getIndex() {
             return this.index;
         }
+    }
+
+    static IHitSlot getHitSlot(List<SimpleInventory> inventories, SimpleInventory inventory, IHitSlot[] hitSlots){
+        return hitSlots[inventories.indexOf(inventory)];
     }
 
     static IHitSlot[] reverse(IHitSlot[] array) {

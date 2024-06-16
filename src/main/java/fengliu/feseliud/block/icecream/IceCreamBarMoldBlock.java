@@ -92,16 +92,22 @@ public class IceCreamBarMoldBlock extends FacingEntityBlock {
         }
 
         ItemStack handStack = player.getStackInHand(hand);
-        if (player.isSneaking() || handStack.isOf(Items.BUCKET)){
-            be.takeItem(player, hitSlots, world, pos, handStack);
+        if (handStack.isOf(Items.BUCKET) || handStack.isEmpty()){
+            ItemStack stack = be.takeItem(player, hand, hitSlots, world, pos, handStack);
+            if (handStack.isEmpty()){
+                player.setStackInHand(hand, stack);
+            } else {
+                dropStack(world, pos, stack);
+            }
             return ActionResult.SUCCESS;
         }
 
-        if (handStack.isOf(Items.AIR)){
-            return super.onUse(state, world, pos, player, hand, hit);
+        ItemStack stack = be.putItem(player, hitSlots, handStack);
+        if (handStack.isEmpty()){
+            player.setStackInHand(hand, stack);
+        } else {
+            dropStack(world, pos, stack);
         }
-
-        be.putItem(player, hitSlots, handStack);
         return ActionResult.SUCCESS;
     }
 }
