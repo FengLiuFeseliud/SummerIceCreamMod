@@ -1,20 +1,22 @@
 package fengliu.feseliud.item.icecream.potion;
 
-import com.mojang.datafixers.kinds.IdF;
 import fengliu.feseliud.item.BaseItem;
-import fengliu.feseliud.item.IceCup;
 import fengliu.feseliud.item.ModItems;
-import fengliu.feseliud.item.icecream.IIceCreamLevelItem;
 import fengliu.feseliud.item.icecream.IIceCreamLevel;
+import fengliu.feseliud.item.icecream.IIceCreamLevelItem;
 import fengliu.feseliud.mixin.MixinStatusEffectInstance;
 import fengliu.feseliud.utils.IdUtil;
+import fengliu.feseliud.utils.color.IColor;
 import fengliu.feseliud.utils.level.IItemLevel;
 import fengliu.feseliud.utils.level.ILevelItem;
 import net.fabricmc.fabric.api.item.v1.FabricItem;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.block.Blocks;
 import net.minecraft.client.item.TooltipContext;
-import net.minecraft.data.client.*;
+import net.minecraft.data.client.ItemModelGenerator;
+import net.minecraft.data.client.ModelIds;
+import net.minecraft.data.client.Models;
+import net.minecraft.data.client.TextureMap;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -28,7 +30,9 @@ import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionUtil;
 import net.minecraft.potion.Potions;
 import net.minecraft.text.Text;
-import net.minecraft.util.*;
+import net.minecraft.util.Hand;
+import net.minecraft.util.TypedActionResult;
+import net.minecraft.util.UseAction;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
@@ -37,7 +41,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-public class IcePotionCup extends BaseItem implements IIceCreamLevelItem, FabricItem {
+public class IcePotionCup extends BaseItem implements IIceCreamLevelItem, IColor, FabricItem {
     public static final String PREFIXED_PATH = IIceCreamLevelItem.PREFIXED_PATH + "potion" + "/";
 
     public IcePotionCup(Settings settings, String name) {
@@ -50,6 +54,11 @@ public class IcePotionCup extends BaseItem implements IIceCreamLevelItem, Fabric
             return PotionUtil.getColor(Potions.WATER);
         }
         return PotionUtil.getColor(potion);
+    }
+
+    @Override
+    public int getColor() {
+        return 0;
     }
 
     public static List<StatusEffectInstance> getStatusEffectInstances(ItemStack stack, IItemLevel level){
@@ -158,6 +167,11 @@ public class IcePotionCup extends BaseItem implements IIceCreamLevelItem, Fabric
                         ((IceCup) ModItems.ICE_CUPS.keySet().toArray()[0]).getTexturePath()
                 ),
                 itemModelGenerator.writer);
+    }
+
+    @Override
+    public int colorProvider(ItemStack stack, int tintIndex) {
+        return tintIndex == 0 ? IcePotionCup.getColor(stack) : -1;
     }
 
     public enum IceCreamLevels implements IIceCreamLevel{

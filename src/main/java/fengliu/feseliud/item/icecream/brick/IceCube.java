@@ -2,10 +2,10 @@ package fengliu.feseliud.item.icecream.brick;
 
 import com.google.gson.JsonObject;
 import fengliu.feseliud.item.BaseItem;
-import fengliu.feseliud.item.IceCup;
 import fengliu.feseliud.item.ModItems;
 import fengliu.feseliud.item.icecream.IIceCreamLevel;
 import fengliu.feseliud.item.icecream.bar.IceCreamBar;
+import fengliu.feseliud.item.icecream.potion.IceCup;
 import fengliu.feseliud.item.icecream.potion.IcePotionCup;
 import fengliu.feseliud.item.icecream.potion.PotionCup;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;

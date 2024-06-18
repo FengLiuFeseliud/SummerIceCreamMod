@@ -7,6 +7,7 @@ import fengliu.feseliud.fluid.BaseFluid;
 import fengliu.feseliud.item.BaseColorItem;
 import fengliu.feseliud.item.IModItem;
 import fengliu.feseliud.item.block.icecream.IIceCreamBlockLevel;
+import fengliu.feseliud.utils.color.IColor;
 import fengliu.feseliud.utils.level.IBlockItemLevel;
 import fengliu.feseliud.utils.level.IItemLevel;
 import net.fabricmc.fabric.api.itemgroup.v1.ItemGroupEvents;
@@ -27,11 +28,16 @@ import java.util.*;
 import java.util.function.Function;
 
 public class RegisterUtil {
-    public static final List<BaseColorItem> baseColorItems = new ArrayList<>();
+    public static final List<IColor> baseColorItems = new ArrayList<>();
 
+    @SuppressWarnings("unchecked")
     public static <I extends IModItem> I registerItem(Identifier id, I item, RegistryKey<ItemGroup> group){
         ItemGroupEvents.modifyEntriesEvent(group).register(content -> content.add(((Item) item).getDefaultStack()));
-        return (I) Registry.register(Registries.ITEM, id, (Item) item);
+        I regItem =  (I) Registry.register(Registries.ITEM, id, (Item) item);
+        if (regItem instanceof IColor){
+            baseColorItems.add((IColor) regItem);
+        }
+        return regItem;
     }
 
     public static <I extends IModItem> I registerItem(I item, RegistryKey<ItemGroup> group){
@@ -47,7 +53,6 @@ public class RegisterUtil {
         for (DyeColor dyeColor: dyeColors){
             @SuppressWarnings("unchecked")
             I item = (I) colorItem.get(dyeColor);
-            baseColorItems.add(item);
             items.add(RegisterUtil.registerItem(IdUtil.get(item.getItemName()), item, group));
         }
         return items;

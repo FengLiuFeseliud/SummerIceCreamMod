@@ -3,8 +3,8 @@ package fengliu.feseliud.item.icecream.potion;
 import fengliu.feseliud.item.BaseItem;
 import fengliu.feseliud.item.IModItem;
 import fengliu.feseliud.item.ModItems;
-import fengliu.feseliud.item.icecream.IIceCreamLevelItem;
 import fengliu.feseliud.utils.IdUtil;
+import fengliu.feseliud.utils.color.IColor;
 import fengliu.feseliud.utils.level.IItemLevel;
 import fengliu.feseliud.utils.level.ILevelItem;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
@@ -28,9 +28,14 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.Map;
 
-public class PotionCup extends BaseItem implements ILevelItem {
+public class PotionCup extends BaseItem implements ILevelItem, IColor {
     public PotionCup(Settings settings, String name) {
         super(settings, name);
+    }
+
+    @Override
+    public int getColor() {
+        return 0;
     }
 
     @Override
@@ -89,6 +94,11 @@ public class PotionCup extends BaseItem implements ILevelItem {
                         ModItems.CUP.getTexturePath()
                 ),
                 itemModelGenerator.writer);
+    }
+
+    @Override
+    public int colorProvider(ItemStack stack, int tintIndex) {
+        return tintIndex == 0 ? IcePotionCup.getColor(stack) : -1;
     }
 
     public enum PotionCupLevels implements IItemLevel {

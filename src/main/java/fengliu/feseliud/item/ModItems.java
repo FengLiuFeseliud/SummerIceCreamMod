@@ -7,6 +7,7 @@ import fengliu.feseliud.item.icecream.brick.*;
 import fengliu.feseliud.item.icecream.cup.*;
 import fengliu.feseliud.item.icecream.liquid.ChorusFruitIceCreamLiquidBucket;
 import fengliu.feseliud.item.icecream.liquid.FoodLiquidBucket;
+import fengliu.feseliud.item.icecream.potion.IceCup;
 import fengliu.feseliud.item.icecream.potion.IcePotionCup;
 import fengliu.feseliud.item.icecream.potion.PotionCup;
 import fengliu.feseliud.utils.RegisterUtil;

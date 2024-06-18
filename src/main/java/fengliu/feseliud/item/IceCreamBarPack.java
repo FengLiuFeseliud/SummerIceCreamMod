@@ -40,7 +40,7 @@ public class IceCreamBarPack extends BaseColorItem{
             return super.onStackClicked(stack, slot, clickType, player);
         }
 
-        Optional<PackIceCreamBar> packItemOptional= ModItems.PACK_ICE_CREAM.stream().filter(packIceCreamBar -> packIceCreamBar.getColor().equals(this.getColor())).findFirst();
+        Optional<PackIceCreamBar> packItemOptional= ModItems.PACK_ICE_CREAM.stream().filter(packIceCreamBar -> packIceCreamBar.getColor() == this.getColor()).findFirst();
         if (packItemOptional.isEmpty()){
             return super.onStackClicked(stack, slot, clickType, player);
         }
@@ -55,7 +55,7 @@ public class IceCreamBarPack extends BaseColorItem{
 
     @Override
     public void generateRecipe(Consumer<RecipeJsonProvider> exporter) {
-        if (this.getColor().equals(DyeColor.WHITE)){
+        if (this.getDyeColor().equals(DyeColor.WHITE)){
             ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, this, 1)
                     .input(Items.PAPER)
                     .input(Items.PAPER)
@@ -68,7 +68,7 @@ public class IceCreamBarPack extends BaseColorItem{
         ShapelessRecipeJsonBuilder.create(RecipeCategory.MISC, this, 1)
                 .input(Items.PAPER)
                 .input(Items.PAPER)
-                .input(DyeItem.byColor(this.getColor()))
+                .input(DyeItem.byColor(this.getDyeColor()))
                 .criterion(FabricRecipeProvider.hasItem(this),
                         FabricRecipeProvider.conditionsFromItem(this))
                 .offerTo(exporter);

@@ -1,22 +1,28 @@
-package fengliu.feseliud.item;
+package fengliu.feseliud.item.icecream.potion;
 
 import com.google.gson.JsonObject;
+import fengliu.feseliud.item.BaseItem;
+import fengliu.feseliud.item.IModItem;
+import fengliu.feseliud.item.ModItems;
 import fengliu.feseliud.item.icecream.IIceCreamLevel;
-import fengliu.feseliud.item.icecream.IIceCreamLevelItem;
 import fengliu.feseliud.item.icecream.bar.IceCreamBar;
 import fengliu.feseliud.item.icecream.brick.IceCube;
-import fengliu.feseliud.item.icecream.potion.IcePotionCup;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import net.minecraft.block.Blocks;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.FoodComponent;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemUsageContext;
 import net.minecraft.item.Items;
 import net.minecraft.potion.Potion;
 import net.minecraft.potion.PotionUtil;
 import net.minecraft.screen.slot.Slot;
+import net.minecraft.util.ActionResult;
 import net.minecraft.util.ClickType;
+import net.minecraft.world.RaycastContext;
+import net.minecraft.world.World;
 
 import java.util.Map;
 
@@ -28,6 +34,19 @@ public class IceCup extends IceCreamBar {
     @Override
     public Map<IceCreamBar, IIceCreamLevel> getLevelItems() {
         return ModItems.ICE_CUPS;
+    }
+
+    @Override
+    public ActionResult useOnBlock(ItemUsageContext context) {
+        PlayerEntity player = context.getPlayer();
+        World world = context.getWorld();
+
+        if (player == null || !world.getBlockState(raycast(world, player, RaycastContext.FluidHandling.ANY).getBlockPos()).isOf(Blocks.WATER)) {
+            return super.useOnBlock(context);
+        }
+
+        player.setStackInHand(context.getHand(), this.setItemStack(ModItems.ICE_POTION_CUPS.keySet().stream().toList().get(0).getDefaultStack(), context.getStack()));
+        return ActionResult.SUCCESS;
     }
 
     @Override
@@ -120,7 +139,7 @@ public class IceCup extends IceCreamBar {
 
         @Override
         public ItemStack getOutItemStack() {
-            return ModItems.CUP.getDefaultStack();
+            return ModItems.POTION_CUPS.keySet().stream().toList().get(2).getDefaultStack();
         }
 
         @Override

@@ -35,12 +35,12 @@ public class BaseColorItem extends BaseItem implements IColor {
     }
 
     @Override
-    public DyeColor getColor() {
-        return this.color;
+    public int getColor() {
+        return this.color.getFireworkColor();
     }
 
     public String setColorTranslation(Map<String, String> colorTranslations, String translationKey, JsonObject translations){
-        return String.format(translations.get(translationKey).getAsString(), colorTranslations.get(this.getColor().getName()));
+        return String.format(translations.get(translationKey).getAsString(), colorTranslations.get(this.getDyeColor().getName()));
     }
 
     @Override

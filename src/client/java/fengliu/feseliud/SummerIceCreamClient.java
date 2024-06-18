@@ -5,8 +5,6 @@ import fengliu.feseliud.block.ModBlocks;
 import fengliu.feseliud.block.entity.renderer.ModBlockEntityRenderers;
 import fengliu.feseliud.fluid.BaseFluid;
 import fengliu.feseliud.fluid.ModFluids;
-import fengliu.feseliud.item.ModItems;
-import fengliu.feseliud.item.icecream.potion.IcePotionCup;
 import fengliu.feseliud.networking.packets.ModS2CPackets;
 import fengliu.feseliud.utils.IdUtil;
 import fengliu.feseliud.utils.RegisterUtil;
@@ -17,6 +15,7 @@ import net.fabricmc.fabric.api.client.render.fluid.v1.SimpleFluidRenderHandler;
 import net.fabricmc.fabric.api.client.rendering.v1.ColorProviderRegistry;
 import net.minecraft.block.Block;
 import net.minecraft.client.render.RenderLayer;
+import net.minecraft.item.Item;
 
 import java.lang.reflect.Field;
 import java.util.List;
@@ -25,17 +24,7 @@ import java.util.Map;
 public class SummerIceCreamClient implements ClientModInitializer {
 	@Override
 	public void onInitializeClient() {
-		RegisterUtil.baseColorItems.forEach(baseColorItem -> {
-			ColorProviderRegistry.ITEM.register((stack, tintIndex) -> baseColorItem.getColor().getMapColor().color, baseColorItem);
-		});
-
-		ModItems.ICE_POTION_CUPS.forEach((iceCreamBar, iIceCreamLevel) -> {
-			ColorProviderRegistry.ITEM.register((stack, tintIndex) -> tintIndex == 0 ? IcePotionCup.getColor(stack) : -1, iceCreamBar);
-		});
-
-		ModItems.POTION_CUPS.forEach((iceCreamBar, iIceCreamLevel) -> {
-			ColorProviderRegistry.ITEM.register((stack, tintIndex) -> tintIndex == 0 ? IcePotionCup.getColor(stack) : -1, iceCreamBar);
-		});
+		RegisterUtil.baseColorItems.forEach(baseColorItem -> ColorProviderRegistry.ITEM.register(baseColorItem::colorProvider, (Item) baseColorItem));
 
 		for (Field field: ModFluids.class.getDeclaredFields()) {
 			BaseFluid fluid1;
