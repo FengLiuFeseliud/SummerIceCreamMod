@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "   ",
+        "BWB",
+        " B "
+    ],
+    "key": {
+        "B": {
+            "item": "minecraft:brick"
+        },
+        "W": {
+            "item": "minecraft:white_dye"
+        }
+    },
+    "result": {
+        "item": "summer_ice_cream:plate",
+        "count": 1
+    }
+}

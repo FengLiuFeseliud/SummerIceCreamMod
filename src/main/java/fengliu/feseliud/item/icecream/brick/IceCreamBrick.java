@@ -39,14 +39,10 @@ public class IceCreamBrick extends IceCreamBar {
      */
     @Override
     public ItemStack getNextItemStack(ItemStack stack) {
-        stack.decrement(1);
-        if (stack.isEmpty()){
+        if (stack.getCount() <= 1){
             return this.getItemLevel().getOutItemStack();
         }
-
-        ItemStack newStack = stack.getItem().getDefaultStack();
-        newStack.setCount(stack.getCount());
-        return newStack;
+        return new ItemStack(stack.getItem(), stack.getCount() - 1);
     }
 
     @Override
@@ -94,7 +90,7 @@ public class IceCreamBrick extends IceCreamBar {
         @Override
         public FoodComponent getFoodComponent() {
             return new FoodComponent.Builder()
-                    .hunger((int) (1.5f * this.gain)).saturationModifier((float) (this.gain))
+                    .hunger(this.gain).saturationModifier((float) (this.gain))
                     .statusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 100 * this.gain), 1.0f)
                     .alwaysEdible().build();
         }

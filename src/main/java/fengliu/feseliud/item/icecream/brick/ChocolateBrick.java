@@ -7,8 +7,6 @@ import fengliu.feseliud.utils.level.IFoodItemLevel;
 import fengliu.feseliud.utils.level.ILevelItem;
 import net.fabricmc.fabric.api.item.v1.FabricItem;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
-import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.FoodComponent;
 import net.minecraft.item.ItemStack;
 
@@ -58,7 +56,7 @@ public class ChocolateBrick extends BaseItem implements ILevelItem, FabricItem {
         @Override
         public FoodComponent getFoodComponent() {
             return new FoodComponent.Builder()
-                    .hunger(2 * this.gain).saturationModifier(1.5F * this.gain)
+                    .hunger((int) (1.5 * this.gain)).saturationModifier(1.5F * this.gain)
                     .build();
         }
 

@@ -2,15 +2,12 @@
     "type": "minecraft:crafting_shaped",
     "pattern": [
         "   ",
-        "BWB",
-        "BBB"
+        "   ",
+        "PPP"
     ],
     "key": {
-        "B": {
-            "item": "minecraft:brick"
-        },
-        "W": {
-            "item": "minecraft:white_dye"
+        "P": {
+            "item": "summer_ice_cream:plate"
         }
     },
     "result": {

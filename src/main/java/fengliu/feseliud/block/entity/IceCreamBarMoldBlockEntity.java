@@ -1,7 +1,6 @@
 package fengliu.feseliud.block.entity;
 
 import fengliu.feseliud.item.ModItems;
-import fengliu.feseliud.item.icecream.bar.IceCreamBar;
 import fengliu.feseliud.item.icecream.liquid.FoodLiquidBucket;
 import fengliu.feseliud.recipes.ListRecipes;
 import fengliu.feseliud.utils.IHitSlot;
@@ -12,7 +11,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.Items;
-import net.minecraft.util.Hand;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 
@@ -40,39 +38,32 @@ public class IceCreamBarMoldBlockEntity extends InventoryBlockEntity{
         return putStack;
     }
 
-    public ItemStack putItem(PlayerEntity player, IHitSlot hitSlots, ItemStack stack){
+    public ItemStack putItem(IHitSlot hitSlots, ItemStack handStack){
         int headSlot = hitSlots.getIndex() * 3;
         for (int slotIndex = headSlot; slotIndex < headSlot + 3; slotIndex++){
             ItemStack slotStack = this.getStack(slotIndex);
-            if (slotStack.isOf(stack.getItem()) && stack.isOf(ModItems.BAR)){
-                return stack;
+            if (slotStack.isOf(handStack.getItem()) && handStack.isOf(ModItems.BAR)){
+                return handStack;
             }
 
             if (!slotStack.isEmpty()){
                 continue;
             }
 
-            ItemStack putStack = stack.copy();
+            ItemStack putStack = handStack.copy();
             putStack.setCount(1);
-            if (!player.isCreative()){
-                stack.decrement(1);
-            }
-
             this.setStack(slotIndex, putStack);
             if (putStack.getItem() instanceof FoodLiquidBucket){
-                if (player.isCreative()){
-                    return stack.copy();
-                }
                 return Items.BUCKET.getDefaultStack();
             }
 
             this.markDirty();
-            return stack;
+            return handStack;
         }
-        return stack;
+        return handStack;
     }
 
-    public ItemStack takeItem(PlayerEntity player, Hand hand, IHitSlot hitSlots, World world, BlockPos pos, ItemStack handStack){
+    public ItemStack takeItem(IHitSlot hitSlots, ItemStack handStack){
         int barSlot = hitSlots.getIndex() * 3 - 1;
         if (this.getStack(barSlot + 1).isEmpty() && handStack.isEmpty()){
             return ItemStack.EMPTY;
@@ -89,21 +80,13 @@ public class IceCreamBarMoldBlockEntity extends InventoryBlockEntity{
                     return ItemStack.EMPTY;
                 }
 
-                this.setStack(slotIndex, ItemStack.EMPTY);
+                this.removeStack(slotIndex);
                 this.markDirty();
-                if (!player.isCreative()){
-                    handStack.decrement(1);
-                } else {
-                    return ItemStack.EMPTY;
-                }
                 return slotStack;
             }
 
-            this.setStack(slotIndex, ItemStack.EMPTY);
+            this.removeStack(slotIndex);
             this.markDirty();
-            if (player.isCreative() && !(slotStack.getItem() instanceof IceCreamBar)){
-                return ItemStack.EMPTY;
-            }
             return slotStack.copy();
         }
         return ItemStack.EMPTY;

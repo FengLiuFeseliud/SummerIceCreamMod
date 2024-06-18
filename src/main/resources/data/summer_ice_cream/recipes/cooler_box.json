@@ -1,0 +1,20 @@
+{
+    "type": "minecraft:crafting_shaped",
+    "pattern": [
+        "BBB",
+        "BWB",
+        "BBB"
+    ],
+    "key": {
+        "B": {
+            "item": "minecraft:brick"
+        },
+        "W": {
+            "item": "minecraft:blue_dye"
+        }
+    },
+    "result": {
+        "item": "summer_ice_cream:cooler_box",
+        "count": 1
+    }
+}

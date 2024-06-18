@@ -1,13 +1,9 @@
 package fengliu.feseliud.block.entity;
 
-import fengliu.feseliud.SummerIceCream;
-import fengliu.feseliud.block.icecream.CoolerBoxBlock;
 import fengliu.feseliud.utils.IHitSlot;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NbtCompound;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 

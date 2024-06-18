@@ -114,7 +114,7 @@ public class ChocolateGlowBerriesIceCreamCup extends IceCreamCup{
         @Override
         public FoodComponent getFoodComponent() {
             return new FoodComponent.Builder()
-                    .hunger(2 * this.gain).saturationModifier((float) (this.gain))
+                    .hunger((int) (2.5F * this.gain)).saturationModifier(1.5F * this.gain)
                     .statusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 100 * this.gain), 1.0f)
                     .statusEffect(new StatusEffectInstance(StatusEffects.GLOWING, 100 * this.gain), 1.0f)
                     .alwaysEdible().build();

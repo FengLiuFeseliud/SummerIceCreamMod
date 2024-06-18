@@ -1,22 +1,16 @@
 package fengliu.feseliud.utils;
 
 import fengliu.feseliud.block.FacingEntityBlock;
-import fengliu.feseliud.block.entity.IceCreamBarMoldBlockEntity;
 import fengliu.feseliud.block.entity.InventoryBlockEntity;
-import fengliu.feseliud.block.icecream.IceCreamBarMoldBlock;
 import net.minecraft.block.BlockState;
-import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
-import net.minecraft.item.Items;
 import net.minecraft.util.hit.BlockHitResult;
 import net.minecraft.util.math.Direction;
 
 import java.text.DecimalFormat;
 import java.util.ArrayList;
-import java.util.Comparator;
 import java.util.List;
-import java.util.function.Consumer;
 
 public interface IHitSlot{
     int getIndex();

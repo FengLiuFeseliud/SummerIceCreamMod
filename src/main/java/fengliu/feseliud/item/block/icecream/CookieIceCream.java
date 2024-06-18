@@ -5,8 +5,6 @@ import fengliu.feseliud.block.ModBlocks;
 import fengliu.feseliud.block.icecream.IceCreamBlock;
 import fengliu.feseliud.item.block.BaseBlockItem;
 import fengliu.feseliud.item.block.ModBlockItems;
-import fengliu.feseliud.item.icecream.IIceCreamLevel;
-import fengliu.feseliud.item.icecream.bar.IceCreamBar;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
@@ -46,7 +44,7 @@ public class CookieIceCream extends IceCream{
         @Override
         public FoodComponent getFoodComponent() {
             return new FoodComponent.Builder()
-                    .hunger(2 * this.gain).saturationModifier((float) (1.5 * this.gain))
+                    .hunger(2 * this.gain).saturationModifier(1.5F * this.gain)
                     .statusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 100 * this.gain), 1.0f)
                     .statusEffect(new StatusEffectInstance(StatusEffects.INSTANT_HEALTH, this.gain), 1.0f)
                     .alwaysEdible().build();

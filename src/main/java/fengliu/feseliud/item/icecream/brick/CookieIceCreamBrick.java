@@ -42,7 +42,7 @@ public class CookieIceCreamBrick extends IceCreamBrick{
         @Override
         public FoodComponent getFoodComponent() {
             return new FoodComponent.Builder()
-                    .hunger(2 * this.gain).saturationModifier((float) (1.5 * this.gain))
+                    .hunger(this.gain).saturationModifier(1.5F * this.gain)
                     .statusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 100 * this.gain), 1.0f)
                     .statusEffect(new StatusEffectInstance(StatusEffects.INSTANT_HEALTH, this.gain), 1.0f)
                     .alwaysEdible().build();

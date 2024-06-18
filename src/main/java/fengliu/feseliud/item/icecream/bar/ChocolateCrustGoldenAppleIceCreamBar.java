@@ -42,7 +42,7 @@ public class ChocolateCrustGoldenAppleIceCreamBar extends IceCreamBar {
         @Override
         public FoodComponent getFoodComponent() {
             return new FoodComponent.Builder()
-                    .hunger(2 * this.gain).saturationModifier(1.5f * this.gain)
+                    .hunger((int) (2.5F * this.gain)).saturationModifier(1.5f * this.gain)
                     .statusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 80 * this.gain), 1.0f)
                     .statusEffect(new StatusEffectInstance(StatusEffects.REGENERATION, 100, 1), 1.0f)
                     .statusEffect(new StatusEffectInstance(StatusEffects.ABSORPTION, 2400), 1.0f)

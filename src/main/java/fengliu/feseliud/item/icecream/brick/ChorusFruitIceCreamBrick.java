@@ -51,7 +51,7 @@ public class ChorusFruitIceCreamBrick extends IceCreamBrick {
         @Override
         public FoodComponent getFoodComponent() {
             return new FoodComponent.Builder()
-                    .hunger(2 * this.gain).saturationModifier((float) (this.gain))
+                    .hunger((int) (1.5F * this.gain)).saturationModifier((float) (this.gain))
                     .statusEffect(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 100 * this.gain), 1.0f)
                     .alwaysEdible().build();
         }

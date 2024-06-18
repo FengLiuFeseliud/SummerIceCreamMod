@@ -6,6 +6,7 @@
   "summer_ice_cream.item.ice_cream.info.1": "将在 %s 秒后融化",
   "summer_ice_cream.item.pack_ice_cream_time.info.1": "%s 已经取出 %s 秒",
   "summer_ice_cream.item.pack_ice_cream.info.1": "内容物 [ %s ]",
+  "summer_ice_cream.item.plate.food.info": "%s - %s",
 
   "block.summer_ice_cream.ice_cream_bar_mold": "雪糕模型",
   "item.summer_ice_cream.ice_cream_bar_mold.tooltip": "好像可以用这个在寒冷的地方冷冻出雪糕?",
@@ -77,6 +78,9 @@
 
   "block.summer_ice_cream.cooler_box": "保温箱",
   "item.summer_ice_cream.cooler_box.tooltip": "把雪糕放进去好像可以减缓雪糕融化速度?",
+
+  "block.summer_ice_cream.plate": "冰砖盘",
+  "item.summer_ice_cream.plate.tooltip": "把冰砖放进去好像可以按顺序吃?",
 
   "item.summer_ice_cream.cooked_cacao_beans": "熟可可豆",
   "item.summer_ice_cream.cooked_cacao_beans.tooltip": "被烤制过的可可豆",

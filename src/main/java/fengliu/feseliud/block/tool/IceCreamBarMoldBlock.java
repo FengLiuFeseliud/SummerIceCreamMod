@@ -1,4 +1,4 @@
-package fengliu.feseliud.block.icecream;
+package fengliu.feseliud.block.tool;
 
 import fengliu.feseliud.block.FacingBlock;
 import fengliu.feseliud.block.FacingEntityBlock;
@@ -13,6 +13,7 @@ import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.data.client.BlockStateModelGenerator;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.ItemUsage;
 import net.minecraft.item.Items;
 import net.minecraft.util.ActionResult;
 import net.minecraft.util.Hand;
@@ -87,16 +88,14 @@ public class IceCreamBarMoldBlock extends FacingEntityBlock {
 
         ItemStack handStack = player.getStackInHand(hand);
         if (handStack.isOf(Items.BUCKET) || handStack.isEmpty()){
-            ItemStack stack = be.takeItem(player, hand, hitSlots, world, pos, handStack);
-            if (handStack.isEmpty()){
-                player.setStackInHand(hand, stack);
-            } else {
-                dropStack(world, pos, stack);
+            player.setStackInHand(hand, ItemUsage.exchangeStack(handStack, player, be.takeItem(hitSlots, handStack)));
+        } else {
+            ItemStack stack = be.putItem(hitSlots, handStack);
+            if (!player.isCreative() && !stack.isOf(Items.BUCKET)){
+                stack.decrement(1);
             }
-            return ActionResult.SUCCESS;
+            player.setStackInHand(hand, stack);
         }
-
-        player.setStackInHand(hand, be.putItem(player, hitSlots, handStack));
         return ActionResult.SUCCESS;
     }
 }

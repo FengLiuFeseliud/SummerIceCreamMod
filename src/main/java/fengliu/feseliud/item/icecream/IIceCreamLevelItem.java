@@ -8,7 +8,6 @@ import net.fabricmc.fabric.api.item.v1.FabricItem;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtCompound;
 import net.minecraft.nbt.NbtElement;
@@ -32,14 +31,25 @@ public interface IIceCreamLevelItem extends ILevelItem, FabricItem {
 
     default int getThawTime(){ return ((IIceCreamLevel) this.getLevelItems().get(this)).getThawTime(); }
 
-    default int getThawTimeFromItemStack(ItemStack stack){
-        NbtCompound nbt = stack.getOrCreateNbt();
-        if (!nbt.contains(THAW_TIME_KEY, NbtElement.INT_TYPE)){
+    default int getThawTimeFromNbt(NbtCompound nbtStack){
+        if (!nbtStack.contains(THAW_TIME_KEY, NbtElement.INT_TYPE)){
             int thawTime = ((IIceCreamLevel) this.getLevelItems().get(this)).getThawTime();
-            nbt.putInt(THAW_TIME_KEY, thawTime);
+            nbtStack.putInt(THAW_TIME_KEY, thawTime);
             return thawTime;
         }
-        return nbt.getInt(THAW_TIME_KEY);
+        return nbtStack.getInt(THAW_TIME_KEY);
+    }
+
+    default int getThawTimeFromItemStack(ItemStack stack){
+        return this.getThawTimeFromNbt(stack.getOrCreateNbt());
+    }
+
+    default void thawTimeToItemStack(ItemStack stack){
+        stack.getOrCreateNbt().putInt(THAW_TIME_KEY, this.getThawTimeFromItemStack(stack) - 1);
+    }
+
+    default void thawTimeToItemStack(NbtCompound nbtStack){
+        nbtStack.putInt(THAW_TIME_KEY, this.getThawTimeFromNbt(nbtStack) - 1);
     }
 
     default ItemStack setItemStack(ItemStack stack, ItemStack oldStack){

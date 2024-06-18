@@ -1,8 +1,10 @@
 package fengliu.feseliud.item.block;
 
 import fengliu.feseliud.block.ModBlocks;
+import fengliu.feseliud.block.entity.PlateBlockEntity;
 import fengliu.feseliud.item.ModItemGroups;
 import fengliu.feseliud.item.block.icecream.*;
+import fengliu.feseliud.item.block.tool.Plate;
 import fengliu.feseliud.utils.RegisterUtil;
 import net.minecraft.item.Item;
 
@@ -12,6 +14,7 @@ public class ModBlockItems {
     public static final BaseBlockItem ICE_CREAM_BAR_MOLD = RegisterUtil.registerItem(new BaseBlockItem(ModBlocks.ICE_CREAM_BAR_MOLD_BLOCK, 64), ModItemGroups.ITEM_GROUP);
     public static final BaseBlockItem MIXER = RegisterUtil.registerItem(new BaseBlockItem("/stop", ModBlocks.MIXER_BLOCK, 64), ModItemGroups.ITEM_GROUP);
     public static final CoolerBox COOLER_BOX = RegisterUtil.registerItem(new CoolerBox("/close", ModBlocks.COOLER_BOX_BLOCK, 1), ModItemGroups.ITEM_GROUP);
+    public static final Plate PLATE = RegisterUtil.registerItem(new Plate(ModBlocks.PLATE_BLOCK, new Item.Settings().maxCount(1).maxDamage(PlateBlockEntity.SIZE)), ModItemGroups.ITEM_GROUP);
     public static final Map<IceCream, IIceCreamBlockLevel> ICE_CREAMS = RegisterUtil.registerItems(IceCream.IceCreamLevels.values(), ModItemGroups.FOOD_GROUP);
     public static final Map<Chocolate, Chocolate.ChocolateLevels> CHOCOLATES = RegisterUtil.registerItems(Chocolate.ChocolateLevels.values(), ModItemGroups.FOOD_GROUP);
     public static final Map<IceCream, IIceCreamBlockLevel> CHOCOLATE_ICE_CREAMS = RegisterUtil.registerItems(ChocolateIceCream.IceCreamLevels.values(), ModItemGroups.FOOD_GROUP);

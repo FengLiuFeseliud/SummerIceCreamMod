@@ -1,19 +1,16 @@
 package fengliu.feseliud.block.entity.renderer;
 
-import fengliu.feseliud.SummerIceCream;
 import fengliu.feseliud.block.entity.CoolerBoxBlockEntity;
-import fengliu.feseliud.block.icecream.CoolerBoxBlock;
+import fengliu.feseliud.block.tool.CoolerBoxBlock;
 import fengliu.feseliud.utils.IHitSlot;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.MinecraftClient;
 import net.minecraft.client.render.VertexConsumerProvider;
 import net.minecraft.client.render.block.entity.BlockEntityRenderer;
 import net.minecraft.client.render.block.entity.BlockEntityRendererFactory;
-import net.minecraft.client.render.entity.EntityRendererFactory;
 import net.minecraft.client.render.model.json.ModelTransformationMode;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.client.world.ClientWorld;
-import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.RotationAxis;
 
