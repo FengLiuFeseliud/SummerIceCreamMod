@@ -52,8 +52,8 @@ public class Plate extends BaseBlockItem implements IInventoryItem {
             return;
         }
 
-        iceCreamLevelItem.thawTimeToItemStack(tackStack);
-        if (iceCreamLevelItem.getThawTimeFromItemStack(tackStack) <= 0){
+        iceCreamLevelItem.thawTickToItemStack(tackStack);
+        if (iceCreamLevelItem.getThawTickFromItemStack(tackStack) <= 0){
             this.takeInventoryLastStack(stack);
         }
     }

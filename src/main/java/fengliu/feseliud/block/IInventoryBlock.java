@@ -11,13 +11,33 @@ import net.minecraft.world.World;
 
 import java.util.List;
 
+/**
+ * 可移动库存方块
+ */
 public interface IInventoryBlock {
+
+    /**
+     * 库存方块物品
+     * @return 物品
+     */
     ItemStack getBlockItemStack();
 
+    /**
+     * 设置新的库存方块物品
+     * @return 物品
+     */
     default ItemStack setBlockItemStack(ItemStack stack){
         return stack;
     }
 
+    /**
+     *  将可移动库存方块从世界上移动到玩家手上
+     * @param world 世界
+     * @param pos 可移动库存方块坐标
+     * @param player 玩家
+     * @param hand 玩家使用手
+     * @return true 移动成功
+     */
     default boolean setItemStackToHand(World world, BlockPos pos, PlayerEntity player, Hand hand){
         if (!player.isSneaking()){
             return false;
@@ -38,6 +58,12 @@ public interface IInventoryBlock {
         return true;
     }
 
+    /**
+     * 将库存 nbt 写入掉落物
+     * @param builderStacks builderStacks
+     * @param builder builder
+     * @return 掉落物表
+     */
     default List<ItemStack> setNbtToDroppedStacks(List<ItemStack> builderStacks, LootContextParameterSet.Builder builder){
         if (!(builder.getOptional(LootContextParameters.BLOCK_ENTITY) instanceof InventoryBlockEntity be)){
             return builderStacks;

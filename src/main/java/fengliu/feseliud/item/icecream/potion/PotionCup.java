@@ -4,7 +4,7 @@ import fengliu.feseliud.item.BaseItem;
 import fengliu.feseliud.item.IModItem;
 import fengliu.feseliud.item.ModItems;
 import fengliu.feseliud.utils.IdUtil;
-import fengliu.feseliud.utils.color.IColor;
+import fengliu.feseliud.utils.color.IColorItem;
 import fengliu.feseliud.utils.level.IItemLevel;
 import fengliu.feseliud.utils.level.ILevelItem;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
@@ -28,7 +28,7 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.Map;
 
-public class PotionCup extends BaseItem implements ILevelItem, IColor {
+public class PotionCup extends BaseItem implements ILevelItem, IColorItem {
     public PotionCup(Settings settings, String name) {
         super(settings, name);
     }

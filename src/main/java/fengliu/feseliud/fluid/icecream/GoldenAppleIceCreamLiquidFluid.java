@@ -1,7 +1,6 @@
 package fengliu.feseliud.fluid.icecream;
 
 import fengliu.feseliud.block.ModBlocks;
-import fengliu.feseliud.block.icecream.GoldenAppleIceCreamBlock;
 import fengliu.feseliud.fluid.ModFluids;
 import fengliu.feseliud.item.ModItems;
 import fengliu.feseliud.item.block.icecream.GoldenAppleIceCream;
@@ -35,7 +34,7 @@ public class GoldenAppleIceCreamLiquidFluid extends MilkIceCreamLiquidFluid{
 
     @Override
     public Block getCongealBlock() {
-        return ModBlocks.GOLDEN_APPLE_ICE_CREAM_BLOCKS.get(GoldenAppleIceCream.IceCreamLevels.NOT_THAW);
+        return ModBlocks.GOLDEN_APPLE_ICE_CREAM_BLOCKS.get(GoldenAppleIceCream.IceCreamLevelsItem.NOT_THAW);
     }
 
     @Override

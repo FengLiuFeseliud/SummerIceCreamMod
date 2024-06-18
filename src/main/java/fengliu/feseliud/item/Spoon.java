@@ -30,8 +30,8 @@ public class Spoon extends BaseItem{
             return super.onStackClicked(stack, slot, clickType, player);
         }
 
-        if (slotStack.getNbt() == null || !slotStack.getNbt().contains(IIceCreamLevelItem.THAW_TIME_KEY, NbtElement.INT_TYPE)) {
-            slotStack.getOrCreateNbt().putInt(IIceCreamLevelItem.THAW_TIME_KEY, 0);
+        if (slotStack.getNbt() == null || !slotStack.getNbt().contains(IIceCreamLevelItem.THAW_TICK_KEY, NbtElement.INT_TYPE)) {
+            slotStack.getOrCreateNbt().putInt(IIceCreamLevelItem.THAW_TICK_KEY, 0);
         }
 
         int iceCreamLevelInt = iceCreamCup.getLevelItems().get(iceCreamCup).getLevel();
@@ -41,7 +41,7 @@ public class Spoon extends BaseItem{
             }
 
             ItemStack iceCreamCupItemStack = iceCreamCupItem.getDefaultStack();
-            iceCreamCupItemStack.getOrCreateNbt().putInt(IIceCreamLevelItem.THAW_TIME_KEY, slotStack.getNbt().getInt(IIceCreamLevelItem.THAW_TIME_KEY));
+            iceCreamCupItemStack.getOrCreateNbt().putInt(IIceCreamLevelItem.THAW_TICK_KEY, slotStack.getNbt().getInt(IIceCreamLevelItem.THAW_TICK_KEY));
 
             stack.decrement(1);
             slotStack.decrement(1);

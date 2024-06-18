@@ -123,7 +123,7 @@ public class IceCreamBarMoldBlockEntityRenderer implements BlockEntityRenderer<I
             matrices.translate(0.1f, -0.26f, 0f);
         }
 
-        List<SimpleInventory> inventories = IHitSlot.splitInput(be, IHitSlot.ThreeHitSlot.values());
+        List<SimpleInventory> inventories = IHitSlot.splitInventor(be, IHitSlot.ThreeHitSlot.values());
         for (SimpleInventory inventory : inventories) {
             ItemStack rendererStack = inventory.getStack(0);
             if (rendererStack.getItem() instanceof IceCreamBar || rendererStack.isOf(ModItems.BAR)){

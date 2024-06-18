@@ -36,7 +36,7 @@ public class IceCream extends BaseBlockItem implements IIceCreamLevelItem {
 
     @Override
     @SuppressWarnings("unchecked")
-    public Map<IceCream, IIceCreamBlockLevel> getLevelItems() {
+    public Map<IceCream, IIceCreamBlockItemLevel> getLevelItems() {
         return ModBlockItems.ICE_CREAMS;
     }
 
@@ -76,7 +76,7 @@ public class IceCream extends BaseBlockItem implements IIceCreamLevelItem {
         this.appendThawTimeTooltip(stack, world, tooltip, context);
     }
 
-    public enum IceCreamLevels implements IIceCreamBlockLevel{
+    public enum IceCreamLevelsItem implements IIceCreamBlockItemLevel {
         NOT_THAW(1, 600, 3, "not_thaw"),
         THAW_HALF(2, 300, 2, "thaw_half"),
         THAW_MOST(3, 150, 1, "thaw_most");
@@ -86,7 +86,7 @@ public class IceCream extends BaseBlockItem implements IIceCreamLevelItem {
         private final int gain;
         private final String thawName;
 
-        IceCreamLevels(int level, int thawTime, int gain, String thawName){
+        IceCreamLevelsItem(int level, int thawTime, int gain, String thawName){
             this.thawTime = thawTime * 20;
             this.level = level;
             this.gain = gain;
@@ -118,7 +118,7 @@ public class IceCream extends BaseBlockItem implements IIceCreamLevelItem {
 
         @Override
         public int getMaxLevel() {
-            return IceCream.IceCreamLevels.values().length;
+            return IceCreamLevelsItem.values().length;
         }
 
         @Override

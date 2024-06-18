@@ -18,7 +18,6 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.Items;
 import net.minecraft.registry.RegistryKey;
-import net.minecraft.util.DyeColor;
 
 import java.util.List;
 import java.util.Map;
@@ -27,8 +26,8 @@ public class ModItems {
     public static final BaseItem BAR = register(new BaseItem("bar"), ModItemGroups.ITEM_GROUP);
     public static final BaseItem ICE_CREAM_CUPS_PACK = register(new BaseItem("ice_cream_cup_pack", 16), ModItemGroups.ITEM_GROUP);
     public static final Spoon SPOON = register(new Spoon("spoon", 16), ModItemGroups.ITEM_GROUP);
-    public static final List<IceCreamBarPack> ICE_CREAM_BAR_PACKS = RegisterUtil.registerColorItems(DyeColor.values(), dyeColor -> new IceCreamBarPack(dyeColor,"ice_cream_bar_pack", 16), ModItemGroups.ITEM_GROUP);
-    public static final List<PackIceCreamBar> PACK_ICE_CREAM = RegisterUtil.registerColorItems(DyeColor.values(), dyeColor -> new PackIceCreamBar(dyeColor,"pack_ice_cream", 1), ModItemGroups.ITEM_GROUP);
+    public static final List<IceCreamBarPack> ICE_CREAM_BAR_PACKS = RegisterUtil.registerDyeColorItems(dyeColor -> new IceCreamBarPack(dyeColor,"ice_cream_bar_pack", 16), ModItemGroups.ITEM_GROUP);
+    public static final List<PackIceCreamBar> PACK_ICE_CREAM = RegisterUtil.registerDyeColorItems(dyeColor -> new PackIceCreamBar(dyeColor,"pack_ice_cream", 1), ModItemGroups.ITEM_GROUP);
 
     public static final FoodLiquidBucket MILK_ICE_CREAM_LIQUID_BUCKET = register(new FoodLiquidBucket("milk_ice_cream_liquid_bucket", ModFluids.MILK_ICE_CREAM_LIQUID_FLUIDS, FoodComponents.POTATO), ModItemGroups.MATERIALS_GROUP);
     public static final Map<IceCreamBar, IIceCreamLevel> ICE_CREAM_BAR = RegisterUtil.registerItems(IceCreamBar.IceCreamLevels.values(), ModItemGroups.FOOD_GROUP);

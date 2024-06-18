@@ -9,6 +9,9 @@ import net.minecraft.recipe.book.RecipeCategory;
 
 import java.util.function.Consumer;
 
+/**
+ * 简单烧制物品
+ */
 public class BaseCokedItem extends BaseItem{
     public final Item cookItem;
     public final int cookExperience;

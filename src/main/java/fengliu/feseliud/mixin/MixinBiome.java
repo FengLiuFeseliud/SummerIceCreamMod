@@ -1,12 +1,10 @@
 package fengliu.feseliud.mixin;
 
-import fengliu.feseliud.block.entity.IceCreamBarMoldBlockEntity;
 import fengliu.feseliud.fluid.BaseFluid;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.FluidBlock;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.util.math.BlockPos;
-import net.minecraft.world.LightType;
 import net.minecraft.world.WorldView;
 import net.minecraft.world.biome.Biome;
 import org.spongepowered.asm.mixin.Mixin;
@@ -21,7 +19,7 @@ public class MixinBiome{
     public boolean doesNotSnow(BlockPos pos) { return false; }
 
     /**
-     * 是否可以让 BaseFluid 结冰
+     * 使 canSetIce 可以判断 BaseFluid 是否可以结冰
      */
     @Inject(
             method = "canSetIce(Lnet/minecraft/world/WorldView;Lnet/minecraft/util/math/BlockPos;Z)Z",

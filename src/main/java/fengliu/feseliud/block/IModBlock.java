@@ -6,7 +6,6 @@ import fengliu.feseliud.utils.IdUtil;
 import net.minecraft.block.Block;
 import net.minecraft.block.FluidBlock;
 import net.minecraft.data.client.*;
-import net.minecraft.item.Item;
 import net.minecraft.util.Identifier;
 
 import java.util.Optional;
@@ -19,16 +18,14 @@ public interface IModBlock extends IGeneratorModel {
     String PREFIXED_PATH = "block/";
 
     /**
-     * 方块 ID 字符串
-     *
-     * @return ID 字符串
+     * 方块 Id 字符串
+     * @return Id
      */
     String getBlockName();
 
     /**
-     * 方块 ID
-     *
-     * @return Identifier
+     * 方块 Id
+     * @return Id
      */
     default Identifier getId() {
         return IdUtil.get(this.getBlockName());
@@ -40,26 +37,15 @@ public interface IModBlock extends IGeneratorModel {
     }
 
     /**
-     * 获取纹理路径 {@link Identifier}
-     *
-     * @return 纹理路径 Identifier
-     */
-    default Identifier getTexturePath() {
-        return IdUtil.get(this.getPrefixedPath() + this.getTextureName());
-    }
-
-    /**
-     * 获取模型 {@link Identifier}
-     *
-     * @return 模型 Identifier
+     * 获取模型 Id
+     * @return 模型 Id
      */
     default Identifier getModelId() {
         return IdUtil.get(this.getPrefixedPath() + this.getTextureName());
     }
 
     /**
-     * 生成方块状态
-     *
+     * 生成方块状态, 参考 {@link fengliu.feseliud.data.generator.ModelDataGeneration#generateBlockStateModels(BlockStateModelGenerator)}
      * @param blockStateModelGenerator 方块状态模型生成器
      */
     default void generateBlockStateModel(BlockStateModelGenerator blockStateModelGenerator) {
@@ -69,8 +55,7 @@ public interface IModBlock extends IGeneratorModel {
     }
 
     /**
-     * 生成方块模型
-     *
+     * 生成方块模型, 参考 {@link fengliu.feseliud.data.generator.ModelDataGeneration#generateItemModels(ItemModelGenerator)}
      * @param blockStateModelGenerator 方块状态模型生成器
      */
     default void generateBlockModel(BlockStateModelGenerator blockStateModelGenerator) {
@@ -81,7 +66,8 @@ public interface IModBlock extends IGeneratorModel {
     }
 
     /**
-     * 用于生成战利品 json
+     * 用于生成战利品 json, 参考 {@link LootTablesGeneration#generate()}
+     * @param lootTablesGeneration 战利品生成器
      */
     default void generateLootItem(LootTablesGeneration lootTablesGeneration){
         if (this instanceof FluidBlock){

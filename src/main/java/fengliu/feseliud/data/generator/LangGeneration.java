@@ -4,10 +4,9 @@ import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import fengliu.feseliud.SummerIceCream;
 import fengliu.feseliud.SummerIceCreamDataGenerator;
-import fengliu.feseliud.item.BaseColorItem;
+import fengliu.feseliud.item.BaseDyeColorItem;
 import fengliu.feseliud.item.ModItems;
 import fengliu.feseliud.item.block.ModBlockItems;
-import fengliu.feseliud.item.icecream.IIceCreamLevel;
 import fengliu.feseliud.utils.level.IItemLevel;
 import net.fabricmc.fabric.api.datagen.v1.FabricDataOutput;
 import net.fabricmc.fabric.api.datagen.v1.provider.FabricLanguageProvider;
@@ -90,7 +89,7 @@ public class LangGeneration extends FabricLanguageProvider {
         SummerIceCreamDataGenerator.forFields(ModItems.class.getDeclaredFields(), obj -> {
             if (obj instanceof List<?> items){
                 items.forEach(item -> {
-                    if (!(item instanceof BaseColorItem colorItem)){
+                    if (!(item instanceof BaseDyeColorItem colorItem)){
                         return;
                     }
 

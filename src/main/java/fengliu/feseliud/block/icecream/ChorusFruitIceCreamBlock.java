@@ -4,7 +4,7 @@ import fengliu.feseliud.block.ModBlocks;
 import fengliu.feseliud.block.entity.ChorusFruitIceCreamBlockEntity;
 import fengliu.feseliud.block.entity.ModBlockEntitys;
 import fengliu.feseliud.item.ModItems;
-import fengliu.feseliud.item.block.icecream.IIceCreamBlockLevel;
+import fengliu.feseliud.item.block.icecream.IIceCreamBlockItemLevel;
 import fengliu.feseliud.item.icecream.IIceCreamLevel;
 import fengliu.feseliud.item.icecream.bar.IceCreamBar;
 import net.minecraft.block.BlockState;
@@ -17,8 +17,8 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Map;
 
 public class ChorusFruitIceCreamBlock extends IceCreamBlock{
-    public ChorusFruitIceCreamBlock(Settings settings, String name, IIceCreamBlockLevel iIceCreamBlockLevel) {
-        super(settings, name, iIceCreamBlockLevel);
+    public ChorusFruitIceCreamBlock(Settings settings, String name, IIceCreamBlockItemLevel iIceCreamBlockItemLevel) {
+        super(settings, name, iIceCreamBlockItemLevel);
     }
 
     @Override

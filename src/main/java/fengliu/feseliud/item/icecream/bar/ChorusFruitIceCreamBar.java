@@ -22,6 +22,11 @@ public class ChorusFruitIceCreamBar extends IceCreamBar {
         super(settings, name);
     }
 
+    /**
+     * 设置紫颂果物品 CD
+     * @param world 世界
+     * @param user 紫颂果用户
+     */
     public static void useChorusFruit(World world, LivingEntity user){
         Items.CHORUS_FRUIT.finishUsing(Items.CHORUS_FRUIT.getDefaultStack(), world, user);
         if (!(user instanceof PlayerEntity player)) {

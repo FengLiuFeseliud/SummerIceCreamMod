@@ -2,10 +2,6 @@ package fengliu.feseliud.item;
 
 import fengliu.feseliud.utils.IdUtil;
 import net.minecraft.client.item.TooltipContext;
-import net.minecraft.data.client.ItemModelGenerator;
-import net.minecraft.data.client.ModelIds;
-import net.minecraft.data.client.TextureMap;
-import net.minecraft.data.server.recipe.RecipeJsonProvider;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
@@ -13,10 +9,10 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
-import java.util.function.Consumer;
 
-import static net.minecraft.data.client.Models.GENERATED;
-
+/**
+ * 简单物品
+ */
 public class BaseItem extends Item implements IModItem {
     public final String name;
 
@@ -38,10 +34,6 @@ public class BaseItem extends Item implements IModItem {
         return this.name;
     }
 
-    /**
-     * 获取纹理名 (用于生成)
-     * @return 纹理名
-     */
     @Override
     public String getTextureName(){
         return this.name;

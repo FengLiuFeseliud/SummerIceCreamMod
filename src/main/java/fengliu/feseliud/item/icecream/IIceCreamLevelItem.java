@@ -18,10 +18,17 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
+/**
+ * 冰淇淋等级物品
+ */
 public interface IIceCreamLevelItem extends ILevelItem, FabricItem {
     String PREFIXED_PATH = "item/icecream/";
-    String THAW_TIME_KEY = SummerIceCream.MOD_ID + ".thawTime";
+    String THAW_TICK_KEY = SummerIceCream.MOD_ID + ".thawTick";
 
+    /**
+     * 是否带勺
+     * @return true 带勺
+     */
     boolean inSpoon();
 
     @Override
@@ -29,32 +36,52 @@ public interface IIceCreamLevelItem extends ILevelItem, FabricItem {
         return false;
     }
 
-    default int getThawTime(){ return ((IIceCreamLevel) this.getLevelItems().get(this)).getThawTime(); }
+    /**
+     * 获取融化 tick
+     * @return tick
+     */
+    default int getThawTick(){ return ((IIceCreamLevel) this.getLevelItems().get(this)).getThawTime(); }
 
-    default int getThawTimeFromNbt(NbtCompound nbtStack){
-        if (!nbtStack.contains(THAW_TIME_KEY, NbtElement.INT_TYPE)){
+    /**
+     * 从 Nbt 获取剩余融化 tick
+     * @param nbt 物品
+     * @return 剩余融化 tick
+     */
+    default int getThawTickFromNbt(NbtCompound nbt){
+        if (!nbt.contains(THAW_TICK_KEY, NbtElement.INT_TYPE)){
             int thawTime = ((IIceCreamLevel) this.getLevelItems().get(this)).getThawTime();
-            nbtStack.putInt(THAW_TIME_KEY, thawTime);
+            nbt.putInt(THAW_TICK_KEY, thawTime);
             return thawTime;
         }
-        return nbtStack.getInt(THAW_TIME_KEY);
+        return nbt.getInt(THAW_TICK_KEY);
     }
 
-    default int getThawTimeFromItemStack(ItemStack stack){
-        return this.getThawTimeFromNbt(stack.getOrCreateNbt());
+    /**
+     * 从物品获取剩余融化 tick
+     * @param stack 物品
+     * @return 剩余融化 tick
+     */
+    default int getThawTickFromItemStack(ItemStack stack){
+        return this.getThawTickFromNbt(stack.getOrCreateNbt());
     }
 
-    default void thawTimeToItemStack(ItemStack stack){
-        stack.getOrCreateNbt().putInt(THAW_TIME_KEY, this.getThawTimeFromItemStack(stack) - 1);
+    /**
+     * 向物品减一融化 tick
+     * @param stack 物品
+     */
+    default void thawTickToItemStack(ItemStack stack){
+        stack.getOrCreateNbt().putInt(THAW_TICK_KEY, this.getThawTickFromItemStack(stack) - 1);
     }
 
-    default void thawTimeToItemStack(NbtCompound nbtStack){
-        nbtStack.putInt(THAW_TIME_KEY, this.getThawTimeFromNbt(nbtStack) - 1);
-    }
-
+    /**
+     * 将旧物品剩余融化 tick 设置到另一个物品
+     * @param stack 物品
+     * @param oldStack 旧物品
+     * @return 已设置融化 tick 物品
+     */
     default ItemStack setItemStack(ItemStack stack, ItemStack oldStack){
         NbtCompound nbt = stack.getOrCreateNbt();
-        nbt.putInt(THAW_TIME_KEY, this.getThawTimeFromItemStack(oldStack));
+        nbt.putInt(THAW_TICK_KEY, this.getThawTickFromItemStack(oldStack));
         return stack;
     }
 
@@ -66,9 +93,9 @@ public interface IIceCreamLevelItem extends ILevelItem, FabricItem {
             return;
         }
 
-        int thawTime = this.getThawTimeFromItemStack(stack);
+        int thawTime = this.getThawTickFromItemStack(stack);
         if (thawTime > 0){
-            stack.getOrCreateNbt().putInt(THAW_TIME_KEY, --thawTime);
+            stack.getOrCreateNbt().putInt(THAW_TICK_KEY, --thawTime);
             return;
         }
         player.getInventory().setStack(slot, this.thaw(stack, player));
@@ -86,7 +113,10 @@ public interface IIceCreamLevelItem extends ILevelItem, FabricItem {
         return iceCreamStack;
     }
 
+    /**
+     * 附加冰淇淋融化信息
+     */
     default void appendThawTimeTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context){
-        tooltip.add(Text.translatable(IdUtil.getItemInfo("ice_cream", 1), this.getThawTimeFromItemStack(stack) / 20));
+        tooltip.add(Text.translatable(IdUtil.getItemInfo("ice_cream", 1), this.getThawTickFromItemStack(stack) / 20));
     }
 }

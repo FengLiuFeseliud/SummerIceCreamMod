@@ -1,18 +1,14 @@
 package fengliu.feseliud.mixin;
 
-import fengliu.feseliud.fluid.BaseFluid;
 import fengliu.feseliud.fluid.ModFluids;
 import fengliu.feseliud.fluid.icecream.MilkFluid;
 import fengliu.feseliud.utils.RegisterUtil;
 import net.minecraft.block.Block;
-import net.minecraft.block.FluidFillable;
-import net.minecraft.entity.Entity;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.fluid.FluidState;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.item.MilkBucketItem;
-import net.minecraft.server.MinecraftServer;
 import net.minecraft.sound.SoundCategory;
 import net.minecraft.sound.SoundEvents;
 import net.minecraft.util.Hand;
@@ -25,7 +21,6 @@ import net.minecraft.world.event.GameEvent;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Inject;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfo;
 import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 @Mixin(MilkBucketItem.class)
@@ -35,6 +30,9 @@ public abstract class MixinMilkBucketItem extends Item {
         super(settings);
     }
 
+    /**
+     * 使牛奶可以放置牛奶液体
+     */
     @Inject(method = "use", at = @At("HEAD"))
     public void useMilkFluid(World world, PlayerEntity user, Hand hand, CallbackInfoReturnable<TypedActionResult<ItemStack>> cir){
         BlockHitResult hitResult = raycast(world, user, RaycastContext.FluidHandling.WATER);

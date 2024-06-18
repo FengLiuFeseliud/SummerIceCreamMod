@@ -5,9 +5,7 @@ import fengliu.feseliud.block.ModBlocks;
 import fengliu.feseliud.block.icecream.IceCreamBlock;
 import fengliu.feseliud.item.block.BaseBlockItem;
 import fengliu.feseliud.item.block.ModBlockItems;
-import fengliu.feseliud.item.icecream.IIceCreamLevel;
 import fengliu.feseliud.item.icecream.bar.ChorusFruitIceCreamBar;
-import fengliu.feseliud.item.icecream.bar.IceCreamBar;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
@@ -31,11 +29,11 @@ public class ChorusFruitIceCream extends IceCream {
     }
 
     @Override
-    public Map<IceCream, IIceCreamBlockLevel> getLevelItems() {
+    public Map<IceCream, IIceCreamBlockItemLevel> getLevelItems() {
         return ModBlockItems.CHORUS_FRUIT_ICE_CREAMS;
     }
 
-    public enum IceCreamLevels implements IIceCreamBlockLevel{
+    public enum IceCreamLevelsItem implements IIceCreamBlockItemLevel {
         NOT_THAW(1, 600, 3, "not_thaw"),
         THAW_HALF(2, 300, 2, "thaw_half"),
         THAW_MOST(3, 150, 1, "thaw_most");
@@ -45,7 +43,7 @@ public class ChorusFruitIceCream extends IceCream {
         private final int gain;
         private final String thawName;
 
-        IceCreamLevels(int level, int thawTime, int gain, String thawName){
+        IceCreamLevelsItem(int level, int thawTime, int gain, String thawName){
             this.thawTime = thawTime * 20;
             this.level = level;
             this.gain = gain;
@@ -78,7 +76,7 @@ public class ChorusFruitIceCream extends IceCream {
 
         @Override
         public int getMaxLevel() {
-            return IceCreamLevels.values().length;
+            return IceCreamLevelsItem.values().length;
         }
 
         @Override

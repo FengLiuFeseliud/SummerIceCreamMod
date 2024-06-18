@@ -6,7 +6,7 @@ import fengliu.feseliud.item.icecream.IIceCreamLevel;
 import fengliu.feseliud.item.icecream.IIceCreamLevelItem;
 import fengliu.feseliud.mixin.MixinStatusEffectInstance;
 import fengliu.feseliud.utils.IdUtil;
-import fengliu.feseliud.utils.color.IColor;
+import fengliu.feseliud.utils.color.IColorItem;
 import fengliu.feseliud.utils.level.IItemLevel;
 import fengliu.feseliud.utils.level.ILevelItem;
 import net.fabricmc.fabric.api.item.v1.FabricItem;
@@ -41,44 +41,16 @@ import java.util.List;
 import java.util.Map;
 import java.util.Optional;
 
-public class IcePotionCup extends BaseItem implements IIceCreamLevelItem, IColor, FabricItem {
+public class IcePotionCup extends BaseItem implements IIceCreamLevelItem, IColorItem, FabricItem {
     public static final String PREFIXED_PATH = IIceCreamLevelItem.PREFIXED_PATH + "potion" + "/";
 
     public IcePotionCup(Settings settings, String name) {
         super(settings, name);
     }
 
-    public static int getColor(ItemStack stack){
-        Potion potion = PotionUtil.getPotion(stack);
-        if (potion.equals(Potions.EMPTY)){
-            return PotionUtil.getColor(Potions.WATER);
-        }
-        return PotionUtil.getColor(potion);
-    }
-
     @Override
     public int getColor() {
         return 0;
-    }
-
-    public static List<StatusEffectInstance> getStatusEffectInstances(ItemStack stack, IItemLevel level){
-        List<StatusEffectInstance> statusEffectInstances = new ArrayList<>();
-        PotionUtil.getPotion(stack).getEffects().forEach(statusEffectInstance -> {
-            StatusEffectInstance effectInstance = new StatusEffectInstance(statusEffectInstance);
-            ((MixinStatusEffectInstance) effectInstance).setDuration(effectInstance.getDuration() / level.getMaxLevel() * level.getGain());
-            statusEffectInstances.add(effectInstance);
-        });
-        if (stack.getItem() instanceof IcePotionCup){
-            statusEffectInstances.add(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 100 * level.getGain()));
-        }
-        return statusEffectInstances;
-    }
-
-    public static Text getCupName(ItemStack stack, IItemLevel level){
-        if (PotionUtil.getPotion(stack) == Potions.EMPTY){
-            return Text.translatable(IdUtil.getItemName(level.getIdName()), Text.translatable(Blocks.WATER.getTranslationKey()));
-        }
-        return Text.translatable(IdUtil.getItemName(level.getIdName()), Text.translatable(PotionUtil.getPotion(stack).finishTranslationKey("item.minecraft.potion.effect.")));
     }
 
     @Override
@@ -97,6 +69,65 @@ public class IcePotionCup extends BaseItem implements IIceCreamLevelItem, IColor
         this.thawTick(stack, world, entity, slot, selected);
     }
 
+    /**
+     * 获取物品药水16位颜色
+     * @param stack 物品
+     * @return 16位颜色, 物品没有药水返回16位水颜色
+     */
+    public static int getColor(ItemStack stack){
+        Potion potion = PotionUtil.getPotion(stack);
+        if (potion.equals(Potions.EMPTY)){
+            return PotionUtil.getColor(Potions.WATER);
+        }
+        return PotionUtil.getColor(potion);
+    }
+
+    /**
+     * 获取等级加成下的杯内药水效果列表
+     * @param stack 物品
+     * @param level 物品等级
+     * @return 效果列表
+     */
+    public static List<StatusEffectInstance> getStatusEffectInstances(ItemStack stack, IItemLevel level){
+        List<StatusEffectInstance> statusEffectInstances = new ArrayList<>();
+        PotionUtil.getPotion(stack).getEffects().forEach(statusEffectInstance -> {
+            StatusEffectInstance effectInstance = new StatusEffectInstance(statusEffectInstance);
+            ((MixinStatusEffectInstance) effectInstance).setDuration(effectInstance.getDuration() / level.getMaxLevel() * level.getGain());
+            statusEffectInstances.add(effectInstance);
+        });
+        if (stack.getItem() instanceof IcePotionCup){
+            statusEffectInstances.add(new StatusEffectInstance(StatusEffects.FIRE_RESISTANCE, 100 * level.getGain()));
+        }
+        return statusEffectInstances;
+    }
+
+    /**
+     * 获取带药水的杯子名称
+     * @param stack 物品
+     * @param level 物品等级
+     * @return 物品名称
+     */
+    public static Text getCupName(ItemStack stack, IItemLevel level){
+        if (PotionUtil.getPotion(stack) == Potions.EMPTY){
+            return Text.translatable(IdUtil.getItemName(level.getIdName()), Text.translatable(Blocks.WATER.getTranslationKey()));
+        }
+        return Text.translatable(IdUtil.getItemName(level.getIdName()), Text.translatable(PotionUtil.getPotion(stack).finishTranslationKey("item.minecraft.potion.effect.")));
+    }
+
+    /**
+     * 获取下一个等级物品并且设置物品药水
+     * @param cup 物品
+     * @param stack 有药水的物品
+     * @return 下一个等级物品
+     */
+    public static ItemStack resetItemStack(ILevelItem cup, ItemStack stack) {
+        ItemStack nextItem = cup.getNextItemStack(stack);
+        if (nextItem.isOf(ModItems.CUP)){
+            return nextItem;
+        }
+        return PotionUtil.setPotion(nextItem, PotionUtil.getPotion(stack));
+    }
+
     @Override
     public ItemStack thaw(ItemStack stack, PlayerEntity player) {
         Optional<PotionCup> optional = ModItems.POTION_CUPS.keySet().stream().filter(item -> item.getItemLevel().getLevel() == this.getItemLevel().getLevel() - 1).findAny();
@@ -107,14 +138,6 @@ public class IcePotionCup extends BaseItem implements IIceCreamLevelItem, IColor
         ItemStack potionCup = optional.get().getDefaultStack();
         potionCup.setDamage(stack.getDamage() - 1);
         return PotionUtil.setPotion(potionCup, PotionUtil.getPotion(stack));
-    }
-
-    public static ItemStack resetItemStack(ILevelItem cup, ItemStack stack) {
-        ItemStack nextItem = cup.getNextItemStack(stack);
-        if (nextItem.isOf(ModItems.CUP)){
-            return nextItem;
-        }
-        return PotionUtil.setPotion(nextItem, PotionUtil.getPotion(stack));
     }
 
     @Override

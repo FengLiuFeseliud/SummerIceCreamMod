@@ -19,6 +19,12 @@ public abstract class FacingBlock extends Block implements IModBlock {
         this.name = name;
     }
 
+    /**
+     * 获取方向形状
+     * @param state 方块形状
+     * @param facingShapes 方向方块形状组 北 -> 南 -> 西 -> 东
+     * @return 方向方块形状
+     */
     public static VoxelShape getFacingShape(BlockState state, VoxelShape... facingShapes){
         switch (state.get(FacingEntityBlock.FACING)) {
             case NORTH -> {

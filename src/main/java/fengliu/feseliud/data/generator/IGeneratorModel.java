@@ -1,5 +1,8 @@
 package fengliu.feseliud.data.generator;
 
+import fengliu.feseliud.utils.IdUtil;
+import net.minecraft.util.Identifier;
+
 public interface IGeneratorModel {
     /**
      * 获取纹理名 (用于生成)
@@ -12,4 +15,12 @@ public interface IGeneratorModel {
      * @return 纹理路径
      */
     String getPrefixedPath();
+
+    /**
+     * 获取纹理路径 id
+     * @return 路径id
+     */
+    default Identifier getTexturePath(){
+        return IdUtil.get(this.getTextureName()).withPrefixedPath(this.getPrefixedPath());
+    }
 }

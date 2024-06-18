@@ -15,13 +15,13 @@ public class ModBlockItems {
     public static final BaseBlockItem MIXER = RegisterUtil.registerItem(new BaseBlockItem("/stop", ModBlocks.MIXER_BLOCK, 64), ModItemGroups.ITEM_GROUP);
     public static final CoolerBox COOLER_BOX = RegisterUtil.registerItem(new CoolerBox("/close", ModBlocks.COOLER_BOX_BLOCK, 1), ModItemGroups.ITEM_GROUP);
     public static final Plate PLATE = RegisterUtil.registerItem(new Plate(ModBlocks.PLATE_BLOCK, new Item.Settings().maxCount(1).maxDamage(PlateBlockEntity.SIZE)), ModItemGroups.ITEM_GROUP);
-    public static final Map<IceCream, IIceCreamBlockLevel> ICE_CREAMS = RegisterUtil.registerItems(IceCream.IceCreamLevels.values(), ModItemGroups.FOOD_GROUP);
+    public static final Map<IceCream, IIceCreamBlockItemLevel> ICE_CREAMS = RegisterUtil.registerItems(IceCream.IceCreamLevelsItem.values(), ModItemGroups.FOOD_GROUP);
     public static final Map<Chocolate, Chocolate.ChocolateLevels> CHOCOLATES = RegisterUtil.registerItems(Chocolate.ChocolateLevels.values(), ModItemGroups.FOOD_GROUP);
-    public static final Map<IceCream, IIceCreamBlockLevel> CHOCOLATE_ICE_CREAMS = RegisterUtil.registerItems(ChocolateIceCream.IceCreamLevels.values(), ModItemGroups.FOOD_GROUP);
-    public static final Map<IceCream, IIceCreamBlockLevel> GOLDEN_APPLE_ICE_CREAMS = RegisterUtil.registerItems(GoldenAppleIceCream.IceCreamLevels.values(), ModItemGroups.FOOD_GROUP);
-    public static final Map<IceCream, IIceCreamBlockLevel> CHORUS_FRUIT_ICE_CREAMS = RegisterUtil.registerItems(ChorusFruitIceCream.IceCreamLevels.values(), ModItemGroups.FOOD_GROUP);
-    public static final Map<IceCream, IIceCreamBlockLevel> GLOW_BERRIES_ICE_CREAMS = RegisterUtil.registerItems(GlowBerriesIceCream.IceCreamLevels.values(), ModItemGroups.FOOD_GROUP);
-    public static final Map<IceCream, IIceCreamBlockLevel> COOKIE_ICE_CREAMS = RegisterUtil.registerItems(CookieIceCream.IceCreamLevels.values(), ModItemGroups.FOOD_GROUP);
+    public static final Map<IceCream, IIceCreamBlockItemLevel> CHOCOLATE_ICE_CREAMS = RegisterUtil.registerItems(ChocolateIceCream.IceCreamLevelsItem.values(), ModItemGroups.FOOD_GROUP);
+    public static final Map<IceCream, IIceCreamBlockItemLevel> GOLDEN_APPLE_ICE_CREAMS = RegisterUtil.registerItems(GoldenAppleIceCream.IceCreamLevelsItem.values(), ModItemGroups.FOOD_GROUP);
+    public static final Map<IceCream, IIceCreamBlockItemLevel> CHORUS_FRUIT_ICE_CREAMS = RegisterUtil.registerItems(ChorusFruitIceCream.IceCreamLevelsItem.values(), ModItemGroups.FOOD_GROUP);
+    public static final Map<IceCream, IIceCreamBlockItemLevel> GLOW_BERRIES_ICE_CREAMS = RegisterUtil.registerItems(GlowBerriesIceCream.IceCreamLevelsItem.values(), ModItemGroups.FOOD_GROUP);
+    public static final Map<IceCream, IIceCreamBlockItemLevel> COOKIE_ICE_CREAMS = RegisterUtil.registerItems(CookieIceCream.IceCreamLevelsItem.values(), ModItemGroups.FOOD_GROUP);
     public static final BaseBlockItem INCOMPLETE_ICE_STAIRS = RegisterUtil.registerItem(new BaseBlockItem(ModBlocks.INCOMPLETE_ICE_STAIRS_BLOCK, 64), ModItemGroups.MATERIALS_GROUP);
     public static final BaseBlockItem INCOMPLETE_ICE_SLAB = RegisterUtil.registerItem(new BaseBlockItem(ModBlocks.INCOMPLETE_ICE_SLAB_BLOCK, 64), ModItemGroups.MATERIALS_GROUP);
 

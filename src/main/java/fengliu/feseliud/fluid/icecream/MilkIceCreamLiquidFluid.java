@@ -37,7 +37,7 @@ public class MilkIceCreamLiquidFluid extends BaseFluid {
 
     @Override
     public Block getCongealBlock() {
-        return ModBlocks.ICE_CREAM_BLOCKS.get(IceCream.IceCreamLevels.NOT_THAW);
+        return ModBlocks.ICE_CREAM_BLOCKS.get(IceCream.IceCreamLevelsItem.NOT_THAW);
     }
 
     @Override

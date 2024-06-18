@@ -12,7 +12,6 @@ import net.minecraft.client.item.TooltipContext;
 import net.minecraft.data.server.recipe.RecipeJsonProvider;
 import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.player.PlayerEntity;
-import net.minecraft.fluid.Fluid;
 import net.minecraft.item.*;
 import net.minecraft.registry.Registries;
 import net.minecraft.text.Text;
@@ -24,20 +23,23 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 import java.util.function.Consumer;
 
+/**
+ * 食物液体桶, 可食用可放置
+ */
 public class FoodLiquidBucket extends BucketItem implements IModItem {
     public static final String PREFIXED_PATH = IIceCreamLevelItem.PREFIXED_PATH + "bucket" + "/";
     public final String name;
-
-    public FoodLiquidBucket(String name, Fluid fluid, FoodComponent food) {
-        super(fluid, new Settings().food(FoodLiquidBucket.setIceCreamLiquidFoodComponent(food)).maxCount(1));
-        this.name = name;
-    }
 
     public FoodLiquidBucket(String name, List<? extends BaseFluid> fluids, FoodComponent food) {
         super(fluids.get(RegisterUtil.FluidType.STILL.ordinal()), new Settings().food(FoodLiquidBucket.setIceCreamLiquidFoodComponent(food)).maxCount(1));
         this.name = name;
     }
 
+    /**
+     * 根据提供的食物重设食物桶食物效果
+     * @param food 食物效果
+     * @return 桶食物效果
+     */
     public static FoodComponent setIceCreamLiquidFoodComponent(FoodComponent food){
         FoodComponent.Builder iceCreamLiquid = new FoodComponent.Builder().hunger(food.getHunger() + 1).saturationModifier(food.getSaturationModifier() + 1);
         food.getStatusEffects().forEach(statusEffectInstanceFloatPair -> {

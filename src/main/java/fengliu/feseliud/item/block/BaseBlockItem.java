@@ -1,11 +1,13 @@
 package fengliu.feseliud.item.block;
 
 import fengliu.feseliud.block.IModBlock;
+import fengliu.feseliud.data.generator.IGeneratorModel;
 import fengliu.feseliud.item.IModItem;
 import fengliu.feseliud.utils.IdUtil;
 import net.minecraft.block.Block;
 import net.minecraft.client.item.TooltipContext;
-import net.minecraft.data.client.*;
+import net.minecraft.data.client.ItemModelGenerator;
+import net.minecraft.data.client.Model;
 import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.Text;
@@ -16,7 +18,7 @@ import java.util.List;
 import java.util.Optional;
 
 
-public class BaseBlockItem extends BlockItem implements IModItem {
+public class BaseBlockItem extends BlockItem implements IModItem, IGeneratorModel {
     public static final String PREFIXED_PATH = "block/";
     public final String subName;
     public final String name;
@@ -55,18 +57,12 @@ public class BaseBlockItem extends BlockItem implements IModItem {
         return this.name;
     }
 
-    /**
-     * 获取纹理名 (用于生成)
-     * @return 纹理名
-     */
+    @Override
     public String getTextureName(){
         return this.name;
     }
 
-    /**
-     * 获取纹理路径 (用于生成模型)
-     * @return 纹理路径
-     */
+     @Override
     public String getPrefixedPath(){
         return PREFIXED_PATH;
     }

@@ -20,15 +20,32 @@ import net.minecraft.util.shape.VoxelShapes;
 
 import java.util.Map;
 
+/**
+ * 可拆解方块, 块 -> 楼梯 -> 台阶
+ */
 public interface IDetachableBlock extends IModBlock {
     VoxelShape NORTH_SHAPE = VoxelShapes.union(VoxelShapes.cuboid(0, 0, 0, 1, 0.5,1), VoxelShapes.cuboid(0, 0.5, 0.5, 1, 1,1));
     VoxelShape SOUTH_SHAPE = VoxelShapes.union(VoxelShapes.cuboid(0, 0, 0, 1, 0.5,1), VoxelShapes.cuboid(0, 0.5, 0, 1, 1,0.5));
     VoxelShape WEST_SHAPE = VoxelShapes.union(VoxelShapes.cuboid(0, 0, 0, 1, 0.5,1), VoxelShapes.cuboid(0.5, 0.5, 0, 1, 1,1));
     VoxelShape EAST_SHAPE = VoxelShapes.union(VoxelShapes.cuboid(0, 0, 0, 1, 0.5,1), VoxelShapes.cuboid(0, 0.5, 0, 0.5, 1,1));
 
+    /**
+     * 方块物品等级
+     * @return 物品等级
+     */
     ILevel getItemLevel();
+
+    /**
+     * 块掉落的物品
+     * @return 物品组
+     */
     <LI extends ILevelItem, I extends ILevel> Map<LI, I> getLevelBrickItems();
 
+    /**
+     * 获取方块形状
+     * @param state 方块状态
+     * @return 方块形状
+     */
     default VoxelShape getShape(BlockState state){
         int level = this.getItemLevel().getLevel();
         if (level == 1){

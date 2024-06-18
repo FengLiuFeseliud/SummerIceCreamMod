@@ -7,7 +7,6 @@
         "MixinBucketItem",
         "MixinBucketItemAccessor",
         "MixinIceBlock",
-        "MixinLivingEntity",
         "MixinMilkBucketItem",
         "MixinServerWorld",
         "MixinStatusEffectInstance"

@@ -3,14 +3,13 @@ package fengliu.feseliud.block.icecream;
 
 import fengliu.feseliud.block.FacingEntityBlock;
 import fengliu.feseliud.block.IDetachableBlock;
-
 import fengliu.feseliud.block.ModBlocks;
 import fengliu.feseliud.block.entity.IceCreamBlockEntity;
 import fengliu.feseliud.block.entity.ModBlockEntitys;
 import fengliu.feseliud.item.ModItems;
-import fengliu.feseliud.item.block.icecream.IIceCreamBlockLevel;
-import fengliu.feseliud.item.icecream.IIceCreamLevelItem;
+import fengliu.feseliud.item.block.icecream.IIceCreamBlockItemLevel;
 import fengliu.feseliud.item.icecream.IIceCreamLevel;
+import fengliu.feseliud.item.icecream.IIceCreamLevelItem;
 import fengliu.feseliud.item.icecream.bar.IceCreamBar;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -30,7 +29,6 @@ import net.minecraft.stat.Stats;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.util.shape.VoxelShapes;
 import net.minecraft.world.BlockView;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
@@ -39,20 +37,16 @@ import java.util.Map;
 
 
 public class IceCreamBlock extends FacingEntityBlock implements IDetachableBlock {
-    public static final VoxelShape NORTH_SHAPE = VoxelShapes.union(VoxelShapes.cuboid(0, 0, 0, 1, 0.5,1), VoxelShapes.cuboid(0, 0.5, 0.5, 1, 1,1));
-    public static final VoxelShape SOUTH_SHAPE = VoxelShapes.union(VoxelShapes.cuboid(0, 0, 0, 1, 0.5,1), VoxelShapes.cuboid(0, 0.5, 0, 1, 1,0.5));
-    public static final VoxelShape WEST_SHAPE = VoxelShapes.union(VoxelShapes.cuboid(0, 0, 0, 1, 0.5,1), VoxelShapes.cuboid(0.5, 0.5, 0, 1, 1,1));
-    public static final VoxelShape EAST_SHAPE = VoxelShapes.union(VoxelShapes.cuboid(0, 0, 0, 1, 0.5,1), VoxelShapes.cuboid(0, 0.5, 0, 0.5, 1,1));
-    public final IIceCreamBlockLevel iIceCreamBlockLevel;
+    public final IIceCreamBlockItemLevel iIceCreamBlockItemLevel;
 
-    public IceCreamBlock(Settings settings, String name, IIceCreamBlockLevel iIceCreamBlockLevel) {
+    public IceCreamBlock(Settings settings, String name, IIceCreamBlockItemLevel iIceCreamBlockItemLevel) {
         super(settings, name);
-        this.iIceCreamBlockLevel = iIceCreamBlockLevel;
+        this.iIceCreamBlockItemLevel = iIceCreamBlockItemLevel;
     }
 
     @Override
-    public IIceCreamBlockLevel getItemLevel(){
-        return this.iIceCreamBlockLevel;
+    public IIceCreamBlockItemLevel getItemLevel(){
+        return this.iIceCreamBlockItemLevel;
     }
 
     @Override
@@ -109,7 +103,7 @@ public class IceCreamBlock extends FacingEntityBlock implements IDetachableBlock
 
         ItemStack stack = this.asItem().getDefaultStack();
         NbtCompound nbt = stack.getOrCreateNbt();
-        nbt.putInt(IIceCreamLevelItem.THAW_TIME_KEY, iceCreamBlockEntity.getTick());
+        nbt.putInt(IIceCreamLevelItem.THAW_TICK_KEY, iceCreamBlockEntity.getTick());
 
         Block.dropStack(world, pos, stack);
         state.onStacksDropped(serverWorld, pos, tool, true);

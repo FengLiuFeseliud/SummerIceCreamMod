@@ -34,7 +34,7 @@ public class ChorusFruitIceCreamLiquidFluid extends MilkIceCreamLiquidFluid{
 
     @Override
     public Block getCongealBlock() {
-        return ModBlocks.CHORUS_FRUIT_ICE_CREAM_BLOCKS.get(ChorusFruitIceCream.IceCreamLevels.NOT_THAW);
+        return ModBlocks.CHORUS_FRUIT_ICE_CREAM_BLOCKS.get(ChorusFruitIceCream.IceCreamLevelsItem.NOT_THAW);
     }
 
     @Override

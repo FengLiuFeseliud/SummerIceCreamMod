@@ -20,7 +20,7 @@ import java.util.Optional;
 import java.util.function.Consumer;
 
 
-public class IceCreamBarPack extends BaseColorItem{
+public class IceCreamBarPack extends BaseDyeColorItem {
     public IceCreamBarPack(DyeColor color, String name, int count) {
         super(color, name, count);
     }

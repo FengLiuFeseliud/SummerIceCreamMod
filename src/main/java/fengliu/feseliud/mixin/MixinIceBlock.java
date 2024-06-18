@@ -14,7 +14,6 @@ import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.registry.tag.ItemTags;
-import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.stat.Stats;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
@@ -47,6 +46,9 @@ public abstract class MixinIceBlock extends Block {
         return Blocks.AIR.getDefaultState();
     }
 
+    /**
+     * 使破坏冰块可以获取碎冰, 小冰块, 跟使用 SERRATED_KNIFE 破坏冰块可以使冰块变小
+     */
     @Inject(
             method = "afterBreak",
             at = @At("HEAD"),

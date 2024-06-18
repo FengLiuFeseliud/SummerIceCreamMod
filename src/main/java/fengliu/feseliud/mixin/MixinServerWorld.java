@@ -1,6 +1,5 @@
 package fengliu.feseliud.mixin;
 
-import fengliu.feseliud.block.entity.IceCreamBarMoldBlockEntity;
 import fengliu.feseliud.fluid.BaseFluid;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -25,6 +24,9 @@ public abstract class MixinServerWorld extends World {
         super(properties, registryRef, registryManager, dimensionEntry, profiler, isClient, debugWorld, biomeAccess, maxChainedNeighborUpdates);
     }
 
+    /**
+     * 使 BaseFluid 结冰
+     */
     @Redirect(
             method = "tickChunk",
             at = @At(

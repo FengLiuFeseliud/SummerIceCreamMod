@@ -2,7 +2,7 @@ package fengliu.feseliud.block.entity;
 
 import fengliu.feseliud.block.ModBlocks;
 import fengliu.feseliud.block.icecream.IceCreamBlock;
-import fengliu.feseliud.item.block.icecream.IIceCreamBlockLevel;
+import fengliu.feseliud.item.block.icecream.IIceCreamBlockItemLevel;
 import fengliu.feseliud.item.icecream.IIceCreamLevelItem;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Blocks;
@@ -27,11 +27,11 @@ public class IceCreamBlockEntity extends BlockEntity {
         super(getBlockEntitytype(ModBlockEntitys.ICE_CREAM_BLOCK_ENTITYS, state), pos, state);
     }
 
-    public static <IE extends IceCreamBlockEntity> BlockEntityType<?> getBlockEntitytype(Map<IIceCreamBlockLevel, BlockEntityType<IE>> iceCreamBlockEntitys, BlockState state){
+    public static <IE extends IceCreamBlockEntity> BlockEntityType<?> getBlockEntitytype(Map<IIceCreamBlockItemLevel, BlockEntityType<IE>> iceCreamBlockEntitys, BlockState state){
         return iceCreamBlockEntitys.get(((IceCreamBlock) state.getBlock()).getItemLevel());
     }
 
-    public Map<IIceCreamBlockLevel, IceCreamBlock> getIceCreamBlocks(){
+    public Map<IIceCreamBlockItemLevel, IceCreamBlock> getIceCreamBlocks(){
         return ModBlocks.ICE_CREAM_BLOCKS;
     }
 
@@ -41,12 +41,12 @@ public class IceCreamBlockEntity extends BlockEntity {
 
     public void initTick(ItemStack iceCreamBlockStack){
         NbtCompound nbt = iceCreamBlockStack.getOrCreateNbt();
-        if (nbt.contains(IIceCreamLevelItem.THAW_TIME_KEY, NbtElement.INT_TYPE)){
-            this.tick = nbt.getInt(IIceCreamLevelItem.THAW_TIME_KEY);
+        if (nbt.contains(IIceCreamLevelItem.THAW_TICK_KEY, NbtElement.INT_TYPE)){
+            this.tick = nbt.getInt(IIceCreamLevelItem.THAW_TICK_KEY);
             return;
         }
 
-        this.tick = ((IIceCreamLevelItem) iceCreamBlockStack.getItem()).getThawTime();
+        this.tick = ((IIceCreamLevelItem) iceCreamBlockStack.getItem()).getThawTick();
     }
 
     public void initTick(IceCreamBlock block){
@@ -97,14 +97,14 @@ public class IceCreamBlockEntity extends BlockEntity {
     @Override
     protected void writeNbt(NbtCompound nbt) {
         super.writeNbt(nbt);
-        nbt.putInt(IIceCreamLevelItem.THAW_TIME_KEY, this.tick);
+        nbt.putInt(IIceCreamLevelItem.THAW_TICK_KEY, this.tick);
         this.markDirty();
     }
 
     @Override
     public void readNbt(NbtCompound nbt) {
         super.readNbt(nbt);
-        this.tick = nbt.getInt(IIceCreamLevelItem.THAW_TIME_KEY);
+        this.tick = nbt.getInt(IIceCreamLevelItem.THAW_TICK_KEY);
         this.markDirty();
     }
 }

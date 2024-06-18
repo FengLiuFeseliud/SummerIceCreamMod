@@ -1,9 +1,7 @@
 package fengliu.feseliud.block;
 
-import fengliu.feseliud.block.icecream.IceCreamBlock;
 import net.minecraft.block.*;
 import net.minecraft.data.client.*;
-import net.minecraft.entity.EntityType;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.state.StateManager;
@@ -39,6 +37,10 @@ public class IncompleteIce extends IceBlock implements IModBlock, ITranslucent {
         return this.name;
     }
 
+    /**
+     * 是否为楼梯形
+     * @return true 是
+     */
     public boolean inStairs(){
         return this.inStairs;
     }
@@ -66,7 +68,7 @@ public class IncompleteIce extends IceBlock implements IModBlock, ITranslucent {
 
     protected VoxelShape getShape(BlockState state){
         if (this.inStairs()){
-            return FacingBlock.getFacingShape(state, IceCreamBlock.NORTH_SHAPE, IceCreamBlock.SOUTH_SHAPE, IceCreamBlock.WEST_SHAPE, IceCreamBlock.EAST_SHAPE);
+            return FacingBlock.getFacingShape(state, IDetachableBlock.NORTH_SHAPE, IDetachableBlock.SOUTH_SHAPE, IDetachableBlock.WEST_SHAPE, IDetachableBlock.EAST_SHAPE);
         }
         return VoxelShapes.cuboid(0, 0, 0, 1, 0.5,1);
     }

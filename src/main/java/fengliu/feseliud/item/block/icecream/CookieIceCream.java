@@ -20,11 +20,11 @@ public class CookieIceCream extends IceCream{
     }
 
     @Override
-    public Map<IceCream, IIceCreamBlockLevel> getLevelItems() {
+    public Map<IceCream, IIceCreamBlockItemLevel> getLevelItems() {
         return ModBlockItems.COOKIE_ICE_CREAMS;
     }
 
-    public enum IceCreamLevels implements IIceCreamBlockLevel{
+    public enum IceCreamLevelsItem implements IIceCreamBlockItemLevel {
         NOT_THAW(1, 600, 3, "not_thaw"),
         THAW_HALF(2, 300, 2, "thaw_half"),
         THAW_MOST(3, 150, 1, "thaw_most");
@@ -34,7 +34,7 @@ public class CookieIceCream extends IceCream{
         private final int gain;
         private final String thawName;
 
-        IceCreamLevels(int level, int thawTime, int gain, String thawName){
+        IceCreamLevelsItem(int level, int thawTime, int gain, String thawName){
             this.thawTime = thawTime * 20;
             this.level = level;
             this.gain = gain;
@@ -67,7 +67,7 @@ public class CookieIceCream extends IceCream{
 
         @Override
         public int getMaxLevel() {
-            return IceCreamLevels.values().length;
+            return IceCreamLevelsItem.values().length;
         }
 
         @Override

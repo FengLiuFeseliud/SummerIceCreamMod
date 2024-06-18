@@ -25,6 +25,10 @@ public interface IIceCreamPack extends FabricItem {
     String ICE_CREAM_PACK_TIME_KEY = SummerIceCream.MOD_ID + ".iceCreamPackTime";
     String PACK_ICE_CREAM_KEY = SummerIceCream.MOD_ID + ".packIceCream";
 
+    /**
+     * 获取包装多少 tick 加一取出 tick
+     * @return tick
+     */
     int packTickOffset();
 
     @Override
@@ -54,8 +58,8 @@ public interface IIceCreamPack extends FabricItem {
         }
 
         NbtCompound iceCreamNbt = iceCreamItemStack.getOrCreateNbt();
-        if (iceCreamNbt.contains(iceCreamItem.THAW_TIME_KEY, NbtElement.INT_TYPE)){
-            iceCreamPackTime += iceCreamItem.getThawTime() - iceCreamNbt.getInt(iceCreamItem.THAW_TIME_KEY);
+        if (iceCreamNbt.contains(iceCreamItem.THAW_TICK_KEY, NbtElement.INT_TYPE)){
+            iceCreamPackTime += iceCreamItem.getThawTick() - iceCreamNbt.getInt(iceCreamItem.THAW_TICK_KEY);
         }
 
         int allThawTime = 0;
@@ -67,7 +71,7 @@ public interface IIceCreamPack extends FabricItem {
 
             ItemStack PackIceCreamItemStack = ((BaseItem) iceCream.getKey()).getDefaultStack();
             PackIceCreamItemStack.setDamage(iceCream.getValue().getLevel() - 1);
-            PackIceCreamItemStack.getOrCreateNbt().putInt(iceCreamItem.THAW_TIME_KEY, allThawTime - iceCreamPackTime);
+            PackIceCreamItemStack.getOrCreateNbt().putInt(iceCreamItem.THAW_TICK_KEY, allThawTime - iceCreamPackTime);
             return PackIceCreamItemStack;
         }
         return iceCreamItem.getLevelItems().get(iceCreamItem).getOutItemStack();
@@ -101,6 +105,9 @@ public interface IIceCreamPack extends FabricItem {
         nbt.putInt(ICE_CREAM_PACK_TICK_OFFSET_KEY, nbt.getInt(ICE_CREAM_PACK_TICK_OFFSET_KEY) + 1);
     }
 
+    /**
+     * 附加冰淇淋包装取出信息
+     */
     default void appendPackTimeTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context){
         NbtCompound nbt = stack.getOrCreateNbt();
         if (nbt.contains(ICE_CREAM_PACK_TIME_KEY, NbtElement.INT_TYPE) && nbt.contains(PACK_ICE_CREAM_KEY, NbtElement.COMPOUND_TYPE)){

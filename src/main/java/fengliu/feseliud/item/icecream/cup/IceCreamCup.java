@@ -43,10 +43,18 @@ public class IceCreamCup extends IceCreamBar {
         return this.spoon;
     }
 
+    /**
+     * 获取带勺冰淇淋杯组
+     * @return 带勺冰淇淋杯组
+     */
     public Map<IceCreamBar, IIceCreamLevel> getIceCreamAndSpoons(){
         return ModItems.ICE_CREAM_CUPS_AND_SPOON;
     }
 
+    /**
+     * 获取冰淇淋杯组
+     * @return 冰淇淋杯组
+     */
     public Map<IceCreamBar, IIceCreamLevel> getIces(){
         return ModItems.ICE_CREAM_CUPS;
     }

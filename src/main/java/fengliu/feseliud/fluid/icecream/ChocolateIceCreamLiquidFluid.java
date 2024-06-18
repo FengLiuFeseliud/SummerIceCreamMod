@@ -34,7 +34,7 @@ public class ChocolateIceCreamLiquidFluid extends MilkIceCreamLiquidFluid{
 
     @Override
     public Block getCongealBlock() {
-        return ModBlocks.CHOCOLATE_ICE_CREAM_BLOCKS.get(CookieIceCream.IceCreamLevels.NOT_THAW);
+        return ModBlocks.CHOCOLATE_ICE_CREAM_BLOCKS.get(CookieIceCream.IceCreamLevelsItem.NOT_THAW);
     }
 
     @Override

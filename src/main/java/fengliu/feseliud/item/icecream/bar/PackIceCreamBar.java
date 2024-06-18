@@ -1,6 +1,6 @@
 package fengliu.feseliud.item.icecream.bar;
 
-import fengliu.feseliud.item.BaseColorItem;
+import fengliu.feseliud.item.BaseDyeColorItem;
 import fengliu.feseliud.item.icecream.IIceCreamPack;
 import net.fabricmc.fabric.api.item.v1.FabricItem;
 import net.minecraft.client.item.TooltipContext;
@@ -16,7 +16,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class PackIceCreamBar extends BaseColorItem implements IIceCreamPack, FabricItem {
+public class PackIceCreamBar extends BaseDyeColorItem implements IIceCreamPack, FabricItem {
 
     public PackIceCreamBar(DyeColor color, String textureName, int count) {
         super(color, textureName, count);

@@ -112,7 +112,7 @@ public class IceCreamBarMoldBlockEntity extends InventoryBlockEntity{
             return;
         }
 
-        List<SimpleInventory> inventories = IHitSlot.splitInput(be, IHitSlot.ThreeHitSlot.values());
+        List<SimpleInventory> inventories = IHitSlot.splitInventor(be, IHitSlot.ThreeHitSlot.values());
         SimpleInventory inventory = inventories.get(world.random.nextInt(inventories.size()));
         Optional<ListRecipes> match = world.getRecipeManager().getFirstMatch(ListRecipes.Type.INSTANCE, inventory, world);
 

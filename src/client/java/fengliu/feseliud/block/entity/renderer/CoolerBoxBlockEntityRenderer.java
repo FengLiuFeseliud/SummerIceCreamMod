@@ -49,7 +49,7 @@ public class CoolerBoxBlockEntityRenderer implements BlockEntityRenderer<CoolerB
             matrices.translate(0.445f, -0.285f, -0.1f);
         }
 
-        IHitSlot.splitInput(be, IHitSlot.ThreeHitSlot.values()).forEach(inventory -> {
+        IHitSlot.splitInventor(be, IHitSlot.ThreeHitSlot.values()).forEach(inventory -> {
             matrices.push();
             inventory.stacks.forEach(stack -> {
                 client.getItemRenderer().renderItem(stack, ModelTransformationMode.GROUND, false, matrices, vertexConsumers, light, overlay,

@@ -14,12 +14,8 @@ import net.minecraft.nbt.NbtCompound;
 import net.minecraft.network.PacketByteBuf;
 import net.minecraft.server.network.ServerPlayerEntity;
 import net.minecraft.server.world.ServerWorld;
-import net.minecraft.util.Identifier;
-import net.minecraft.util.Nameable;
 import net.minecraft.util.collection.DefaultedList;
 import net.minecraft.util.math.BlockPos;
-
-import java.util.List;
 
 
 public abstract class InventoryBlockEntity extends BlockEntity implements IInventory {
@@ -63,6 +59,10 @@ public abstract class InventoryBlockEntity extends BlockEntity implements IInven
         }
     }
 
+    /**
+     * 使用同步包数据重设库存
+     * @param buf 同步包
+     */
     public void syncResetInventory(PacketByteBuf buf){
         int size = buf.readInt();
         for (int index = 0; index < size; index++){

@@ -14,13 +14,31 @@ import net.minecraft.world.WorldAccess;
 import net.minecraft.world.WorldView;
 import net.minecraft.world.biome.Biome;
 
+/**
+ * 简单液体
+ */
 public abstract class BaseFluid extends FlowableFluid  {
     String PREFIXED_PATH = "fluid/";
 
+    /**
+     * 可凝固成的方块
+     * @return 凝固方块
+     */
     public abstract Block getCongealBlock();
 
+    /**
+     * 是否可以凝固
+     */
     public boolean canCongeal(WorldView world, BlockPos pos, Biome biome, FluidState fluidState){
         return false;
+    }
+
+    /**
+     * 液体颜色
+     * @return 16位液体颜色
+     */
+    public int getFluidColor(){
+        return -1;
     }
 
     @Override
@@ -28,6 +46,11 @@ public abstract class BaseFluid extends FlowableFluid  {
         return fluid == getStill() || fluid == getFlowing();
     }
 
+    /**
+     * 液体是否可以形成无限液体
+     * @param world 世界
+     * @return true 可以形成
+     */
     @Override
     protected boolean isInfinite(World world) {
         return false;
@@ -62,10 +85,6 @@ public abstract class BaseFluid extends FlowableFluid  {
     @Override
     protected float getBlastResistance() {
         return 100.0F;
-    }
-
-    public int getFluidColor(){
-        return -1;
     }
 
     /**

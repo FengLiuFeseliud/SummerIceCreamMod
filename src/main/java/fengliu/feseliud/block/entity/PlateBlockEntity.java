@@ -58,8 +58,8 @@ public class PlateBlockEntity extends InventoryBlockEntity{
                 continue;
             }
 
-            iceCreamLevelItem.thawTimeToItemStack(stack);
-            if (iceCreamLevelItem.getThawTimeFromItemStack(stack) <= 0){
+            iceCreamLevelItem.thawTickToItemStack(stack);
+            if (iceCreamLevelItem.getThawTickFromItemStack(stack) <= 0){
                 be.setStack(slot, iceCreamLevelItem.getNextItemStack(stack));
             }
             break;
