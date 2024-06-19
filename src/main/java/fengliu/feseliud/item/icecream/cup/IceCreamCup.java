@@ -5,6 +5,7 @@ import fengliu.feseliud.item.ModItems;
 import fengliu.feseliud.item.icecream.IIceCreamLevel;
 import fengliu.feseliud.item.icecream.IIceCreamLevelItem;
 import fengliu.feseliud.item.icecream.bar.IceCreamBar;
+import fengliu.feseliud.recipes.builder.ListRecipeJsonBuilder;
 import fengliu.feseliud.utils.IdUtil;
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.data.client.ItemModelGenerator;
@@ -16,7 +17,10 @@ import net.minecraft.entity.LivingEntity;
 import net.minecraft.entity.effect.StatusEffectInstance;
 import net.minecraft.entity.effect.StatusEffects;
 import net.minecraft.item.FoodComponent;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.registry.Registries;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.UseAction;
 import net.minecraft.world.World;
@@ -131,6 +135,28 @@ public class IceCreamCup extends IceCreamBar {
 
     @Override
     public void generateRecipe(Consumer<RecipeJsonProvider> exporter) {
+        IIceCreamLevel iceCreamLevel = this.getItemLevel();
+        if (iceCreamLevel.getLevel() != 1 || this.isSpoon()){
+            return;
+        }
+
+        if (iceCreamLevel.getName().startsWith("chocolate_")){
+            Item item = Registries.ITEM.get(IdUtil.get(this.getItemLevel().getIdName().replaceAll("chocolate_", "")));
+            if (item.equals(Items.AIR)){
+                item = ModItems.BASE_CHOCOLATE_ICE_CREAM_BARS.keySet().stream().toList().get(0);
+            }
+            new ListRecipeJsonBuilder(this, item, ModItems.CHOCOLATE_LIQUID_BUCKET).offerTo(exporter);
+        } else {
+            Item item = Registries.ITEM.get(IdUtil.get(this.getItemLevel().getName().replaceAll("_cup", "_liquid_bucket")));
+            if (item.equals(Items.AIR)){
+                item = Registries.ITEM.get(IdUtil.get("milk_" + this.getItemLevel().getName().replaceAll("_cup", "_liquid_bucket")));
+            }
+
+            if (item.equals(Items.AIR)){
+                item = ModItems.CHOCOLATE_ICE_CREAM_LIQUID_BUCKET;
+            }
+            new ListRecipeJsonBuilder(this, ModItems.ICE_CREAM_CUPS_PACK, item).offerTo(exporter);
+        }
     }
 
     public enum IceCreamLevels implements IIceCreamLevel {

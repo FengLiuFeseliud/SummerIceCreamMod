@@ -7,6 +7,7 @@ import fengliu.feseliud.block.entity.CoolerBoxBlockEntity;
 import fengliu.feseliud.block.entity.ModBlockEntitys;
 import fengliu.feseliud.item.block.ModBlockItems;
 import fengliu.feseliud.item.icecream.IIceCreamPack;
+import fengliu.feseliud.utils.HitSlot;
 import fengliu.feseliud.utils.IHitSlot;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockState;
@@ -33,6 +34,8 @@ import org.jetbrains.annotations.Nullable;
 import java.util.List;
 
 public class CoolerBoxBlock extends FacingEntityBlock implements IInventoryBlock {
+    public static final IHitSlot[] HIT_SLOTS = HitSlot.ThreeHitSlot.values();
+
     public static final VoxelShape WEST_SHAPE = VoxelShapes.cuboid(0.12, 0, 0.05, 0.88, 0.57, 0.95);
     public static final VoxelShape EAST_SHAPE = VoxelShapes.cuboid(0.12, 0, 0.05, 0.88, 0.57, 0.95);
     public static final VoxelShape NORTH_SHAPE = VoxelShapes.cuboid(0.05, 0, 0.12, 0.95, 0.57, 0.88);
@@ -105,7 +108,7 @@ public class CoolerBoxBlock extends FacingEntityBlock implements IInventoryBlock
         }
 
         ItemStack handStack = player.getStackInHand(hand);
-        IHitSlot hitSlot = IHitSlot.getHitSlot(state, hit, IHitSlot.ThreeHitSlot.values());
+        IHitSlot hitSlot = IHitSlot.getHitSlot(state, hit, HIT_SLOTS);
 
         if (handStack.getItem() instanceof IIceCreamPack){
             be.putItem(handStack, hitSlot);

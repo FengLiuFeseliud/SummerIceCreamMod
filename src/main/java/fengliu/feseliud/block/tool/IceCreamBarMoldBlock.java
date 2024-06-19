@@ -4,6 +4,7 @@ import fengliu.feseliud.block.FacingBlock;
 import fengliu.feseliud.block.FacingEntityBlock;
 import fengliu.feseliud.block.entity.IceCreamBarMoldBlockEntity;
 import fengliu.feseliud.block.entity.ModBlockEntitys;
+import fengliu.feseliud.utils.HitSlot;
 import fengliu.feseliud.utils.IHitSlot;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.ShapeContext;
@@ -27,6 +28,8 @@ import org.jetbrains.annotations.Nullable;
 
 
 public class IceCreamBarMoldBlock extends FacingEntityBlock {
+    public static final IHitSlot[] HIT_SLOTS = HitSlot.ThreeHitSlot.values();
+
     public static final VoxelShape NORTH_SHAPE = VoxelShapes.cuboid(0, 0, 0, 1, 0.19, 0.81);
     public static final VoxelShape SOUTH_SHAPE = VoxelShapes.cuboid(0, 0, 0.19, 1, 0.19, 1);
     public static final VoxelShape WEST_SHAPE = VoxelShapes.cuboid(0, 0, 0, 0.81, 0.19, 1);
@@ -67,16 +70,12 @@ public class IceCreamBarMoldBlock extends FacingEntityBlock {
     }
 
     @Override
-    public void generateBlockStateModel(BlockStateModelGenerator blockStateModelGenerator) {
-    }
-
-    @Override
     public ActionResult onUse(BlockState state, World world, BlockPos pos, PlayerEntity player, Hand hand, BlockHitResult hit) {
         if(world.isClient() || hand == Hand.OFF_HAND){
             return super.onUse(state, world, pos, player, hand, hit);
         }
 
-        IHitSlot hitSlots = IHitSlot.getHitSlot(state, hit, IHitSlot.ThreeHitSlot.values());
+        IHitSlot hitSlots = IHitSlot.getHitSlot(state, hit, HIT_SLOTS);
         if (hitSlots == null){
             return super.onUse(state, world, pos, player, hand, hit);
         }

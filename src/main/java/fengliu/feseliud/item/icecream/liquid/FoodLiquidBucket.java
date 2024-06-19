@@ -8,6 +8,7 @@ import fengliu.feseliud.item.icecream.IIceCreamLevelItem;
 import fengliu.feseliud.recipes.builder.ListRecipeJsonBuilder;
 import fengliu.feseliud.utils.IdUtil;
 import fengliu.feseliud.utils.RegisterUtil;
+import net.minecraft.block.BlockState;
 import net.minecraft.client.item.TooltipContext;
 import net.minecraft.data.server.recipe.RecipeJsonProvider;
 import net.minecraft.entity.LivingEntity;
@@ -55,7 +56,8 @@ public class FoodLiquidBucket extends BucketItem implements IModItem {
 
     @Override
     public TypedActionResult<ItemStack> use(World world, PlayerEntity user, Hand hand) {
-        if (world.getBlockState(raycast(world, user, RaycastContext.FluidHandling.WATER).getBlockPos()).isOf(ModBlocks.ICE_CREAM_BAR_MOLD_BLOCK)){
+        BlockState state = world.getBlockState(raycast(world, user, RaycastContext.FluidHandling.WATER).getBlockPos());
+        if (state.isOf(ModBlocks.ICE_CREAM_BAR_MOLD_BLOCK) || state.isOf(ModBlocks.ICE_CREAM_MACHINE_BLOCK)){
             return TypedActionResult.pass(user.getStackInHand(hand));
         }
 

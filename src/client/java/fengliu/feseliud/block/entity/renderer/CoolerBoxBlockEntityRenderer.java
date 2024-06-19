@@ -2,6 +2,7 @@ package fengliu.feseliud.block.entity.renderer;
 
 import fengliu.feseliud.block.entity.CoolerBoxBlockEntity;
 import fengliu.feseliud.block.tool.CoolerBoxBlock;
+import fengliu.feseliud.utils.HitSlot;
 import fengliu.feseliud.utils.IHitSlot;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.MinecraftClient;
@@ -49,7 +50,7 @@ public class CoolerBoxBlockEntityRenderer implements BlockEntityRenderer<CoolerB
             matrices.translate(0.445f, -0.285f, -0.1f);
         }
 
-        IHitSlot.splitInventor(be, IHitSlot.ThreeHitSlot.values()).forEach(inventory -> {
+        IHitSlot.splitInventor(be, HitSlot.ThreeHitSlot.values()).forEach(inventory -> {
             matrices.push();
             inventory.stacks.forEach(stack -> {
                 client.getItemRenderer().renderItem(stack, ModelTransformationMode.GROUND, false, matrices, vertexConsumers, light, overlay,

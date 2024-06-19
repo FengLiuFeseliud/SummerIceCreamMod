@@ -22,7 +22,7 @@ public class CoolerBoxBlockEntity extends InventoryBlockEntity{
     }
 
     public ItemStack takeItem(IHitSlot hitSlot){
-        int slot = hitSlot.getInventoryLastNotEmptySlot(this, IHitSlot.ThreeHitSlot.values());
+        int slot = hitSlot.getInventoryLastNotEmptySlot(this);
         if (slot == -1){
             return ItemStack.EMPTY;
         }

@@ -1,6 +1,8 @@
 package fengliu.feseliud.block.entity;
 
+import fengliu.feseliud.block.tool.IceCreamBarMoldBlock;
 import fengliu.feseliud.item.ModItems;
+import fengliu.feseliud.item.icecream.cup.IceCreamCup;
 import fengliu.feseliud.item.icecream.liquid.FoodLiquidBucket;
 import fengliu.feseliud.recipes.ListRecipes;
 import fengliu.feseliud.utils.IHitSlot;
@@ -42,7 +44,7 @@ public class IceCreamBarMoldBlockEntity extends InventoryBlockEntity{
         int headSlot = hitSlots.getIndex() * 3;
         for (int slotIndex = headSlot; slotIndex < headSlot + 3; slotIndex++){
             ItemStack slotStack = this.getStack(slotIndex);
-            if (slotStack.isOf(handStack.getItem()) && handStack.isOf(ModItems.BAR)){
+            if ((slotStack.isOf(handStack.getItem()) && handStack.isOf(ModItems.BAR)) || handStack.getItem() instanceof IceCreamCup){
                 return handStack;
             }
 
@@ -112,7 +114,7 @@ public class IceCreamBarMoldBlockEntity extends InventoryBlockEntity{
             return;
         }
 
-        List<SimpleInventory> inventories = IHitSlot.splitInventor(be, IHitSlot.ThreeHitSlot.values());
+        List<SimpleInventory> inventories = IHitSlot.splitInventor(be, IceCreamBarMoldBlock.HIT_SLOTS);
         SimpleInventory inventory = inventories.get(world.random.nextInt(inventories.size()));
         Optional<ListRecipes> match = world.getRecipeManager().getFirstMatch(ListRecipes.Type.INSTANCE, inventory, world);
 

@@ -12,6 +12,7 @@ import java.util.Map;
 
 public class ModBlockItems {
     public static final BaseBlockItem ICE_CREAM_BAR_MOLD = RegisterUtil.registerItem(new BaseBlockItem(ModBlocks.ICE_CREAM_BAR_MOLD_BLOCK, 64), ModItemGroups.ITEM_GROUP);
+    public static final BaseBlockItem ICE_CREAM_MACHINE = RegisterUtil.registerItem(new BaseBlockItem(ModBlocks.ICE_CREAM_MACHINE_BLOCK, 64), ModItemGroups.ITEM_GROUP);
     public static final BaseBlockItem MIXER = RegisterUtil.registerItem(new BaseBlockItem("/stop", ModBlocks.MIXER_BLOCK, 64), ModItemGroups.ITEM_GROUP);
     public static final CoolerBox COOLER_BOX = RegisterUtil.registerItem(new CoolerBox("/close", ModBlocks.COOLER_BOX_BLOCK, 1), ModItemGroups.ITEM_GROUP);
     public static final Plate PLATE = RegisterUtil.registerItem(new Plate(ModBlocks.PLATE_BLOCK, new Item.Settings().maxCount(1).maxDamage(PlateBlockEntity.SIZE)), ModItemGroups.ITEM_GROUP);

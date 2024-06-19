@@ -3,16 +3,13 @@ package fengliu.feseliud.block;
 import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderType;
 import net.minecraft.block.BlockState;
-import net.minecraft.block.BlockWithEntity;
-import net.minecraft.block.entity.BlockEntity;
-import net.minecraft.block.entity.BlockEntityTicker;
-import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.data.client.*;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.state.StateManager;
 import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.Properties;
-import net.minecraft.util.shape.VoxelShape;
-import net.minecraft.world.World;
+import net.minecraft.util.Identifier;
+import net.minecraft.util.math.Direction;
 import org.jetbrains.annotations.Nullable;
 
 
@@ -44,5 +41,18 @@ public abstract class FacingEntityBlock extends BaseEntityBlock implements IModB
     @Override
     public String getTextureName() {
         return this.name;
+    }
+
+    @Override
+    public void generateBlockStateModel(BlockStateModelGenerator blockStateModelGenerator) {
+        Identifier modelId = this.getModelId();
+        blockStateModelGenerator.blockStateCollector.accept(VariantsBlockStateSupplier.create(this)
+                .coordinate(BlockStateVariantMap.create(Properties.HORIZONTAL_FACING)
+                        .register(Direction.EAST, BlockStateVariant.create().put(VariantSettings.MODEL, modelId).put(VariantSettings.Y, VariantSettings.Rotation.R90))
+                        .register(Direction.SOUTH, BlockStateVariant.create().put(VariantSettings.MODEL, modelId).put(VariantSettings.Y, VariantSettings.Rotation.R180))
+                        .register(Direction.WEST, BlockStateVariant.create().put(VariantSettings.MODEL, modelId).put(VariantSettings.Y, VariantSettings.Rotation.R270))
+                        .register(Direction.NORTH, BlockStateVariant.create().put(VariantSettings.MODEL, modelId))
+                )
+        );
     }
 }

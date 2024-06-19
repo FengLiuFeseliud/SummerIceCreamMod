@@ -76,6 +76,9 @@
   "block.summer_ice_cream.mixer": "搅拌器",
   "item.summer_ice_cream.mixer.tooltip": "能将材料与材料混合",
 
+  "block.summer_ice_cream.ice_cream_machine": "冰淇淋机",
+  "item.summer_ice_cream.ice_cream_machine.tooltip": "使冰淇淋液凝固输出到容器",
+
   "block.summer_ice_cream.cooler_box": "保温箱",
   "item.summer_ice_cream.cooler_box.tooltip": "把雪糕放进去好像可以减缓雪糕融化速度?",
 

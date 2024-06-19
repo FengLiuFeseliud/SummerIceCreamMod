@@ -1,10 +1,7 @@
 package fengliu.feseliud.block;
 
 import fengliu.feseliud.block.icecream.*;
-import fengliu.feseliud.block.tool.CoolerBoxBlock;
-import fengliu.feseliud.block.tool.IceCreamBarMoldBlock;
-import fengliu.feseliud.block.tool.MixerBlock;
-import fengliu.feseliud.block.tool.PlateBlock;
+import fengliu.feseliud.block.tool.*;
 import fengliu.feseliud.fluid.ModFluids;
 import fengliu.feseliud.item.block.Chocolate;
 import fengliu.feseliud.item.block.icecream.*;
@@ -18,6 +15,7 @@ public class ModBlocks {
     public static final MixerBlock MIXER_BLOCK = register(new MixerBlock(AbstractBlock.Settings.create().nonOpaque(), "mixer"));
     public static final CoolerBoxBlock COOLER_BOX_BLOCK = register(new CoolerBoxBlock(AbstractBlock.Settings.create().strength(1.5f).nonOpaque(), "cooler_box"));
     public static final PlateBlock PLATE_BLOCK = register(new PlateBlock(AbstractBlock.Settings.create().strength(1f).nonOpaque(), "plate"));
+    public static final IceCreamMachineBlock ICE_CREAM_MACHINE_BLOCK = register(new IceCreamMachineBlock(AbstractBlock.Settings.create().strength(1.5f).nonOpaque(), "ice_cream_machine"));
     public static final BaseLiquidFluidBlock MIKI_BLOCK = register(new BaseLiquidFluidBlock(ModFluids.MILK_FLUIDS));
 
     public static final BaseLiquidFluidBlock MILK_ICE_CREAM_LIQUID_BLOCK = register(new BaseLiquidFluidBlock(ModFluids.MILK_ICE_CREAM_LIQUID_FLUIDS));

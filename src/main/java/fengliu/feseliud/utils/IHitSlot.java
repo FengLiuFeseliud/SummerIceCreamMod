@@ -23,26 +23,7 @@ public interface IHitSlot{
      */
     int getIndex();
 
-    /**
-     * 三点击槽
-     */
-    enum ThreeHitSlot implements IHitSlot{
-        SLOT1(0),
-        SLOT2(1),
-        SLOT3(2);
-
-        private final int index;
-
-        ThreeHitSlot(int index){
-            this.index = index;
-        }
-
-
-        @Override
-        public int getIndex() {
-            return this.index;
-        }
-    }
+    IHitSlot[] getHitSlots();
 
     /**
      * 反转槽组
@@ -100,7 +81,7 @@ public interface IHitSlot{
      * @param hitSlots 槽组
      * @return 已分割库存组
      */
-    static List<SimpleInventory> splitInventor(InventoryBlockEntity be, IHitSlot[] hitSlots){
+      static List<SimpleInventory> splitInventor(InventoryBlockEntity be, IHitSlot[] hitSlots){
         List<SimpleInventory> inventories = new ArrayList<>();
         int size = be.size() / hitSlots.length;
 
@@ -116,13 +97,42 @@ public interface IHitSlot{
         return inventories;
     }
 
+    default int getHitSlotInventorySize(InventoryBlockEntity be){
+        return be.size() / this.getHitSlots().length;
+    }
+
+    default int getHeadSlot(InventoryBlockEntity be){
+          return this.getIndex() * this.getHitSlotInventorySize(be);
+    }
+
+    default int getInventorySlot(InventoryBlockEntity be, int slot){
+          int size = this.getHitSlotInventorySize(be);
+          if (slot > size || -1 >= slot){
+              return -1;
+          }
+          return this.getIndex() * size + slot;
+    }
+
+    default SimpleInventory getHitSlotInventory(InventoryBlockEntity be){
+          SimpleInventory inventory = new SimpleInventory(this.getHitSlotInventorySize(be));
+          int headSlot = this.getHeadSlot(be);
+          for (int slot = headSlot; slot < headSlot + inventory.size(); slot++){
+              inventory.addStack(be.getStack(slot));
+          }
+          return inventory;
+    }
+
+    default boolean isSlotEmpty(InventoryBlockEntity be, int slot){
+        return be.getStack(this.getHeadSlot(be) + slot).isEmpty();
+    }
+
     /**
      * 获取该槽库存空位 slot
      * @param be 库存方块实体
      * @return 空位 slot, 没有空位返回 -1
      */
     default int getInventoryEmptySlot(InventoryBlockEntity be){
-        SimpleInventory inventory = splitInventor(be, ThreeHitSlot.values()).get(this.getIndex());
+        SimpleInventory inventory = this.getHitSlotInventory(be);
         for(int index = 0; index < inventory.size(); index++){
             ItemStack stack = inventory.getStack(index);
             if (stack.isEmpty()){
@@ -135,17 +145,26 @@ public interface IHitSlot{
     /**
      * 获取该槽库存最后一个非空位 slot
      * @param be 库存方块实体
-     * @param hitSlots 槽组
      * @return 非空位 slot, 没有空位返回 -1
      */
-    default int getInventoryLastNotEmptySlot(InventoryBlockEntity be, IHitSlot[] hitSlots){
-        int slotSize = be.size() / hitSlots.length;
-        for(int index = slotSize * (this.getIndex() + 1) - 1; slotSize * this.getIndex() <= index; index--){
+    default int getInventoryLastNotEmptySlot(InventoryBlockEntity be){
+        int slotSize = this.getHitSlotInventorySize(be);
+        int headSlot = this.getHeadSlot(be);
+
+        for(int index = headSlot + slotSize - 1; headSlot <= index; index--){
             ItemStack stack = be.getStack(index);
             if (!stack.isEmpty()){
                 return index;
             }
         }
         return -1;
+    }
+
+    default ItemStack getInventoryLastStack(InventoryBlockEntity be){
+        int slot = this.getInventoryLastNotEmptySlot(be);
+        if (slot == -1){
+            return ItemStack.EMPTY;
+        }
+        return be.getStack(slot);
     }
 }

@@ -17,6 +17,7 @@ import net.minecraft.block.ShapeContext;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityTicker;
 import net.minecraft.block.entity.BlockEntityType;
+import net.minecraft.data.client.BlockStateModelGenerator;
 import net.minecraft.enchantment.EnchantmentHelper;
 import net.minecraft.enchantment.Enchantments;
 import net.minecraft.entity.LivingEntity;
@@ -129,5 +130,10 @@ public class IceCreamBlock extends FacingEntityBlock implements IDetachableBlock
     @Override
     public VoxelShape getCollisionShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
         return this.getShape(state);
+    }
+
+    @Override
+    public void generateBlockStateModel(BlockStateModelGenerator blockStateModelGenerator) {
+        IDetachableBlock.super.generateBlockStateModel(blockStateModelGenerator);
     }
 }
