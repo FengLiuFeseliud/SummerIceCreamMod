@@ -45,8 +45,8 @@ public class ModItems {
     public static final FoodLiquidBucket CHOCOLATE_ICE_CREAM_LIQUID_BUCKET = register(new FoodLiquidBucket("chocolate_ice_cream_liquid_bucket", ModFluids.CHOCOLATE_ICE_CREAM_LIQUID_FLUIDS, FoodComponents.POTATO), ModItemGroups.MATERIALS_GROUP);
     public static final Map<IceCreamBar, IIceCreamLevel> CHOCOLATE_ICE_CREAM_BARS = RegisterUtil.registerItems(ChocolateIceCreamBar.IceCreamLevels.values(), ModItemGroups.FOOD_GROUP);
     public static final Map<IceCreamBar, IIceCreamLevel> CHOCOLATE_CRUST_CHOCOLATE_ICE_CREAM_BARS = RegisterUtil.registerItems(ChocolateCrustChocolateIceCreamBar.IceCreamLevels.values(), ModItemGroups.FOOD_GROUP);
-    public static final Map<IceCreamBar, IIceCreamLevel> BASE_CHOCOLATE_ICE_CREAM_BARS = RegisterUtil.registerItems(BaseChocolateCreamCup.IceCreamLevels.values(), ModItemGroups.FOOD_GROUP);
-    public static final Map<IceCreamBar, IIceCreamLevel> BASE_CHOCOLATE_ICE_CREAM_BARS_AND_SPOON = RegisterUtil.registerItems(BaseChocolateCreamCup.IceCreamAndSpoonLevels.values(), ModItemGroups.FOOD_GROUP);
+    public static final Map<IceCreamBar, IIceCreamLevel> BASE_CHOCOLATE_ICE_CREAM_CUPS = RegisterUtil.registerItems(BaseChocolateCreamCup.IceCreamLevels.values(), ModItemGroups.FOOD_GROUP);
+    public static final Map<IceCreamBar, IIceCreamLevel> BASE_CHOCOLATE_ICE_CREAM_CUPS_AND_SPOON = RegisterUtil.registerItems(BaseChocolateCreamCup.IceCreamAndSpoonLevels.values(), ModItemGroups.FOOD_GROUP);
     public static final Map<IceCreamBar, IIceCreamLevel> CHOCOLATE_BASE_CHOCOLATE_ICE_CREAM_CUPS = RegisterUtil.registerItems(ChocolateBaseChocolateCreamCup.IceCreamLevels.values(), ModItemGroups.FOOD_GROUP);
     public static final Map<IceCreamBar, IIceCreamLevel> CHOCOLATE_BASE_CHOCOLATE_ICE_CREAM_BARS_AND_SPOON = RegisterUtil.registerItems(ChocolateBaseChocolateCreamCup.IceCreamAndSpoonLevels.values(), ModItemGroups.FOOD_GROUP);
     public static final Map<IceCreamBar, IIceCreamLevel> CHOCOLATE_ICE_CREAM_BRICKS = RegisterUtil.registerItems(ChocolateIceCreamBrick.IceCreamLevels.values(), ModItemGroups.FOOD_GROUP);

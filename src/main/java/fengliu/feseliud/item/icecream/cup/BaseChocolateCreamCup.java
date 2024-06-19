@@ -19,12 +19,12 @@ public class BaseChocolateCreamCup extends IceCreamCup {
 
     @Override
     public Map<IceCreamBar, IIceCreamLevel> getIces() {
-        return ModItems.BASE_CHOCOLATE_ICE_CREAM_BARS;
+        return ModItems.BASE_CHOCOLATE_ICE_CREAM_CUPS;
     }
 
     @Override
     public Map<IceCreamBar, IIceCreamLevel> getIceCreamAndSpoons() {
-        return ModItems.BASE_CHOCOLATE_ICE_CREAM_BARS_AND_SPOON;
+        return ModItems.BASE_CHOCOLATE_ICE_CREAM_CUPS_AND_SPOON;
     }
 
     public enum IceCreamLevels implements IIceCreamLevel {

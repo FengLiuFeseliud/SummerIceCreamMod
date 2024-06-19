@@ -78,7 +78,12 @@ public class IceCreamMachineBlock extends FacingEntityBlock implements ITransluc
             ItemStack stack = be.putItem(handStack, hitSlot);
             if (stack.isEmpty()){
                 return ActionResult.PASS;
-            } else if (!player.isCreative()){
+            }
+
+            if (!player.isCreative()){
+                if (!stack.isOf(Items.BUCKET)){
+                    stack.decrement(1);
+                }
                 player.setStackInHand(hand, stack);
             }
         }

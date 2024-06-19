@@ -143,7 +143,7 @@ public class IceCreamCup extends IceCreamBar {
         if (iceCreamLevel.getName().startsWith("chocolate_")){
             Item item = Registries.ITEM.get(IdUtil.get(this.getItemLevel().getIdName().replaceAll("chocolate_", "")));
             if (item.equals(Items.AIR)){
-                item = ModItems.BASE_CHOCOLATE_ICE_CREAM_BARS.keySet().stream().toList().get(0);
+                item = ModItems.BASE_CHOCOLATE_ICE_CREAM_CUPS.keySet().stream().toList().get(0);
             }
             new ListRecipeJsonBuilder(this, item, ModItems.CHOCOLATE_LIQUID_BUCKET).offerTo(exporter);
         } else {

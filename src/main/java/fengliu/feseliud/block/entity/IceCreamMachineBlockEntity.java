@@ -65,7 +65,7 @@ public class IceCreamMachineBlockEntity extends InventoryBlockEntity{
             this.setStack(slot, stack.copy());
             return Items.BUCKET.getDefaultStack();
         } else{
-            this.setStack(slot, stack.split(1));
+            this.setStack(slot, new ItemStack(stack.getItem(), 1));
         }
         return stack;
     }

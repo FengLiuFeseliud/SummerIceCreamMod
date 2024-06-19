@@ -2,9 +2,14 @@ package fengliu.feseliud.block.entity.renderer;
 
 import fengliu.feseliud.block.entity.IceCreamMachineBlockEntity;
 import fengliu.feseliud.block.tool.IceCreamMachineBlock;
+import fengliu.feseliud.fluid.BaseFluid;
+import fengliu.feseliud.item.ModItems;
+import fengliu.feseliud.item.icecream.cup.ChocolateIceCreamCup;
+import fengliu.feseliud.item.icecream.cup.IceCreamCup;
 import fengliu.feseliud.item.icecream.liquid.FoodLiquidBucket;
 import fengliu.feseliud.mixin.MixinBucketItemAccessor;
 import fengliu.feseliud.utils.IHitSlot;
+import fengliu.feseliud.utils.IdUtil;
 import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry;
 import net.minecraft.block.BlockState;
 import net.minecraft.client.MinecraftClient;
@@ -18,7 +23,10 @@ import net.minecraft.client.texture.Sprite;
 import net.minecraft.client.util.math.MatrixStack;
 import net.minecraft.fluid.Fluid;
 import net.minecraft.fluid.Fluids;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.item.Items;
+import net.minecraft.registry.Registries;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Direction;
 import net.minecraft.util.math.RotationAxis;
@@ -332,6 +340,19 @@ public class IceCreamMachineBlockEntityRenderer implements BlockEntityRenderer<I
                 .next();
     }
 
+    private IceCreamCup getIceCreamCupFormFluidName(String name, int index){
+        Item item = Registries.ITEM.get(IdUtil.get(name.replaceAll("_liquid_fluid", "_cup_not_thaw")));
+        if (item.equals(Items.AIR)){
+            item = Registries.ITEM.get(IdUtil.get(name.replaceAll("milk_", "")
+                    .replaceAll("_liquid_fluid", "_cup_not_thaw")));
+        }
+
+        if (item instanceof ChocolateIceCreamCup){
+            item = ModItems.BASE_CHOCOLATE_ICE_CREAM_CUPS.keySet().stream().toList().get(0);
+        }
+        return (IceCreamCup) ((IceCreamCup) item.getDefaultStack().getItem()).getIces().keySet().stream().toList().get(index);
+    }
+
     @Override
     public void render(IceCreamMachineBlockEntity be, float tickDelta, MatrixStack matrices, VertexConsumerProvider vertexConsumers, int light, int overlay) {
         World world = be.getWorld();
@@ -368,8 +389,23 @@ public class IceCreamMachineBlockEntityRenderer implements BlockEntityRenderer<I
         for (IHitSlot hitSlot: hitSlots){
             ItemStack slotStack = be.getStack(hitSlot.getInventorySlot(be, IceCreamMachineBlockEntity.CUP_SLOT));
             if (!slotStack.isEmpty()){
-                client.getItemRenderer().renderItem(slotStack, ModelTransformationMode.GROUND , false, matrices, vertexConsumers, light, overlay,
-                        client.getItemRenderer().getModel(slotStack, world, null, 0));
+                int tick = be.propertyDelegate.get(hitSlot.getIndex());
+                int offset = (IceCreamMachineBlockEntity.USE_TICK - 60) / 4;
+
+                if (tick < 60 || slotStack.getItem() instanceof IceCreamCup){
+                    client.getItemRenderer().renderItem(slotStack, ModelTransformationMode.GROUND , false, matrices, vertexConsumers, light, overlay,
+                            client.getItemRenderer().getModel(slotStack, world, null, 0));
+                } else {
+                    ItemStack liquidStack = hitSlot.getInventoryLastStack(be);
+                    if (liquidStack.isEmpty() || !(liquidStack.getItem() instanceof FoodLiquidBucket)){
+                        continue;
+                    }
+                    ItemStack cupStack = this.getIceCreamCupFormFluidName(
+                            ((BaseFluid) ((MixinBucketItemAccessor) liquidStack.getItem()).getFluid()).getName(),
+                            3 - Math.min(Math.round((float) (tick - 60) / offset), 3)).getDefaultStack();
+                    client.getItemRenderer().renderItem(cupStack, ModelTransformationMode.GROUND , false, matrices, vertexConsumers, light, overlay,
+                            client.getItemRenderer().getModel(cupStack, world, null, 0));
+                }
             }
             matrices.translate(0.39f, 0f, 0f);
         }
@@ -384,7 +420,6 @@ public class IceCreamMachineBlockEntityRenderer implements BlockEntityRenderer<I
             }
 
             int tick = be.propertyDelegate.get(hitSlot.getIndex());
-
             matrices.push();
             matrices.translate(0.24f + 0.24f * hitSlotIndex + (float) hitSlotIndex / 100, 0.6f, 0.15f);
             matrices.scale(1f, 1f, 1f);
