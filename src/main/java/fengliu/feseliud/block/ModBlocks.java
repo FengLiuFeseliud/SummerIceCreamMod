@@ -15,6 +15,7 @@ public class ModBlocks {
     public static final MixerBlock MIXER_BLOCK = register(new MixerBlock(AbstractBlock.Settings.create().nonOpaque(), "mixer"));
     public static final CoolerBoxBlock COOLER_BOX_BLOCK = register(new CoolerBoxBlock(AbstractBlock.Settings.create().strength(1.5f).nonOpaque(), "cooler_box"));
     public static final PlateBlock PLATE_BLOCK = register(new PlateBlock(AbstractBlock.Settings.create().strength(1f).nonOpaque(), "plate"));
+    public static final IceCrusherBlock ICE_CRUSHER_BLOCK = register(new IceCrusherBlock(AbstractBlock.Settings.create().strength(1.5f).nonOpaque(), "ice_crusher"));
     public static final IceCreamMachineBlock ICE_CREAM_MACHINE_BLOCK = register(new IceCreamMachineBlock(AbstractBlock.Settings.create().strength(1.5f).nonOpaque(), "ice_cream_machine"));
     public static final BaseLiquidFluidBlock MIKI_BLOCK = register(new BaseLiquidFluidBlock(ModFluids.MILK_FLUIDS));
 

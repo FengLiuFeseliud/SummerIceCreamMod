@@ -12,9 +12,9 @@ public interface ILevelItem {
 
     /**
      * 获取等级物品组
-     * @return 等级物品组
-     * @param <I> {@link ILevelItem} Mod 等级物品
+     * @param <I>  {@link ILevelItem} Mod 等级物品
      * @param <IL> {@link IItemLevel} Mod 物品等级
+     * @return 等级物品组
      */
     <I extends ILevelItem, IL extends IItemLevel> Map<I, IL> getLevelItems();
 
@@ -34,14 +34,14 @@ public interface ILevelItem {
      * @return 下一等级物品
      */
     default ItemStack getNextItemStack(ItemStack stack){
-        for (Map.Entry<ILevelItem, IItemLevel> iceCream: this.getLevelItems().entrySet()){
-            int level = iceCream.getValue().getLevel();
+        for (Map.Entry<ILevelItem, IItemLevel> levelEntry: this.getLevelItems().entrySet()){
+            int level = levelEntry.getValue().getLevel();
             int itemLevel = this.getItemLevel().getLevel();
 
             if (itemLevel + 1 == level){
-                ItemStack iceCreamStack = ((Item) iceCream.getKey()).getDefaultStack();
-                iceCreamStack.setDamage(itemLevel);
-                return iceCreamStack;
+                ItemStack levelItemStack = ((Item) levelEntry.getKey()).getDefaultStack();
+                levelItemStack.setDamage(itemLevel);
+                return levelItemStack;
             }
         }
         return this.getItemLevel().getOutItemStack();

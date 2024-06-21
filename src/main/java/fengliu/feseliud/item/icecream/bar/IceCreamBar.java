@@ -70,7 +70,7 @@ public class IceCreamBar extends BaseItem implements IIceCreamLevelItem, FabricI
     public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
         user.setFireTicks(0);
         ItemStack iceCreamStack = this.getNextItemStack(stack);
-        super.finishUsing(stack, world, user);
+        super.finishUsing(stack.copy(), world, user);
         return iceCreamStack;
     }
 

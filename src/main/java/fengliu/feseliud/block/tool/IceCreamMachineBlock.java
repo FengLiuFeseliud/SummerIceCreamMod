@@ -37,7 +37,7 @@ public class IceCreamMachineBlock extends FacingEntityBlock implements ITransluc
 
     @Override
     public BlockEntityType<?> getBlockEntityType() {
-        return ModBlockEntitys.ICE_CREAM_MACHINE_BLOCK_BLOCK;
+        return ModBlockEntitys.ICE_CREAM_MACHINE_BLOCK_ENTITY;
     }
 
     @Override

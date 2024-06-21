@@ -40,7 +40,7 @@ public class IceCreamMachineBlockEntity extends InventoryBlockEntity{
     };
 
     public IceCreamMachineBlockEntity(BlockPos pos, BlockState state) {
-        super(ModBlockEntitys.ICE_CREAM_MACHINE_BLOCK_BLOCK, pos, state);
+        super(ModBlockEntitys.ICE_CREAM_MACHINE_BLOCK_ENTITY, pos, state);
         this.setMaxItemStack(20);
     }
 

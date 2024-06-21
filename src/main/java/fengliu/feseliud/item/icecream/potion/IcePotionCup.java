@@ -64,6 +64,10 @@ public class IcePotionCup extends BaseItem implements IIceCreamLevelItem, IColor
         return ModItems.ICE_POTION_CUPS;
     }
 
+    public Map<PotionCup, IItemLevel> getPotionCupItems() {
+        return ModItems.POTION_CUPS;
+    }
+
     @Override
     public void inventoryTick(ItemStack stack, World world, Entity entity, int slot, boolean selected) {
         this.thawTick(stack, world, entity, slot, selected);
@@ -122,7 +126,7 @@ public class IcePotionCup extends BaseItem implements IIceCreamLevelItem, IColor
      */
     public static ItemStack resetItemStack(ILevelItem cup, ItemStack stack) {
         ItemStack nextItem = cup.getNextItemStack(stack);
-        if (nextItem.isOf(ModItems.CUP)){
+        if (nextItem.isOf(ModItems.CUP) || nextItem.isOf(ModItems.ICE_CREAM_CUPS_PACK)){
             return nextItem;
         }
         return PotionUtil.setPotion(nextItem, PotionUtil.getPotion(stack));
@@ -130,9 +134,9 @@ public class IcePotionCup extends BaseItem implements IIceCreamLevelItem, IColor
 
     @Override
     public ItemStack thaw(ItemStack stack, PlayerEntity player) {
-        Optional<PotionCup> optional = ModItems.POTION_CUPS.keySet().stream().filter(item -> item.getItemLevel().getLevel() == this.getItemLevel().getLevel() - 1).findAny();
+        Optional<PotionCup> optional = this.getPotionCupItems().keySet().stream().filter(item -> item.getItemLevel().getLevel() == this.getItemLevel().getLevel() - 1).findAny();
         if (optional.isEmpty()){
-            return PotionUtil.setPotion(((Item) ModItems.POTION_CUPS.keySet().toArray()[0]).getDefaultStack(), PotionUtil.getPotion(stack));
+            return PotionUtil.setPotion(((Item) this.getPotionCupItems().keySet().toArray()[0]).getDefaultStack(), PotionUtil.getPotion(stack));
         }
 
         ItemStack potionCup = optional.get().getDefaultStack();

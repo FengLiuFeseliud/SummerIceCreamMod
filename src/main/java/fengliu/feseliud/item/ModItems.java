@@ -10,6 +10,7 @@ import fengliu.feseliud.item.icecream.liquid.FoodLiquidBucket;
 import fengliu.feseliud.item.icecream.potion.IceCup;
 import fengliu.feseliud.item.icecream.potion.IcePotionCup;
 import fengliu.feseliud.item.icecream.potion.PotionCup;
+import fengliu.feseliud.item.icecream.potion.PotionSmoothieCup;
 import fengliu.feseliud.utils.RegisterUtil;
 import fengliu.feseliud.utils.level.IFoodItemLevel;
 import fengliu.feseliud.utils.level.IItemLevel;
@@ -95,6 +96,11 @@ public class ModItems {
     public static final Map<IceCreamBar, IIceCreamLevel> CRUSHED_ICE = RegisterUtil.registerItems(CrushedIce.IceCreamLevels.values(), ModItemGroups.FOOD_GROUP);
     public static final Map<IceCreamBar, IIceCreamLevel> ICE_CUBES = RegisterUtil.registerItems(IceCube.IceCreamLevels.values(), ModItemGroups.FOOD_GROUP);
     public static final SerratedKnife SERRATED_KNIFE = register(new SerratedKnife(new Item.Settings().maxCount(1).maxDamage(32), "serrated_knife"), ModItemGroups.ITEM_GROUP);
+
+    public static final Map<IceCreamBar, IIceCreamLevel> SMOOTHIE_CUPS = RegisterUtil.registerItems(SmoothieCup.IceCreamLevels.values(), ModItemGroups.FOOD_GROUP);
+    public static final Map<IceCreamBar, IIceCreamLevel> SMOOTHIE_CUPS_AND_SPOON = RegisterUtil.registerItems(SmoothieCup.IceCreamAndSpoonLevels.values(), ModItemGroups.FOOD_GROUP);
+    public static final Map<IceCreamBar, IIceCreamLevel> POTION_SMOOTHIE_CUPS = RegisterUtil.registerItems(PotionSmoothieCup.IceCreamLevels.values(), ModItemGroups.FOOD_GROUP);
+    public static final Map<IceCreamBar, IIceCreamLevel> POTION_SMOOTHIE_CUPS_AND_SPOON = RegisterUtil.registerItems(PotionSmoothieCup.IceCreamAndSpoonLevels.values(), ModItemGroups.FOOD_GROUP);
 
     public static final BaseItem CUP = register(new BaseItem("cup", 16), ModItemGroups.ITEM_GROUP);
     public static final Map<IceCreamBar, IIceCreamLevel> ICE_CUPS = RegisterUtil.registerItems(IceCup.IceCreamLevels.values(), ModItemGroups.ITEM_GROUP);

@@ -1,13 +1,19 @@
 package fengliu.feseliud.item;
 
+import fengliu.feseliud.item.icecream.IIceCreamLevel;
 import fengliu.feseliud.item.icecream.IIceCreamLevelItem;
 import fengliu.feseliud.item.icecream.cup.IceCreamCup;
+import fengliu.feseliud.item.icecream.potion.PotionSmoothieCup;
 import net.minecraft.entity.player.PlayerEntity;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NbtElement;
+import net.minecraft.potion.Potion;
+import net.minecraft.potion.PotionUtil;
 import net.minecraft.screen.slot.Slot;
 import net.minecraft.util.ClickType;
+
+import java.util.Map;
 
 public class Spoon extends BaseItem{
     public Spoon(String name, int count) {
@@ -22,11 +28,20 @@ public class Spoon extends BaseItem{
         }
 
         Item item = slotStack.getItem();
-        if (!(item instanceof IceCreamCup iceCreamCup)){
+        if (!(item instanceof IIceCreamLevelItem cup)){
             return super.onStackClicked(stack, slot, clickType, player);
         }
 
-        if (iceCreamCup.isSpoon()){
+        if (cup.inSpoon()){
+            return super.onStackClicked(stack, slot, clickType, player);
+        }
+
+        Map<? extends IIceCreamLevelItem, IIceCreamLevel> creamLevels;
+        if (item instanceof IceCreamCup iceCreamCup){
+            creamLevels = iceCreamCup.getIceCreamAndSpoons();
+        } else if (item instanceof PotionSmoothieCup potionSmoothieCup){
+            creamLevels = potionSmoothieCup.getIceCreamAndSpoons();
+        } else {
             return super.onStackClicked(stack, slot, clickType, player);
         }
 
@@ -34,14 +49,19 @@ public class Spoon extends BaseItem{
             slotStack.getOrCreateNbt().putInt(IIceCreamLevelItem.THAW_TICK_KEY, 0);
         }
 
-        int iceCreamLevelInt = iceCreamCup.getLevelItems().get(iceCreamCup).getLevel();
-        iceCreamCup.getIceCreamAndSpoons().forEach((iceCreamCupItem, iceCreamLevel) -> {
-            if(iceCreamLevel.getLevel() != iceCreamLevelInt){
+        int iceCreamLevelInt = cup.getLevelItems().get(cup).getLevel();
+        creamLevels.forEach((iceCreamCupItem, iceCreamLevel) -> {
+            if(iceCreamCupItem.getItemLevel().getLevel() != iceCreamLevelInt){
                 return;
             }
 
-            ItemStack iceCreamCupItemStack = iceCreamCupItem.getDefaultStack();
+            ItemStack iceCreamCupItemStack = ((Item) iceCreamCupItem).getDefaultStack();
             iceCreamCupItemStack.getOrCreateNbt().putInt(IIceCreamLevelItem.THAW_TICK_KEY, slotStack.getNbt().getInt(IIceCreamLevelItem.THAW_TICK_KEY));
+
+            Potion potion = PotionUtil.getPotion(slotStack);
+            if (!potion.getEffects().isEmpty()){
+                PotionUtil.setPotion(iceCreamCupItemStack, potion);
+            }
 
             stack.decrement(1);
             slotStack.decrement(1);

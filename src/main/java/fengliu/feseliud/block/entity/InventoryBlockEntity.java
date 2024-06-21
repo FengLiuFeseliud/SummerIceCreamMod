@@ -25,6 +25,28 @@ public abstract class InventoryBlockEntity extends BlockEntity implements IInven
         super(type, pos, state);
     }
 
+    public boolean combineStack(int slot, ItemStack stack){
+        ItemStack slotStack = this.getStack(slot);
+        if (slotStack.isEmpty()){
+            this.setStack(slot, stack.copyAndEmpty());
+            return true;
+        }
+
+        if (!ItemStack.canCombine(slotStack, stack)) {
+            return false;
+        }
+
+        if (stack.getCount() + slotStack.getCount() < slotStack.getMaxCount()){
+            slotStack.increment(stack.getCount());
+            stack.setCount(0);
+        } else {
+            int addCount = slotStack.getMaxCount() - slotStack.getCount();
+            slotStack.increment(addCount);
+            stack.decrement(addCount);
+        }
+        return true;
+    }
+
     /**
      * 设置库存最大大小
      * @param maxItemStack 库存最大大小

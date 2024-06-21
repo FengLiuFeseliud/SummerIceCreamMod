@@ -73,8 +73,17 @@
   "item.summer_ice_cream.potion_cup": "%s",
   "item.summer_ice_cream.potion_cup.tooltip": "装着饮品的玻璃杯",
 
+  "item.summer_ice_cream.smoothie_cup": "冰沙",
+  "item.summer_ice_cream.smoothie_cup.tooltip": "单纯的碎冰",
+
+  "item.summer_ice_cream.potion_smoothie_cup": "%s冰沙",
+  "item.summer_ice_cream.potion_smoothie_cup.tooltip": "在冰沙上淋上了一层药水",
+
   "block.summer_ice_cream.mixer": "搅拌器",
   "item.summer_ice_cream.mixer.tooltip": "能将材料与材料混合",
+
+  "block.summer_ice_cream.ice_crusher": "碎冰机",
+  "item.summer_ice_cream.ice_crusher.tooltip": "能将分割好的小冰块粉碎成更小的冰沙",
 
   "block.summer_ice_cream.ice_cream_machine": "冰淇淋机",
   "item.summer_ice_cream.ice_cream_machine.tooltip": "使冰淇淋液凝固输出到容器",

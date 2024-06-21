@@ -43,7 +43,8 @@ public class IceCreamCup extends IceCreamBar {
         this.spoon = spoon;
     }
 
-    public boolean isSpoon() {
+    @Override
+    public boolean inSpoon() {
         return this.spoon;
     }
 
@@ -65,7 +66,7 @@ public class IceCreamCup extends IceCreamBar {
 
     @Override
     public Map<IceCreamBar, IIceCreamLevel> getLevelItems() {
-        if (this.isSpoon()){
+        if (this.inSpoon()){
             return this.getIceCreamAndSpoons();
         }
         return this.getIces();
@@ -73,7 +74,7 @@ public class IceCreamCup extends IceCreamBar {
 
     @Override
     public ItemStack finishUsing(ItemStack stack, World world, LivingEntity user) {
-        if (this.isSpoon()){
+        if (this.inSpoon()){
             ItemStack nextIceCream = super.finishUsing(stack, world, user);
             if (nextIceCream.isOf(this.getItemLevel().getOutItemStack().getItem())){
                 user.dropStack(ModItems.SPOON.getDefaultStack());
@@ -85,7 +86,7 @@ public class IceCreamCup extends IceCreamBar {
 
     @Override
     public UseAction getUseAction(ItemStack stack) {
-        if (this.isSpoon()){
+        if (this.inSpoon()){
             return UseAction.DRINK;
         }
         return UseAction.NONE;
@@ -115,7 +116,7 @@ public class IceCreamCup extends IceCreamBar {
     public void generateModel(ItemModelGenerator itemModelGenerator) {
         Identifier cupTexturePath = IdUtil.get(CUP_PATH + (Math.min(this.getItemLevel().getLevel(), 3)));
 
-        if (this.isSpoon()){
+        if (this.inSpoon()){
             GENERATED_THREE_LAYERS.upload(ModelIds.getItemModelId(this),
                     TextureMap.layered(
                             IdUtil.get(CUP_SPOON_PATH),
@@ -136,7 +137,7 @@ public class IceCreamCup extends IceCreamBar {
     @Override
     public void generateRecipe(Consumer<RecipeJsonProvider> exporter) {
         IIceCreamLevel iceCreamLevel = this.getItemLevel();
-        if (iceCreamLevel.getLevel() != 1 || this.isSpoon()){
+        if (iceCreamLevel.getLevel() != 1 || this.inSpoon()){
             return;
         }
 

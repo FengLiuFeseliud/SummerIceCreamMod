@@ -10,6 +10,7 @@ public class ModBlockEntityRenderers {
         BlockEntityRendererRegistry.register(ModBlockEntitys.MIXER_BLOCK_ENTITY, MixerBlockEntityRenderer::new);
         BlockEntityRendererRegistry.register(ModBlockEntitys.COOLER_BOX_BLOCK_ENTITY, CoolerBoxBlockEntityRenderer::new);
         BlockEntityRendererRegistry.register(ModBlockEntitys.PLATE_BLOCK_ENTITY, PlateBlockEntityRenderer::new);
-        BlockEntityRendererRegistry.register(ModBlockEntitys.ICE_CREAM_MACHINE_BLOCK_BLOCK, IceCreamMachineBlockEntityRenderer::new);
+        BlockEntityRendererRegistry.register(ModBlockEntitys.ICE_CREAM_MACHINE_BLOCK_ENTITY, IceCreamMachineBlockEntityRenderer::new);
+        BlockEntityRendererRegistry.register(ModBlockEntitys.ICE_CRUSHER_BLOCK_ENTITY, IceCrusherBlockRenderers::new);
     }
 }

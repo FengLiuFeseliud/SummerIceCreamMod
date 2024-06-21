@@ -1,0 +1,219 @@
+{
+    "multipart": [
+        {
+            "when": {
+                "facing": "north",
+                "close": true,
+                "use": 0
+            },
+            "apply": {
+                "model": "summer_ice_cream:block/ice_crusher/close"
+            }
+        },
+        {
+            "when": {
+                "facing": "east",
+                "close": true,
+                "use": 0
+            },
+            "apply": {
+                "model": "summer_ice_cream:block/ice_crusher/close",
+                "y": 90
+            }
+        },
+        {
+            "when": {
+                "facing": "south",
+                "close": true,
+                "use": 0
+            },
+            "apply": {
+                "model": "summer_ice_cream:block/ice_crusher/close",
+                "y": 180
+            }
+        },
+        {
+            "when": {
+                "facing": "west",
+                "close": true,
+                "use": 0
+            },
+            "apply": {
+                "model": "summer_ice_cream:block/ice_crusher/close",
+                "y": 270
+            }
+        },
+        {
+            "when": {
+                "facing": "north",
+                "close": false,
+                "use": 0
+            },
+            "apply": {
+                "model": "summer_ice_cream:block/ice_crusher/open"
+            }
+        },
+        {
+            "when": {
+                "facing": "east",
+                "close": false,
+                "use": 0
+            },
+            "apply": {
+                "model": "summer_ice_cream:block/ice_crusher/open",
+                "y": 90
+            }
+        },
+        {
+            "when": {
+                "facing": "south",
+                "close": false,
+                "use": 0
+            },
+            "apply": {
+                "model": "summer_ice_cream:block/ice_crusher/open",
+                "y": 180
+            }
+        },
+        {
+            "when": {
+                "facing": "west",
+                "close": false,
+                "use": 0
+            },
+            "apply": {
+                "model": "summer_ice_cream:block/ice_crusher/open",
+                "y": 270
+            }
+        },
+        {
+            "when": {
+                "facing": "north",
+                "close": true,
+                "use": 1
+            },
+            "apply": {
+                "model": "summer_ice_cream:block/ice_crusher/use_1"
+            }
+        },
+        {
+            "when": {
+                "facing": "east",
+                "close": true,
+                "use": 1
+            },
+            "apply": {
+                "model": "summer_ice_cream:block/ice_crusher/use_1",
+                "y": 90
+            }
+        },
+        {
+            "when": {
+                "facing": "south",
+                "close": true,
+                "use": 1
+            },
+            "apply": {
+                "model": "summer_ice_cream:block/ice_crusher/use_1",
+                "y": 180
+            }
+        },
+        {
+            "when": {
+                "facing": "west",
+                "close": true,
+                "use": 1
+            },
+            "apply": {
+                "model": "summer_ice_cream:block/ice_crusher/use_1",
+                "y": 270
+            }
+        },
+        {
+            "when": {
+                "facing": "north",
+                "close": true,
+                "use": 2
+            },
+            "apply": {
+                "model": "summer_ice_cream:block/ice_crusher/use_2"
+            }
+        },
+        {
+            "when": {
+                "facing": "east",
+                "close": true,
+                "use": 2
+            },
+            "apply": {
+                "model": "summer_ice_cream:block/ice_crusher/use_2",
+                "y": 90
+            }
+        },
+        {
+            "when": {
+                "facing": "south",
+                "close": true,
+                "use": 2
+            },
+            "apply": {
+                "model": "summer_ice_cream:block/ice_crusher/use_2",
+                "y": 180
+            }
+        },
+        {
+            "when": {
+                "facing": "west",
+                "close": true,
+                "use": 2
+            },
+            "apply": {
+                "model": "summer_ice_cream:block/ice_crusher/use_2",
+                "y": 270
+            }
+        },
+        {
+            "when": {
+                "facing": "north",
+                "close": true,
+                "use": 3
+            },
+            "apply": {
+                "model": "summer_ice_cream:block/ice_crusher/use_3"
+            }
+        },
+        {
+            "when": {
+                "facing": "east",
+                "close": true,
+                "use": 3
+            },
+            "apply": {
+                "model": "summer_ice_cream:block/ice_crusher/use_3",
+                "y": 90
+            }
+        },
+        {
+            "when": {
+                "facing": "south",
+                "close": true,
+                "use": 3
+            },
+            "apply": {
+                "model": "summer_ice_cream:block/ice_crusher/use_3",
+                "y": 180
+            }
+        },
+        {
+            "when": {
+                "facing": "west",
+                "close": true,
+                "use": 3
+            },
+            "apply": {
+                "model": "summer_ice_cream:block/ice_crusher/use_3",
+                "y": 270
+            }
+        }
+    ]
+}
